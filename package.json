@@ -1,8 +1,8 @@
 {
-  "name": "ki-agenten-pilotkunden",
+  "name": "ki-packt-an",
   "version": "1.0.0",
   "private": true,
-  "description": "GitHub Pages landing page for AI agent pilot customers.",
+  "description": "GitHub Pages landing page for KI packt an pilot customers.",
   "type": "module",
   "scripts": {
     "check": "node scripts/check.mjs"

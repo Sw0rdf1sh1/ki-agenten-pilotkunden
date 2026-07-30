@@ -5,18 +5,18 @@ if (form) {
     event.preventDefault();
 
     const data = new FormData(form);
-    const subject = `KI-Agenten Pilotanfrage: ${data.get("company") || "Unternehmen"}`;
+    const subject = `KI packt an Pilotgespräch: ${data.get("company") || "Unternehmen"}`;
     const body = [
       "Hallo Fabian,",
       "",
-      "ich interessiere mich für einen KI-Agenten-Pilot.",
+      "ich interessiere mich für einen KI packt an Pilot.",
       "",
       `Unternehmen: ${data.get("company") || ""}`,
       `Name: ${data.get("name") || ""}`,
       `E-Mail: ${data.get("email") || ""}`,
-      `Interessanter Pilot: ${data.get("pilot") || ""}`,
+      `Passender Startpunkt: ${data.get("pilot") || ""}`,
       "",
-      "Was der Agent vorbereiten soll:",
+      "Welche Arbeit die KI vorbereiten soll:",
       data.get("message") || "",
       "",
       "Viele Grüße",
