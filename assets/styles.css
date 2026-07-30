@@ -619,6 +619,65 @@ h3 {
   padding: 1rem;
 }
 
+.decision {
+  background:
+    linear-gradient(180deg, rgba(247, 244, 239, 0.92), rgba(255, 255, 255, 0.84)),
+    #ffffff;
+}
+
+.decision-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.decision-grid article {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(24, 18, 43, 0.07);
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.decision-grid span {
+  align-items: center;
+  background: rgba(51, 184, 143, 0.12);
+  border: 1px solid rgba(51, 184, 143, 0.3);
+  border-radius: 999px;
+  color: #117a5d;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 900;
+  justify-self: start;
+  padding: 0.45rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.decision-grid article:nth-child(2) span {
+  background: rgba(245, 184, 75, 0.16);
+  border-color: rgba(245, 184, 75, 0.42);
+  color: #8a5a00;
+}
+
+.decision-grid article:nth-child(3) span {
+  background: rgba(242, 95, 92, 0.12);
+  border-color: rgba(242, 95, 92, 0.32);
+  color: #a73532;
+}
+
+.decision-grid h3,
+.decision-grid p {
+  margin-bottom: 0;
+}
+
+.decision-grid p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .pricing {
   background: #152033;
   color: var(--white);
@@ -800,6 +859,7 @@ textarea {
   .step-grid,
   .case-grid,
   .price-grid,
+  .decision-grid,
   .metric-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -861,6 +921,7 @@ textarea {
   .step-grid,
   .case-grid,
   .price-grid,
+  .decision-grid,
   .metric-grid {
     grid-template-columns: 1fr;
   }
