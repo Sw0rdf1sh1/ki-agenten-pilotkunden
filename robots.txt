@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ki-agenten.georgi.digital/sitemap.xml
+Sitemap: https://sw0rdf1sh1.github.io/ki-agenten-pilotkunden/sitemap.xml

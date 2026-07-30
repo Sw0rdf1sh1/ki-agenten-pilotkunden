@@ -26,7 +26,13 @@ npm run check
 ## Deployment
 
 The repository deploys through GitHub Pages using `.github/workflows/pages.yml`.
-The intended custom domain is:
+The live GitHub Pages URL is:
+
+```text
+https://sw0rdf1sh1.github.io/ki-agenten-pilotkunden/
+```
+
+The intended later custom domain is:
 
 ```text
 ki-agenten.georgi.digital
