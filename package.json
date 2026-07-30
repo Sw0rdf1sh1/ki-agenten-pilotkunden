@@ -1,0 +1,10 @@
+{
+  "name": "ki-agenten-pilotkunden",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub Pages landing page for AI agent pilot customers.",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  }
+}
