@@ -355,7 +355,7 @@
             welches Paket passt und welche Grenzen wir vor der Umsetzung klären sollten.
           </p>
         </div>
-        <form class="lead-form" id="lead-form">
+        <form class="lead-form" id="lead-form" action="/api/contact" method="post">
           <label>
             Unternehmen
             <input name="company" autocomplete="organization" required>
@@ -369,7 +369,7 @@
             <input type="email" name="email" autocomplete="email" required>
           </label>
           <label>
-              Passender Startpunkt
+            Passender Startpunkt
             <select name="pilot">
               <option>Anfrage-Assistent</option>
               <option>Dokumenten-Assistent</option>
@@ -385,10 +385,15 @@
             Welche Arbeit soll die KI vorbereiten?
             <textarea name="message" rows="6" required></textarea>
           </label>
-          <button class="button primary full" type="submit">Pilotgespräch per E-Mail anfragen</button>
+          <label class="form-trap" aria-hidden="true" tabindex="-1">
+            Website
+            <input name="website" autocomplete="off" tabindex="-1">
+          </label>
+          <button class="button primary full" type="submit">Pilotgespräch anfragen</button>
+          <p class="form-status" id="lead-form-status" role="status" aria-live="polite"></p>
           <p class="form-note">
-            Dieses statische Formular öffnet Ihr E-Mail-Programm. Es werden auf dieser Landingpage keine
-            Formulardaten gespeichert.
+            Die Anfrage wird sicher über den Server versendet. Verbindliche Entscheidungen und Angebote
+            entstehen erst nach persönlicher Rücksprache.
           </p>
         </form>
       </section>
