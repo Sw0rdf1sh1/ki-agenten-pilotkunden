@@ -26,6 +26,8 @@ function buildEmailText(data) {
     `Name: ${data.name}`,
     `E-Mail: ${data.email}`,
     `Passender Startpunkt: ${data.pilot}`,
+    `Häufigkeit der Arbeit: ${data.frequency}`,
+    `Beteiligte Systeme oder Datenquellen: ${data.systems}`,
     "",
     "Welche Arbeit die KI vorbereiten soll:",
     data.message,
@@ -40,6 +42,8 @@ function buildEmailHtml(data) {
     ["Name", data.name],
     ["E-Mail", data.email],
     ["Passender Startpunkt", data.pilot],
+    ["Häufigkeit der Arbeit", data.frequency],
+    ["Beteiligte Systeme oder Datenquellen", data.systems],
   ];
 
   const detailRows = rows
@@ -87,6 +91,8 @@ export async function onRequestPost({ request, env }) {
     name: clean(payload.name),
     email: clean(payload.email),
     pilot: clean(payload.pilot || "Noch offen, bitte einschätzen"),
+    frequency: clean(payload.frequency),
+    systems: clean(payload.systems),
     message: clean(payload.message),
   };
 
