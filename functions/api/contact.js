@@ -27,6 +27,8 @@ function buildEmailText(data) {
     `E-Mail: ${data.email}`,
     `Passender Startpunkt: ${data.pilot}`,
     `Häufigkeit der Arbeit: ${data.frequency}`,
+    `Beteiligte Personen im Ablauf: ${data.teamSize}`,
+    `Gewünschter Pilotstart: ${data.timeline}`,
     `Beteiligte Systeme oder Datenquellen: ${data.systems}`,
     "",
     "Welche Arbeit die KI vorbereiten soll:",
@@ -43,6 +45,8 @@ function buildEmailHtml(data) {
     ["E-Mail", data.email],
     ["Passender Startpunkt", data.pilot],
     ["Häufigkeit der Arbeit", data.frequency],
+    ["Beteiligte Personen im Ablauf", data.teamSize],
+    ["Gewünschter Pilotstart", data.timeline],
     ["Beteiligte Systeme oder Datenquellen", data.systems],
   ];
 
@@ -92,6 +96,8 @@ export async function onRequestPost({ request, env }) {
     email: clean(payload.email),
     pilot: clean(payload.pilot || "Noch offen, bitte einschätzen"),
     frequency: clean(payload.frequency),
+    teamSize: clean(payload.team_size),
+    timeline: clean(payload.timeline),
     systems: clean(payload.systems),
     message: clean(payload.message),
   };
