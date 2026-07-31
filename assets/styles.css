@@ -858,6 +858,10 @@ h3 {
   grid-column: 1 / -1;
 }
 
+.form-trap {
+  display: none;
+}
+
 input,
 select,
 textarea {
@@ -872,6 +876,37 @@ textarea {
 
 textarea {
   resize: vertical;
+}
+
+.lead-form button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.form-status {
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 800;
+  grid-column: 1 / -1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status[data-type="success"] {
+  background: rgba(54, 214, 165, 0.14);
+  color: #09644c;
+  padding: 0.75rem 0.9rem;
+}
+
+.form-status[data-type="error"] {
+  background: rgba(242, 95, 92, 0.12);
+  color: #9d2f2d;
+  padding: 0.75rem 0.9rem;
 }
 
 .form-note {

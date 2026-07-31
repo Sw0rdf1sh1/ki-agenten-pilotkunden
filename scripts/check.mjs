@@ -2,6 +2,8 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 
 const html = readFileSync("index.html", "utf8");
 const css = readFileSync("assets/styles.css", "utf8");
+const script = readFileSync("assets/script.js", "utf8");
+const contactFunction = readFileSync("functions/api/contact.js", "utf8");
 const cname = readFileSync("CNAME", "utf8").trim();
 const sitemap = readFileSync("sitemap.xml", "utf8");
 
@@ -35,6 +37,26 @@ if (/font-size:\s*[^;]*vw/.test(css)) {
 
 if (!html.includes('form class="lead-form"')) {
   throw new Error("Lead form missing.");
+}
+
+if (!html.includes('action="/api/contact"')) {
+  throw new Error("Lead form must post to the Cloudflare contact function.");
+}
+
+if (!html.includes('id="lead-form-status"')) {
+  throw new Error("Lead form status region missing.");
+}
+
+if (!script.includes("fetch(form.action")) {
+  throw new Error("Lead form must submit through fetch.");
+}
+
+if (!contactFunction.includes("https://api.resend.com/emails")) {
+  throw new Error("Contact function must use the Resend email API.");
+}
+
+if (!contactFunction.includes("RESEND_API_KEY")) {
+  throw new Error("Contact function must read RESEND_API_KEY from Cloudflare env.");
 }
 
 const assistantImages = [
