@@ -990,6 +990,10 @@ h3 {
   display: none;
 }
 
+.turnstile-field {
+  min-height: 65px;
+}
+
 input,
 select,
 textarea {

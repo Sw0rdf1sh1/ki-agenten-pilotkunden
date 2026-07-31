@@ -18,6 +18,28 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+async function verifyTurnstile(token, request, env) {
+  if (!env.TURNSTILE_SECRET_KEY) {
+    return true;
+  }
+
+  if (!token) {
+    return false;
+  }
+
+  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    body: new URLSearchParams({
+      secret: env.TURNSTILE_SECRET_KEY,
+      response: token,
+      remoteip: request.headers.get("CF-Connecting-IP") || "",
+    }),
+  });
+
+  const result = await response.json();
+  return Boolean(result.success);
+}
+
 function buildEmailText(data) {
   return [
     "Neue KI-packt-an Pilotanfrage",
@@ -104,6 +126,11 @@ export async function onRequestPost({ request, env }) {
 
   if (!data.company || !data.name || !isValidEmail(data.email) || data.message.length < 20) {
     return jsonResponse({ message: "Bitte füllen Sie alle Pflichtfelder vollständig aus." }, 422);
+  }
+
+  const turnstileOk = await verifyTurnstile(clean(payload["cf-turnstile-response"]), request, env);
+  if (!turnstileOk) {
+    return jsonResponse({ message: "Die Sicherheitsprüfung ist fehlgeschlagen." }, 403);
   }
 
   if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL) {

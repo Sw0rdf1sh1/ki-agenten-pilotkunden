@@ -35,6 +35,14 @@ function setFormStatus(message, type = "info") {
   formStatus.dataset.type = type;
 }
 
+function resetTurnstile() {
+  try {
+    window.turnstile?.reset();
+  } catch {
+    // Keep the fallback mail path usable even if the widget cannot reset.
+  }
+}
+
 if (form) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -71,6 +79,7 @@ if (form) {
       );
       window.location.href = buildMailtoUrl(data);
     } finally {
+      resetTurnstile();
       if (submitButton) {
         submitButton.disabled = false;
       }
