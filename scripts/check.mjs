@@ -16,6 +16,8 @@ const required = [
   "50 Prozent",
   "Häufigkeit der Arbeit",
   "Beteiligte Systeme oder Datenquellen",
+  "CODIKI",
+  "Fabian Georgi / georgi.digital",
   "hello@georgi.digital",
   "Impressum",
   "Datenschutz",

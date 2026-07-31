@@ -672,6 +672,46 @@ h3 {
   padding: 1rem;
 }
 
+.operator {
+  align-items: start;
+  background:
+    linear-gradient(135deg, rgba(242, 95, 92, 0.08), rgba(38, 139, 210, 0.1)),
+    #fbfaf7;
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.operator-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.operator-grid article {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 14px 36px rgba(24, 18, 43, 0.07);
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.2rem;
+}
+
+.operator-grid span {
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+.operator-grid h3,
+.operator-grid p {
+  margin-bottom: 0;
+}
+
+.operator-grid p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .decision {
   background:
     linear-gradient(180deg, rgba(247, 244, 239, 0.92), rgba(255, 255, 255, 0.84)),
@@ -966,6 +1006,7 @@ textarea {
 
   .intro,
   .trust-panel,
+  .operator,
   .proof,
   .contact,
   .lead-form {
