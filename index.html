@@ -620,6 +620,9 @@
             Website
             <input name="website" autocomplete="off" tabindex="-1">
           </label>
+          <div class="turnstile-field full">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEDDgd1QoPAr9Cby" data-theme="auto"></div>
+          </div>
           <button class="button primary full" type="submit">Pilotgespräch anfragen</button>
           <p class="form-status" id="lead-form-status" role="status" aria-live="polite"></p>
           <p class="form-note">
@@ -639,6 +642,7 @@
       </nav>
     </footer>
 
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script src="assets/script.js" defer></script>
   </body>
 </html>

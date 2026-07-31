@@ -49,8 +49,20 @@ if (!html.includes('id="lead-form-status"')) {
   throw new Error("Lead form status region missing.");
 }
 
+if (!html.includes('data-sitekey="0x4AAAAAAEDDgd1QoPAr9Cby"')) {
+  throw new Error("Lead form must include the configured Turnstile site key.");
+}
+
+if (!html.includes("https://challenges.cloudflare.com/turnstile/v0/api.js")) {
+  throw new Error("Turnstile client script missing.");
+}
+
 if (!script.includes("fetch(form.action")) {
   throw new Error("Lead form must submit through fetch.");
+}
+
+if (!script.includes("turnstile?.reset")) {
+  throw new Error("Lead form must reset Turnstile after submissions.");
 }
 
 if (!contactFunction.includes("https://api.resend.com/emails")) {
@@ -59,6 +71,14 @@ if (!contactFunction.includes("https://api.resend.com/emails")) {
 
 if (!contactFunction.includes("RESEND_API_KEY")) {
   throw new Error("Contact function must read RESEND_API_KEY from Cloudflare env.");
+}
+
+if (!contactFunction.includes("TURNSTILE_SECRET_KEY")) {
+  throw new Error("Contact function must read TURNSTILE_SECRET_KEY from Cloudflare env.");
+}
+
+if (!contactFunction.includes("https://challenges.cloudflare.com/turnstile/v0/siteverify")) {
+  throw new Error("Contact function must validate Turnstile tokens server-side.");
 }
 
 const assistantImages = [
