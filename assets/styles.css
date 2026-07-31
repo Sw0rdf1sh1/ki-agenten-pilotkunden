@@ -830,6 +830,75 @@ h3 {
   line-height: 1.6;
 }
 
+.outcomes {
+  background:
+    linear-gradient(135deg, rgba(38, 139, 210, 0.1), rgba(245, 184, 75, 0.15)),
+    #fbfaf7;
+}
+
+.outcome-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.outcome-grid article {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(24, 18, 43, 0.07);
+  display: grid;
+  gap: 0.7rem;
+  padding: 1.25rem;
+}
+
+.outcome-grid span {
+  color: var(--coral);
+  font-weight: 900;
+}
+
+.outcome-grid h3,
+.outcome-grid p {
+  margin-bottom: 0;
+}
+
+.outcome-grid p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.faq {
+  background:
+    linear-gradient(135deg, rgba(51, 184, 143, 0.08), rgba(242, 95, 92, 0.08)),
+    #f8faf6;
+}
+
+.faq-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.faq-grid article {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 14px 36px rgba(24, 18, 43, 0.07);
+  padding: 1.25rem;
+}
+
+.faq-grid h3 {
+  margin-bottom: 0.65rem;
+}
+
+.faq-grid p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
 .pricing {
   background: #152033;
   color: var(--white);
@@ -1047,8 +1116,10 @@ textarea {
   .case-grid,
   .price-grid,
   .decision-grid,
+  .outcome-grid,
   .metric-grid,
   .readiness-grid,
+  .faq-grid,
   .safety-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1112,8 +1183,10 @@ textarea {
   .case-grid,
   .price-grid,
   .decision-grid,
+  .outcome-grid,
   .metric-grid,
   .readiness-grid,
+  .faq-grid,
   .safety-grid {
     grid-template-columns: 1fr;
   }
