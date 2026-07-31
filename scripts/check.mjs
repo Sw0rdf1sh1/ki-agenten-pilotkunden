@@ -17,6 +17,8 @@ const required = [
   "https://ki-packt-an.de/",
   "50 Prozent",
   "Häufigkeit der Arbeit",
+  "Beteiligte Personen im Ablauf",
+  "Gewünschter Pilotstart",
   "Beteiligte Systeme oder Datenquellen",
   "CODIKI",
   "Fabian Georgi / georgi.digital",

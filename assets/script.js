@@ -13,6 +13,8 @@ function buildMailtoUrl(data) {
     `E-Mail: ${data.get("email") || ""}`,
     `Passender Startpunkt: ${data.get("pilot") || ""}`,
     `Häufigkeit der Arbeit: ${data.get("frequency") || ""}`,
+    `Beteiligte Personen im Ablauf: ${data.get("team_size") || ""}`,
+    `Gewünschter Pilotstart: ${data.get("timeline") || ""}`,
     `Beteiligte Systeme oder Datenquellen: ${data.get("systems") || ""}`,
     "",
     "Welche Arbeit die KI vorbereiten soll:",
