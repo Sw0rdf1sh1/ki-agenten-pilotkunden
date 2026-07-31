@@ -15,6 +15,8 @@ if (form) {
       `Name: ${data.get("name") || ""}`,
       `E-Mail: ${data.get("email") || ""}`,
       `Passender Startpunkt: ${data.get("pilot") || ""}`,
+      `Häufigkeit der Arbeit: ${data.get("frequency") || ""}`,
+      `Beteiligte Systeme oder Datenquellen: ${data.get("systems") || ""}`,
       "",
       "Welche Arbeit die KI vorbereiten soll:",
       data.get("message") || "",

@@ -14,6 +14,8 @@ const required = [
   "Felix Angebot",
   "https://ki-packt-an.de/",
   "50 Prozent",
+  "Häufigkeit der Arbeit",
+  "Beteiligte Systeme oder Datenquellen",
   "hello@georgi.digital",
   "Impressum",
   "Datenschutz",
