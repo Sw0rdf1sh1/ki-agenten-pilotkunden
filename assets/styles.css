@@ -464,7 +464,8 @@ h3 {
 .step-grid,
 .case-grid,
 .price-grid,
-.metric-grid {
+.metric-grid,
+.readiness-grid {
   display: grid;
   gap: 1rem;
   margin-top: 2rem;
@@ -475,14 +476,16 @@ h3 {
 }
 
 .case-grid,
-.price-grid {
+.price-grid,
+.readiness-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .step-grid article,
 .case-grid article,
 .price-grid article,
-.metric-grid div {
+.metric-grid div,
+.readiness-grid article {
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -504,9 +507,59 @@ h3 {
 
 .case-grid p,
 .step-grid p,
-.price-grid p {
+.price-grid p,
+.readiness-grid p {
   color: var(--muted);
   line-height: 1.6;
+}
+
+.readiness {
+  background:
+    linear-gradient(135deg, rgba(38, 139, 210, 0.09), rgba(216, 243, 106, 0.16)),
+    #f8faf6;
+}
+
+.readiness-grid article {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.readiness-grid span {
+  align-items: center;
+  background: rgba(51, 184, 143, 0.12);
+  border: 1px solid rgba(51, 184, 143, 0.28);
+  border-radius: 999px;
+  color: #117a5d;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 900;
+  justify-self: start;
+  padding: 0.45rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.readiness-grid article:nth-child(2) span {
+  background: rgba(245, 184, 75, 0.16);
+  border-color: rgba(245, 184, 75, 0.4);
+  color: #8a5a00;
+}
+
+.readiness-grid article:nth-child(3) span {
+  background: rgba(242, 95, 92, 0.12);
+  border-color: rgba(242, 95, 92, 0.32);
+  color: #a73532;
+}
+
+.readiness-grid h3,
+.readiness-grid p {
+  margin-bottom: 0;
+}
+
+.readiness-cta {
+  color: var(--ink);
+  display: inline-flex;
+  font-weight: 900;
+  margin-top: 1.5rem;
 }
 
 .assistant-team {
@@ -617,6 +670,46 @@ h3 {
   line-height: 1.6;
   margin: 0;
   padding: 1rem;
+}
+
+.operator {
+  align-items: start;
+  background:
+    linear-gradient(135deg, rgba(242, 95, 92, 0.08), rgba(38, 139, 210, 0.1)),
+    #fbfaf7;
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.operator-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.operator-grid article {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 14px 36px rgba(24, 18, 43, 0.07);
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.2rem;
+}
+
+.operator-grid span {
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+.operator-grid h3,
+.operator-grid p {
+  margin-bottom: 0;
+}
+
+.operator-grid p {
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .decision {
@@ -860,7 +953,8 @@ textarea {
   .case-grid,
   .price-grid,
   .decision-grid,
-  .metric-grid {
+  .metric-grid,
+  .readiness-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -912,6 +1006,7 @@ textarea {
 
   .intro,
   .trust-panel,
+  .operator,
   .proof,
   .contact,
   .lead-form {
@@ -922,7 +1017,8 @@ textarea {
   .case-grid,
   .price-grid,
   .decision-grid,
-  .metric-grid {
+  .metric-grid,
+  .readiness-grid {
     grid-template-columns: 1fr;
   }
 
