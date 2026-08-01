@@ -1,15 +1,19 @@
 const form = document.querySelector("#lead-form");
 const formStatus = document.querySelector("#lead-form-status");
-const workflowSteps = Array.from(document.querySelectorAll(".workflow-step"));
+const workflowPhases = Array.from(document.querySelectorAll(".workflow-phase"));
 
-if (workflowSteps.length > 0 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  let activeStep = 0;
+if (workflowPhases.length > 0 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let activePhase = 0;
 
-  window.setInterval(() => {
-    workflowSteps[activeStep]?.classList.remove("is-active");
-    activeStep = (activeStep + 1) % workflowSteps.length;
-    workflowSteps[activeStep]?.classList.add("is-active");
-  }, 1400);
+  const interval = window.setInterval(() => {
+    workflowPhases[activePhase]?.classList.remove("is-active");
+    activePhase += 1;
+    workflowPhases[activePhase]?.classList.add("is-active");
+
+    if (activePhase >= workflowPhases.length - 1) {
+      window.clearInterval(interval);
+    }
+  }, 1800);
 }
 
 function buildMailtoUrl(data) {
@@ -17,7 +21,7 @@ function buildMailtoUrl(data) {
   const body = [
     "Hallo Fabian,",
     "",
-    "ich möchte prüfen lassen, ob ein KI-Assistent für unseren Ablauf sinnvoll ist.",
+    "ich möchte unverbindlich prüfen lassen, ob ein KI-Assistent für unseren Ablauf sinnvoll ist.",
     "",
     `Unternehmen: ${data.get("company") || ""}`,
     `Ansprechpartner: ${data.get("name") || ""}`,
@@ -25,7 +29,7 @@ function buildMailtoUrl(data) {
     `Gewünschter Startzeitraum: ${data.get("timeline") || ""}`,
     `Beteiligte Systeme: ${data.get("systems") || ""}`,
     "",
-    "Wiederkehrende Aufgabe:",
+    "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
     data.get("message") || "",
     "",
     "Viele Grüße",

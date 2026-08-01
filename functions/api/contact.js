@@ -50,7 +50,7 @@ function buildEmailText(data) {
     `Gewünschter Startzeitraum: ${data.timeline}`,
     `Beteiligte Systeme: ${data.systems}`,
     "",
-    "Wiederkehrende Aufgabe:",
+    "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
     data.message,
     "",
     "Quelle: https://ki-packt-an.de/",
@@ -77,7 +77,7 @@ function buildEmailHtml(data) {
   <body style="font-family:Arial,sans-serif;line-height:1.55;color:#18202f">
     <h1 style="font-size:20px">Neue KI-packt-an Anfrage</h1>
     ${detailRows}
-    <p><strong>Wiederkehrende Aufgabe:</strong></p>
+    <p><strong>Welche wiederkehrende Arbeit soll der Assistent übernehmen?</strong></p>
     <p>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p>
     <p style="color:#667085;font-size:13px">Quelle: https://ki-packt-an.de/</p>
   </body>

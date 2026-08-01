@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
   <head>
     <meta charset="utf-8">
@@ -50,23 +50,28 @@
         <a href="#ablauf">Ablauf</a>
         <a href="#preise">Preise</a>
         <a href="#ueber-mich">Über mich</a>
-        <a class="nav-cta" href="#anfrage">Einsatzbereich prüfen</a>
+        <a class="nav-cta" href="#anfrage">Einsatz prüfen</a>
       </nav>
     </header>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Einrichtung, Integration und Betrieb von KI-Assistenten</p>
-          <h1 id="hero-title">Wir richten KI-Assistenten ein, die in Ihrem Unternehmen mitarbeiten.</h1>
+          <p class="eyebrow">KI-Assistenten für Unternehmen</p>
+          <h1 id="hero-title">KI-Assistenten, die E-Mails, Dokumente und wiederkehrende Arbeit übernehmen.</h1>
           <p class="hero-lead">
-            Sie bearbeiten E-Mails, durchsuchen freigegebene Dokumente, bereiten Antworten und Angebote vor,
-            aktualisieren Arbeitsabläufe und holen Ihre Mitarbeiter dort hinzu, wo eine Freigabe erforderlich ist.
+            Wir richten den Assistenten ein, verbinden ihn mit Ihren Systemen und betreuen den Betrieb.
+            Er sortiert Anfragen, sammelt Kontext, erstellt Entwürfe und holt Freigaben ein.
           </p>
+          <ul class="capability-row">
+            <li>Einrichtung</li>
+            <li>Systemanbindung</li>
+            <li>Betrieb</li>
+          </ul>
           <p class="hero-claim">KI packt an, wo Arbeit liegen bleibt.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#anfrage">Einsatzbereich prüfen lassen</a>
-            <a class="button secondary" href="#beispielprozess">Beispielablauf ansehen</a>
+            <a class="button primary" href="#anfrage">Unverbindlich Einsatz prüfen</a>
+            <a class="button secondary" href="#beispielprozess">So arbeitet ein KI-Assistent</a>
           </div>
         </div>
 
@@ -74,278 +79,251 @@
           <div class="workflow-header">
             <div>
               <span class="app-label">E-Mail-Assistent</span>
-              <h2 id="workflow-title">Anfrage zur Freigabe vorbereiten</h2>
+              <h2 id="workflow-title">Angebot und Antwort vorbereitet</h2>
             </div>
-            <span class="status-pill">Zur Freigabe bereit</span>
+            <span class="status-pill">Bereit zur Prüfung</span>
           </div>
 
           <div class="inbox-card">
             <span class="mail-source">info@</span>
-            <strong>Betreff: Angebot für 40 Arbeitsplätze</strong>
-            <p>Guten Tag, bitte senden Sie uns ein Angebot für 40 Arbeitsplätze. Lieferung möglichst im Oktober.</p>
+            <strong>Betreff: Angebotsanfrage für 40 Arbeitsplätze</strong>
+            <p>Guten Tag, bitte senden Sie uns ein Angebot inklusive möglichem Liefertermin. Die technischen Anforderungen finden Sie im Anhang.</p>
           </div>
 
-          <div class="source-row" aria-label="Genutzte Quellen">
-            <span>E-Mail</span>
-            <span>CRM</span>
-            <span>Dokumente</span>
+          <div class="phase-stack">
+            <article class="workflow-phase is-active">
+              <span>1. Eingang verstehen</span>
+              <ul>
+                <li>Anfrage erkannt</li>
+                <li>Anliegen eingeordnet</li>
+                <li>Kundendaten gefunden</li>
+              </ul>
+            </article>
+            <article class="workflow-phase">
+              <span>2. Vorgang vorbereiten</span>
+              <ul>
+                <li>Rahmenvertrag und Dokumente geprüft</li>
+                <li>Fehlende Angaben markiert</li>
+                <li>Entwurf erstellt</li>
+              </ul>
+            </article>
+            <article class="workflow-phase">
+              <span>3. Sicher übergeben</span>
+              <ul>
+                <li>Freigabe angefordert</li>
+                <li>CRM-Aktualisierung vorbereitet</li>
+              </ul>
+            </article>
           </div>
-
-          <ol class="activity-log" aria-label="Bearbeitungsschritte des Assistenten">
-            <li class="workflow-step is-active">Neue Anfrage erkannt</li>
-            <li class="workflow-step">Thema und Dringlichkeit eingeordnet</li>
-            <li class="workflow-step">Absender im CRM gefunden</li>
-            <li class="workflow-step">Kundendaten und Rahmenvertrag geladen</li>
-            <li class="workflow-step">Fehlende Angaben markiert</li>
-            <li class="workflow-step">Antwort- und Angebotsentwurf erstellt</li>
-            <li class="workflow-step">Freigabe bei Mitarbeiter angefordert</li>
-            <li class="workflow-step">CRM-Notiz nach Freigabe vorbereitet</li>
-          </ol>
 
           <div class="draft-card">
             <span>Entwurf</span>
-            <p>Antwort mit Lieferfenster, Rückfrage zu Ausstattung und Angebotspositionen vorbereitet.</p>
-            <button type="button">Freigabe prüfen</button>
+            <p>Antwort mit Liefertermin, Rückfrage zum Anhang und Angebotsnotiz für das CRM vorbereitet.</p>
+            <button type="button">Entwurf prüfen</button>
           </div>
         </aside>
 
-        <ul class="trust-strip" aria-label="Arbeitsprinzipien">
-          <li>Klar begrenzte Aufgaben</li>
+        <ul class="trust-strip">
+          <li>Klare Aufgaben</li>
           <li>Bestehende Systeme</li>
-          <li>Definierte Freigaben</li>
+          <li>Menschliche Freigaben</li>
           <li>Laufende Betreuung</li>
         </ul>
       </section>
 
       <section id="leistungen" class="section service-section" aria-labelledby="leistungen-title">
         <div class="section-heading">
-          <p class="eyebrow">Was Sie tatsächlich erhalten</p>
-          <h2 id="leistungen-title">Kein weiterer Chatbot. Ein eingerichteter digitaler Arbeitsablauf.</h2>
+          <p class="eyebrow">Was wir einrichten und betreiben</p>
+          <h2 id="leistungen-title">Von der Aufgabe zum betreuten KI-Assistenten.</h2>
           <p>
-            Wir definieren die Aufgabe, verbinden die notwendigen Systeme, richten Rechte und Freigaben ein
-            und sorgen dafür, dass der Assistent im Arbeitsalltag zuverlässig eingesetzt werden kann.
-            Wer KI-Agenten einrichten will, braucht dafür nicht zuerst neue Begriffe, sondern einen klaren
-            Arbeitsauftrag und saubere Systemgrenzen.
+            Keine isolierte Chatoberfläche: Aufgabe, Systeme, Regeln, Freigaben und Betrieb werden eingerichtet.
           </p>
         </div>
         <div class="service-grid">
           <article>
-            <span>01</span>
-            <h3>Rolle und Arbeitsauftrag</h3>
-            <p>Wir definieren, welche Aufgaben der Assistent übernimmt, welche Informationen er benötigt und wann er einen Menschen einbezieht.</p>
+            <h3>Aufgabe und Rolle</h3>
+            <p>Wir legen fest, was der Assistent erledigt und wann ein Mensch übernimmt.</p>
+            <span>Auftrag · Grenzen · Verantwortliche</span>
           </article>
           <article>
-            <span>02</span>
             <h3>Einrichtung</h3>
-            <p>Der Assistent erhält Arbeitsanweisungen, freigegebenes Wissen, klare Grenzen und die Werkzeuge für seinen Aufgabenbereich.</p>
+            <p>Der Assistent erhält Anweisungen, Wissen, Werkzeuge und Reaktionen auf unklare Fälle.</p>
+            <span>Regeln · Wissen · Fehlerfälle</span>
           </article>
           <article>
-            <span>03</span>
-            <h3>Integration</h3>
-            <p>E-Mail, CRM, ERP, Dokumente, Ticketsysteme und vorhandene APIs werden gezielt angebunden.</p>
+            <h3>Systemanbindung</h3>
+            <p>E-Mail, CRM, ERP, Dokumente, Ticketsysteme und APIs werden verbunden.</p>
+            <span>Zugänge · Schnittstellen · Daten</span>
           </article>
           <article>
-            <span>04</span>
             <h3>Betrieb und Betreuung</h3>
-            <p>Zugänge, Updates, Protokolle, Kosten, Fehlerfälle und Weiterentwicklung werden dauerhaft betreut.</p>
+            <p>Zugänge, Kosten, Fehler und Updates bleiben betreut.</p>
+            <span>Monitoring · Wartung · Ausbau</span>
           </article>
         </div>
       </section>
 
       <section id="beispielprozess" class="section process-section" aria-labelledby="prozess-title">
-        <div class="section-heading compact">
-          <p class="eyebrow">Vollständiger Beispielprozess</p>
-          <h2 id="prozess-title">Vom info@-Postfach bis zur fertigen Übergabe.</h2>
-        </div>
-        <div class="comparison">
-          <article class="comparison-card today">
-            <h3>Heute</h3>
-            <ul>
-              <li>E-Mail trifft ein</li>
-              <li>Zuständigkeit ist unklar</li>
-              <li>Informationen werden aus mehreren Systemen gesucht</li>
-              <li>Rückfragen bleiben liegen</li>
-              <li>Antworten unterscheiden sich je nach Mitarbeiter</li>
-              <li>Informationen werden manuell in das CRM übertragen</li>
-            </ul>
-          </article>
-          <article class="comparison-card assistant">
-            <h3>Mit KI-Assistent</h3>
-            <ul>
-              <li>Eingang wird automatisch erkannt und eingeordnet</li>
-              <li>Relevante Kundendaten werden gesammelt</li>
-              <li>Fehlende Angaben werden markiert</li>
-              <li>Eine passende Antwort wird vorbereitet</li>
-              <li>Ein Mitarbeiter prüft den fertigen Vorgang</li>
-              <li>Das Ergebnis wird sauber dokumentiert</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="einsatzbereiche" class="section use-section" aria-labelledby="einsatz-title">
         <div class="section-heading">
-          <p class="eyebrow">Konkrete Einsatzbereiche</p>
-          <h2 id="einsatz-title">Wiederkehrende Arbeit, die ein KI-Assistent übernehmen kann.</h2>
+          <p class="eyebrow">Beispielprozess</p>
+          <h2 id="prozess-title">So wird aus einer eingehenden Anfrage ein vorbereiteter Vorgang.</h2>
         </div>
-        <div class="use-grid">
-          <article>
-            <h3>E-Mail- und Anfrage-Assistent</h3>
-            <dl>
-              <dt>Eingang</dt><dd>Nachrichten aus info@, Kontaktformularen oder persönlichen Postfächern.</dd>
-              <dt>Bearbeitung</dt><dd>Sortiert, priorisiert, erkennt Anliegen, sucht Kundenkontext und stellt fehlende Informationen zusammen.</dd>
-              <dt>Ergebnis</dt><dd>Antwortentwurf, Rückfrage oder strukturierte CRM-Übergabe.</dd>
-              <dt>Kontrolle</dt><dd>Sensible oder verbindliche Antworten werden vor dem Versand freigegeben.</dd>
-            </dl>
-          </article>
-          <article>
-            <h3>Support-Assistent</h3>
-            <dl>
-              <dt>Eingang</dt><dd>Supportanfragen, Tickets und Reklamationen.</dd>
-              <dt>Bearbeitung</dt><dd>Sucht in Dokumentation, bisherigen Fällen und Kundendaten nach relevantem Kontext.</dd>
-              <dt>Ergebnis</dt><dd>Antwortvorschlag, Lösungsschritte und vollständige Fallzusammenfassung.</dd>
-              <dt>Kontrolle</dt><dd>Eskalationen, Kulanz und verbindliche Zusagen bleiben beim zuständigen Mitarbeiter.</dd>
-            </dl>
-          </article>
-          <article>
-            <h3>Vertriebs- und Angebots-Assistent</h3>
-            <dl>
-              <dt>Eingang</dt><dd>Neue Leads, Gesprächsnotizen und Angebotsanfragen.</dd>
-              <dt>Bearbeitung</dt><dd>Qualifiziert den Vorgang, sammelt Daten und prüft vorhandene Vorlagen oder Preisregeln.</dd>
-              <dt>Ergebnis</dt><dd>Gesprächsvorbereitung, Angebotsentwurf oder Wiedervorlage.</dd>
-              <dt>Kontrolle</dt><dd>Preise und Angebote werden vor dem Versand geprüft.</dd>
-            </dl>
-          </article>
-          <article>
-            <h3>Dokumenten- und Wissens-Assistent</h3>
-            <dl>
-              <dt>Eingang</dt><dd>PDFs, Protokolle, Spezifikationen und interne Dokumentation.</dd>
-              <dt>Bearbeitung</dt><dd>Extrahiert Informationen, gleicht Dokumente ab und erkennt offene Punkte.</dd>
-              <dt>Ergebnis</dt><dd>Zusammenfassung, Prüfliste oder strukturierte Übergabe.</dd>
-              <dt>Kontrolle</dt><dd>Fachliche Bewertung und Entscheidungen bleiben bei den verantwortlichen Mitarbeitern.</dd>
-            </dl>
-          </article>
+        <div class="before-after">
+          <div class="pair"><span>Heute</span><p>Zuständigkeit manuell klären</p><span>Mit KI-Assistent</span><p>Anliegen automatisch einordnen</p></div>
+          <div class="pair"><span>Heute</span><p>Informationen zusammensuchen</p><span>Mit KI-Assistent</span><p>Kunden- und Dokumentenkontext sammeln</p></div>
+          <div class="pair"><span>Heute</span><p>Antwort selbst formulieren</p><span>Mit KI-Assistent</span><p>Vollständigen Entwurf vorbereiten</p></div>
+          <div class="pair"><span>Heute</span><p>CRM später aktualisieren</p><span>Mit KI-Assistent</span><p>Übergabe und Dokumentation vorbereiten</p></div>
+        </div>
+
+        <div id="einsatzbereiche" class="use-area">
+          <h3>Weitere gute Startpunkte</h3>
+          <div class="use-grid">
+            <article>
+              <h4>Support und Tickets</h4>
+              <p><strong>Eingang:</strong> Tickets und Service-E-Mails.</p>
+              <p><strong>Erledigte Arbeit:</strong> Sucht Kontext und formuliert Lösungsschritte.</p>
+              <p><strong>Ergebnis:</strong> Antwortvorschlag und Fallzusammenfassung.</p>
+            </article>
+            <article>
+              <h4>Angebote und Nachverfolgung</h4>
+              <p><strong>Eingang:</strong> Leads und Angebotsanfragen.</p>
+              <p><strong>Erledigte Arbeit:</strong> Sammelt Daten und markiert offene Angaben.</p>
+              <p><strong>Ergebnis:</strong> Angebotsentwurf oder Wiedervorlage.</p>
+            </article>
+            <article>
+              <h4>Dokumente und internes Wissen</h4>
+              <p><strong>Eingang:</strong> PDFs, Protokolle, Spezifikationen.</p>
+              <p><strong>Erledigte Arbeit:</strong> Extrahiert Informationen und erkennt offene Punkte.</p>
+              <p><strong>Ergebnis:</strong> Zusammenfassung oder Prüfliste.</p>
+            </article>
+          </div>
+          <p class="control-note">Preise, Kulanz und sensible Kommunikation bleiben dort unter menschlicher Kontrolle, wo Sie es festlegen.</p>
         </div>
       </section>
 
       <section class="section autonomy-section" aria-labelledby="autonomie-title">
-        <div class="section-heading">
-          <p class="eyebrow">Automatisierungsstufen</p>
-          <h2 id="autonomie-title">Sie bestimmen, wie selbstständig der Assistent arbeitet.</h2>
-          <p>
-            Die Automatisierungsstufe wird nicht pauschal für den gesamten Assistenten festgelegt,
-            sondern pro Aufgabe und Prozessschritt.
-            So lassen sich Unternehmensprozesse automatisieren, ohne jede Entscheidung an ein System abzugeben.
-          </p>
-        </div>
-        <div class="level-grid">
-          <article>
-            <span>Vorbereiten</span>
-            <p>Der Assistent sammelt Informationen, sortiert Vorgänge und erstellt Entwürfe. Ein Mensch führt die Aktion aus.</p>
-          </article>
-          <article>
-            <span>Nach Freigabe ausführen</span>
-            <p>Der Assistent bereitet den vollständigen Vorgang vor und führt ihn nach menschlicher Freigabe aus.</p>
-          </article>
-          <article>
-            <span>Regelbasierte Fälle selbstständig bearbeiten</span>
-            <p>Eindeutige und risikoarme Vorgänge werden innerhalb festgelegter Regeln bearbeitet. Unsichere Fälle werden weitergeleitet.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="ablauf" class="section build-section" aria-labelledby="ablauf-title">
-        <div class="section-heading">
-          <p class="eyebrow">Umsetzung und Betrieb</p>
-          <h2 id="ablauf-title">Wir bauen nicht nur den Assistenten. Wir sorgen dafür, dass er arbeiten kann.</h2>
-        </div>
-        <ol class="build-steps">
-          <li><span>01</span><strong>Arbeitsstau identifizieren</strong><p>Wir wählen einen Prozess, der oft genug vorkommt und eine klare Entlastung verspricht.</p></li>
-          <li><span>02</span><strong>Rolle und Grenzen definieren</strong><p>Auftrag, Datenzugriff, Freigaben, Fehlerfälle und Verantwortliche werden festgelegt.</p></li>
-          <li><span>03</span><strong>Systeme und Daten anbinden</strong><p>Der KI-Workflow nutzt vorhandene Postfächer, Dokumente, CRM, ERP, Tickets oder APIs.</p></li>
-          <li><span>04</span><strong>Mit echten Fällen testen</strong><p>Der Pilot wird mit realen Beispielen geprüft, korrigiert und dokumentiert.</p></li>
-          <li><span>05</span><strong>In den Betrieb überführen</strong><p>Rollen, Zugänge, Kosten, Protokolle und Fallbacks werden praxistauglich übergeben.</p></li>
-          <li><span>06</span><strong>Messen und weiterentwickeln</strong><p>Nach dem Pilot ist klar, ob Ausbau, Anpassung oder ein sauberer Stopp sinnvoll ist.</p></li>
-        </ol>
-      </section>
-
-      <section class="section control-section" aria-labelledby="kontrolle-title">
         <div class="section-heading compact">
-          <p class="eyebrow">Sicherheit und Kontrolle</p>
-          <h2 id="kontrolle-title">Zugriff nur dort, wo er gebraucht wird.</h2>
+          <p class="eyebrow">Automatisierungsstufen</p>
+          <h2 id="autonomie-title">So selbstständig arbeitet der Assistent.</h2>
         </div>
-        <div class="control-grid">
-          <p>Minimale notwendige Berechtigungen</p>
-          <p>Getrennte Rollen und Zugänge</p>
-          <p>Nachvollziehbare Quellen und Aktivitäten</p>
-          <p>Definierte Freigaben</p>
-          <p>Behandlung unsicherer Fälle</p>
-          <p>Protokollierung</p>
-          <p>Backups und Wiederanlauf</p>
-          <p>Überwachung von Kosten und Komponenten</p>
+        <div class="maturity-track">
+          <article>
+            <span>1</span>
+            <h3>Bereitet vor</h3>
+            <p>Sammelt Informationen und erstellt Entwürfe.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Führt nach Freigabe aus</h3>
+            <p>Setzt den Vorgang um, sobald ein Mitarbeiter ihn bestätigt.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Bearbeitet klare Fälle selbstständig</h3>
+            <p>Führt geregelte Vorgänge aus und eskaliert Unsicherheiten.</p>
+          </article>
+        </div>
+        <p class="track-note">Der Automatisierungsgrad wird pro Aufgabe festgelegt.</p>
+      </section>
+
+      <section id="ablauf" class="section operations-section" aria-labelledby="ablauf-title">
+        <div class="section-heading">
+          <p class="eyebrow">Einführung und sicherer Betrieb</p>
+          <h2 id="ablauf-title">Sicher vom ersten Prozess in den laufenden Betrieb.</h2>
+        </div>
+        <div class="operations-layout">
+          <ol class="timeline">
+            <li><span>01</span><strong>Prozess auswählen</strong><p>Ein häufiger Vorgang mit messbarem Nutzen.</p></li>
+            <li><span>02</span><strong>Regeln und Zugriffe definieren</strong><p>Datenzugriff, Freigaben, Verantwortliche und Fehlerfälle.</p></li>
+            <li><span>03</span><strong>Mit echten Fällen testen</strong><p>Anbindung, Testfälle, Korrekturen und Dokumentation.</p></li>
+            <li><span>04</span><strong>Kontrolliert betreiben</strong><p>Monitoring, Kostenkontrolle, Updates und Weiterentwicklung.</p></li>
+          </ol>
+          <aside class="safety-box" aria-labelledby="safety-box-title">
+            <h3 id="safety-box-title">Von Anfang an eingeplant</h3>
+            <ul>
+              <li>nur notwendige Berechtigungen</li>
+              <li>getrennte technische Zugänge</li>
+              <li>nachvollziehbare Aktivitäten</li>
+              <li>definierte Freigaben</li>
+              <li>Backups und Wiederanlauf</li>
+              <li>Überwachung von Kosten und Fehlern</li>
+            </ul>
+          </aside>
         </div>
       </section>
 
       <section id="preise" class="section pricing-section" aria-labelledby="preise-title">
         <div class="section-heading">
-          <p class="eyebrow">Pilot und Preise</p>
-          <h2 id="preise-title">Klein starten. Im Alltag beweisen. Danach gezielt ausbauen.</h2>
+          <p class="eyebrow">Preise</p>
+          <h2 id="preise-title">Erst prüfen. Dann einen produktiven Assistenten begrenzt aufbauen.</h2>
           <p>
-            Für die ersten produktiven Umsetzungen gelten reduzierte Pilotkonditionen. Externe Kosten für Modelle,
-            Hosting, Plattformen und Lizenzen werden vor der Umsetzung transparent ausgewiesen.
+            Pilotkonditionen gelten für erste produktive Kundenprojekte. Externe Kosten für Modelle, Hosting,
+            Plattformen und Lizenzen werden vorher ausgewiesen.
           </p>
         </div>
-        <div class="price-grid">
-          <article>
-            <span>Check</span>
-            <h3>KI packt an Check</h3>
-            <p class="price">245 EUR <small>statt 490 EUR</small></p>
-            <p>Ergebnis: Prozesscheck, Priorisierung, Daten- und Freigabe-Risiken, Empfehlung für den ersten KI-Assistenten.</p>
-            <p>Umfang: ein Prozess, erste Systemübersicht, kompakte Dokumentation und Entscheidungsvorlage.</p>
+        <div class="price-layout">
+          <article class="price-card">
+            <span>Einstieg</span>
+            <h3>Prozess-Check</h3>
+            <p class="price">245 EUR Pilotkondition <small>Regulär 490 EUR</small></p>
+            <ul>
+              <li>ein konkreter Arbeitsprozess</li>
+              <li>technische Machbarkeitsprüfung</li>
+              <li>Daten-, Freigabe- und Betriebsrisiken</li>
+              <li>Empfehlung für den Einstieg</li>
+              <li>Entscheidungsvorlage</li>
+            </ul>
+            <a class="button secondary-dark" href="#anfrage">Prozess prüfen lassen</a>
           </article>
-          <article class="featured">
-            <span>Pilot</span>
-            <h3>KI packt an Pilot</h3>
-            <p class="price">ab 1.450 EUR <small>statt ab 2.900 EUR</small></p>
-            <p>Ergebnis: ein abgegrenzter KI-Assistent mit klarer Rolle, Testfällen, Freigaben und Betriebsbewertung.</p>
-            <p>Umfang: ein Prozess, wenige Datenquellen, Dokumentation und Ausbau- oder Stopp-Empfehlung.</p>
+          <article class="price-card featured">
+            <span>Umsetzung</span>
+            <h3>Produktiver KI-Assistent</h3>
+            <p class="price">ab 1.450 EUR Pilotkondition <small>Regulär ab 2.900 EUR</small></p>
+            <ul>
+              <li>klar definierte Rolle</li>
+              <li>ein abgegrenzter Prozess</li>
+              <li>Datenquellen</li>
+              <li>Testfälle und Freigaben</li>
+              <li>Dokumentation</li>
+              <li>Empfehlung für Ausbau oder Stopp</li>
+            </ul>
+            <a class="button primary" href="#anfrage">Pilot besprechen</a>
           </article>
-          <article>
-            <span>Integration</span>
-            <h3>Integrierter Arbeits-Pilot</h3>
-            <p class="price">2.950-4.950 EUR <small>statt 5.900-9.900 EUR</small></p>
-            <p>Ergebnis: KI-Workflow mit mehreren angebundenen Systemen und kontrollierter Pilotphase.</p>
-            <p>Umfang: mehrere Quellen, technische Integration, Rollenmodell, Protokolle und Betriebsübergabe.</p>
-          </article>
-          <article>
-            <span>Betrieb</span>
-            <h3>Laufende Betreuung</h3>
-            <p class="price">ab 245 EUR/Monat <small>statt ab 490 EUR/Monat</small></p>
-            <p>Ergebnis: laufende Pflege von Zugängen, Updates, Fehlerfällen, Kosten und Weiterentwicklung.</p>
-            <p>Umfang: definierte Kontakte, regelmäßige Prüfung und priorisierte Anpassungen.</p>
-          </article>
+        </div>
+        <div class="expansion-panel">
+          <div>
+            <h3>Individuelle Integration</h3>
+            <p>Bei mehreren Systemen, komplexen Berechtigungen oder tiefer CRM-/ERP-Anbindung folgt ein individuelles Angebot.</p>
+            <p><strong>Orientierung:</strong> 2.950-4.950 EUR Pilotkondition, regulär 5.900-9.900 EUR.</p>
+          </div>
+          <div>
+            <h3>Laufender Betrieb</h3>
+            <p>Betreuung ab 245 EUR pro Monat in der Pilotphase, regulär ab 490 EUR pro Monat.</p>
+            <p>Enthalten sind Erreichbarkeit, Zugänge, Fehleranalyse, Updates, Kostenkontrolle und ein Änderungskontingent. Größere Änderungen werden separat angeboten.</p>
+          </div>
         </div>
       </section>
 
       <section id="ueber-mich" class="section provider-section" aria-labelledby="anbieter-title">
-        <div class="provider-card">
-          <div>
-            <p class="eyebrow">Erfahrung und Anbieter</p>
-            <h2 id="anbieter-title">Software- und Prozesskompetenz statt isolierter KI-Demo.</h2>
+        <div class="provider-layout">
+          <div class="portrait-placeholder" aria-hidden="true">
+            <span>FG</span>
           </div>
           <div class="provider-copy">
+            <p class="eyebrow">Fabian Georgi</p>
+            <h2 id="anbieter-title">Direkte technische Verantwortung statt anonymer Agenturstruktur.</h2>
             <p>
-              Verantwortlicher technischer Ansprechpartner ist Fabian Georgi. In über 18 Jahren Software- und
-              Prozesspraxis habe ich Schnittstellen, Geschäftsanwendungen, Server, APIs, Datenbanken und
-              Automatisierungen entwickelt und betrieben.
+              Ich bin Fabian Georgi und entwickle seit über 18 Jahren Software, Schnittstellen und digitale Geschäftsprozesse.
+              Bei „KI packt an“ begleite ich die Umsetzung persönlich – von der Analyse bis zum laufenden Betrieb.
             </p>
-          <p>
-            KI packt an ist das aktuelle Angebot von Fabian Georgi / georgi.digital und bildet die Grundlage
-            für den weiteren Ausbau unter CODIKI. Sie sprechen nicht mit einer anonymen Projektstruktur,
-            sondern direkt mit der technischen Verantwortung.
-            Der Schwerpunkt liegt auf KI für den Mittelstand: KI mit CRM und ERP verbinden, einen KI-Workflow
-            produktiv machen und den KI-Assistent betreiben, statt nur eine Demo zu zeigen.
-          </p>
+            <p>Sie sprechen direkt mit der Person, die Architekturentscheidungen trifft und den Assistenten technisch betreut.</p>
+            <ul class="competence-list">
+              <li>Software- und Schnittstellenentwicklung</li>
+              <li>APIs, Datenbanken und Unternehmensanwendungen</li>
+              <li>Serverbetrieb, Deployment und Monitoring</li>
+              <li>Prozessautomatisierung und KI-Agenten</li>
+            </ul>
+            <p class="codiki-note">„KI packt an“ ist ein Angebot von Fabian Georgi / georgi.digital und wird perspektivisch unter CODIKI weitergeführt.</p>
           </div>
         </div>
       </section>
@@ -353,33 +331,29 @@
       <section id="anfrage" class="section contact-section" aria-labelledby="anfrage-title">
         <div class="contact-copy">
           <p class="eyebrow">Anfrage</p>
-          <h2 id="anfrage-title">Welche Arbeit bleibt in Ihrem Unternehmen regelmäßig liegen?</h2>
-          <p>
-            Beschreiben Sie einen wiederkehrenden Ablauf. Sie erhalten eine realistische Einschätzung,
-            ob ein KI-Assistent dort sinnvoll eingesetzt werden kann, welche Systeme benötigt werden
-            und wie ein begrenzter Einstieg aussehen kann.
-          </p>
+          <h2 id="anfrage-title">Welche wiederkehrende Arbeit soll der Assistent übernehmen?</h2>
+          <p>Beispiel: info@-Anfragen sortieren, CRM-Kontext ergänzen und einen Antwortentwurf vorbereiten.</p>
         </div>
         <form class="lead-form" id="lead-form" action="/api/contact" method="post">
           <label>
-            Unternehmen
-            <input name="company" autocomplete="organization" required>
+            Name
+            <input type="text" name="name" autocomplete="name" required>
           </label>
           <label>
-            Ansprechpartner
-            <input name="name" autocomplete="name" required>
+            Unternehmen
+            <input type="text" name="company" autocomplete="organization" required>
           </label>
           <label>
             E-Mail
             <input type="email" name="email" autocomplete="email" required>
           </label>
           <label>
-            Gewünschter Startzeitraum
+            Gewünschter Startzeitraum <span>optional</span>
             <select name="timeline">
+              <option value="">Noch offen</option>
               <option>So bald wie sinnvoll möglich</option>
               <option>In den nächsten 4 Wochen</option>
               <option>In 1-3 Monaten</option>
-              <option>Erst grob einschätzen</option>
             </select>
           </label>
           <label class="full">
@@ -387,20 +361,21 @@
             <textarea name="message" rows="5" required></textarea>
           </label>
           <label class="full">
-            Beteiligte Systeme
-            <input name="systems" autocomplete="off">
+            Beteiligte Systeme <span>optional</span>
+            <input type="text" name="systems" autocomplete="off">
           </label>
           <label class="form-trap" aria-hidden="true" tabindex="-1">
             Website
-            <input name="website" autocomplete="off" tabindex="-1">
+            <input type="text" name="website" autocomplete="off" tabindex="-1">
           </label>
           <div class="turnstile-field full">
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAEDDgd1QoPAr9Cby" data-theme="auto"></div>
           </div>
-          <button class="button primary full" type="submit">Einsatzbereich prüfen lassen</button>
+          <button class="button primary full" type="submit">Einsatz unverbindlich prüfen</button>
           <p class="form-status" id="lead-form-status" role="status" aria-live="polite"></p>
           <p class="form-note">
-            Weitere Details klären wir anschließend persönlich. Verbindliche Angebote oder Entscheidungen entstehen erst nach Rücksprache.
+            Sie erhalten eine persönliche Einschätzung. Es entsteht kein Auftrag und keine automatische Buchung.
+            Es gelten die <a href="https://georgi.digital/datenschutz/">Datenschutzhinweise</a>.
           </p>
         </form>
       </section>

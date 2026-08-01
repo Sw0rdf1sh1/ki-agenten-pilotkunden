@@ -9,36 +9,29 @@ const sitemap = readFileSync("sitemap.xml", "utf8");
 
 const required = [
   "Einrichtung, Integration und Betrieb von KI-Assistenten",
-  "Wir richten KI-Assistenten ein, die in Ihrem Unternehmen mitarbeiten.",
-  "Einsatzbereich prüfen lassen",
-  "Beispielablauf ansehen",
-  "Klar begrenzte Aufgaben",
+  "KI-Assistenten, die E-Mails, Dokumente und wiederkehrende Arbeit übernehmen.",
+  "Unverbindlich Einsatz prüfen",
+  "So arbeitet ein KI-Assistent",
+  "Klare Aufgaben",
   "Bestehende Systeme",
-  "Definierte Freigaben",
+  "Menschliche Freigaben",
   "Laufende Betreuung",
   "KI packt an",
   "KI-Assistenten",
-  "KI-Agenten einrichten",
   "E-Mail-Assistent",
-  "Unternehmensprozesse automatisieren",
-  "KI mit CRM und ERP verbinden",
-  "KI-Assistent betreiben",
-  "KI-Workflow",
-  "KI für den Mittelstand",
-  "Angebot für 40 Arbeitsplätze",
+  "Angebotsanfrage für 40 Arbeitsplätze",
   "E-Mail",
   "CRM",
   "Dokumente",
-  "Zur Freigabe bereit",
-  "Kein weiterer Chatbot. Ein eingerichteter digitaler Arbeitsablauf.",
-  "Vom info@-Postfach bis zur fertigen Übergabe.",
-  "Wiederkehrende Arbeit, die ein KI-Assistent übernehmen kann.",
-  "Sie bestimmen, wie selbstständig der Assistent arbeitet.",
-  "Wir bauen nicht nur den Assistenten. Wir sorgen dafür, dass er arbeiten kann.",
-  "Zugriff nur dort, wo er gebraucht wird.",
-  "Klein starten. Im Alltag beweisen. Danach gezielt ausbauen.",
-  "Software- und Prozesskompetenz statt isolierter KI-Demo.",
-  "Welche Arbeit bleibt in Ihrem Unternehmen regelmäßig liegen?",
+  "Bereit zur Prüfung",
+  "Von der Aufgabe zum betreuten KI-Assistenten.",
+  "So wird aus einer eingehenden Anfrage ein vorbereiteter Vorgang.",
+  "Weitere gute Startpunkte",
+  "So selbstständig arbeitet der Assistent.",
+  "Sicher vom ersten Prozess in den laufenden Betrieb.",
+  "Erst prüfen. Dann einen produktiven Assistenten begrenzt aufbauen.",
+  "Direkte technische Verantwortung statt anonymer Agenturstruktur.",
+  "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
   "https://ki-packt-an.de/",
   "Gewünschter Startzeitraum",
   "Beteiligte Systeme",
@@ -53,6 +46,31 @@ for (const needle of required) {
   if (!html.includes(needle)) {
     throw new Error(`Missing required page content: ${needle}`);
   }
+}
+
+const forbiddenVisibleText = [
+  "Wer KI-Agenten einrichten will",
+  "Der Schwerpunkt liegt auf KI für den Mittelstand",
+  "Unternehmensprozesse automatisieren",
+  "KI mit CRM und ERP verbinden",
+  "KI-Assistent betreiben",
+];
+
+for (const needle of forbiddenVisibleText) {
+  if (html.includes(needle)) {
+    throw new Error(`Remove SEO-like visible text: ${needle}`);
+  }
+}
+
+const visibleText = html
+  .replace(/<script[\s\S]*?<\/script>/g, "")
+  .replace(/<style[\s\S]*?<\/style>/g, "")
+  .replace(/<[^>]+>/g, " ")
+  .replace(/\s+/g, " ")
+  .trim();
+
+if (visibleText.length > 6_700) {
+  throw new Error(`Visible page text is still too long: ${visibleText.length} chars.`);
 }
 
 const h1Count = (html.match(/<h1[\s>]/g) || []).length;
@@ -116,6 +134,10 @@ if (!script.includes("fetch(form.action")) {
 
 if (!script.includes("turnstile?.reset")) {
   throw new Error("Lead form must reset Turnstile after submissions.");
+}
+
+if (!script.includes("workflow-phase") || !script.includes("clearInterval")) {
+  throw new Error("Workflow animation must run through phases and stop in a stable state.");
 }
 
 if (!contactFunction.includes("https://api.resend.com/emails")) {
