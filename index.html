@@ -41,8 +41,8 @@
     <a class="skip-link" href="#anfrage">Direkt zur Anfrage</a>
 
     <header class="site-header">
-      <a class="brand" href="#top">
-        <span class="brand-mark">KI</span>
+      <a class="brand" href="#top" aria-label="KI packt an Startseite">
+        <span class="brand-mark" aria-hidden="true">KI</span>
         <span>KI packt an</span>
       </a>
       <nav class="nav" aria-label="Hauptnavigation">
@@ -246,6 +246,7 @@
               <li>nachvollziehbare Aktivitäten</li>
               <li>definierte Freigaben</li>
               <li>Weiterleitung unsicherer Fälle</li>
+              <li>Backups und Wiederanlauf</li>
               <li>Kosten- und Fehlerüberwachung</li>
             </ul>
             <p>Bestehende Systeme bleiben, externe Kosten werden vorab sichtbar.</p>
@@ -253,55 +254,68 @@
         </div>
       </section>
 
+      <section class="confidence-strip" aria-label="Vertrauenssignale">
+        <span>Vorab-Check vor jeder Umsetzung</span>
+        <span>Kein Austausch bestehender Systeme</span>
+        <span>Klare Entscheidung nach der Testphase</span>
+        <span>Externe Kosten werden vorab ausgewiesen</span>
+      </section>
+
       <section id="preise" class="section pricing-section" aria-labelledby="preise-title">
         <div class="section-heading">
           <p class="eyebrow">Preise</p>
-          <h2 id="preise-title">Klein prüfen. Begrenzt produktiv gehen.</h2>
+          <h2 id="preise-title">Erst prüfen. Dann begrenzt produktiv umsetzen.</h2>
           <p>
-            Pilotkonditionen gelten für begrenzte erste Umsetzungen. Anonymisierte Erkenntnisse dürfen in standardisierte Einführungs- und Betriebsprozesse einfließen; vertrauliche Inhalte bleiben ausgeschlossen.
+            Der Prozess-Check ist der verbindliche erste Schritt. Bei anschließendem Pilot wird er angerechnet.
           </p>
         </div>
         <div class="price-layout">
           <article class="price-card">
-            <span>Einstieg</span>
+            <span>Pflichtschritt vorab</span>
             <h3>Prozess-Check</h3>
-            <p class="price">245 EUR <small>Pilotkondition, regulär 490 EUR</small></p>
+            <p class="price">245 EUR <small>60-90 Minuten 1:1 online, bei Pilot anrechenbar</small></p>
             <ul>
-              <li>ein konkreter Prozess</li>
-              <li>technische Ersteinschätzung</li>
+              <li>Wünsche und Prozess im 1:1 klären</li>
+              <li>Machbarkeit und Startumfang prüfen</li>
               <li>Daten-, Zugriffs- und Freigaberisiken</li>
+              <li>Empfehlung für Pilot oder Stopp</li>
             </ul>
             <a class="button secondary-dark" href="#anfrage">Einsatz unverbindlich prüfen</a>
           </article>
           <article class="price-card featured">
             <span>Umsetzung</span>
             <h3>Produktiver KI-Assistent</h3>
-            <p class="price">ab 1.450 EUR <small>Pilotkondition, regulär ab 2.900 EUR</small></p>
+            <p class="price">ab 1.450 EUR <small>in der Pilotphase, regulär ab 2.900 EUR</small></p>
             <ul>
               <li>klar begrenzter KI-Assistent</li>
-              <li>ausgewählte Datenquellen</li>
-              <li>Testfälle, Freigaben und Dokumentation</li>
+              <li>ein angebundenes Postfach oder Einstiegssystem</li>
+              <li>eine Wissensquelle wie Repository, Confluence oder Wiki</li>
+              <li>Testfälle, Freigaben und technische Dokumentation</li>
+              <li>Ausbauentscheidung nach dem Pilot</li>
             </ul>
             <a class="button primary" href="#anfrage">Einsatz unverbindlich prüfen</a>
           </article>
         </div>
         <div class="expansion-panel">
           <div>
-            <h3>Ausbauoption: individuelle Integration</h3>
-            <p>Mehrere Systeme oder tiefe CRM-/ERP-Anbindung: 2.950-4.950 EUR Pilotkondition, regulär 5.900-9.900 EUR.</p>
+            <h3>Ausbau nach Konnektoren</h3>
+            <p>Mehr Postfächer, Datenquellen, CRM-/ERP-Anbindungen oder Schreibrechte erhöhen den Aufwand. Nach dem Check gibt es dafür ein klares Angebot.</p>
           </div>
           <div>
             <h3>Zusatz: laufender Betrieb</h3>
             <p>Ab 245 EUR/Monat in der Pilotphase, regulär ab 490 EUR/Monat: technische Erreichbarkeit, Zugänge, Fehleranalyse, Updates, Kostenkontrolle und Änderungen nach Kontingent oder Aufwand.</p>
           </div>
         </div>
+        <p class="pilot-note">
+          Pilotkonditionen gelten für begrenzte erste Umsetzungen. Erkenntnisse aus Ablauf und Betrieb dürfen anonymisiert in Standardprozesse einfließen; vertrauliche Inhalte bleiben ausgeschlossen.
+        </p>
       </section>
 
       <section id="ueber-mich" class="section provider-section" aria-labelledby="anbieter-title">
         <div class="provider-layout">
           <div class="provider-heading">
             <p class="eyebrow">Technischer Ansprechpartner</p>
-            <h2 id="anbieter-title">Fabian Georgi setzt die Lösung persönlich um.</h2>
+            <h2 id="anbieter-title">Ihr technischer Ansprechpartner – von der Idee bis zum laufenden Betrieb.</h2>
           </div>
           <figure class="portrait-frame">
             <img
@@ -321,6 +335,7 @@
               Ich begleite die technische Umsetzung persönlich – von der Prozessanalyse bis zum laufenden Betrieb.
               Seit über 18 Jahren entwickle ich Software, Schnittstellen und digitale Prozesse.
             </p>
+            <p>Sie sprechen direkt mit der Person, die technische Entscheidungen trifft und für die Umsetzung verantwortlich ist.</p>
             <ul class="competence-list">
               <li>über 18 Jahre Software- und Prozesspraxis</li>
               <li>Schnittstellen, APIs und Unternehmensanwendungen</li>
@@ -328,6 +343,7 @@
               <li>Automatisierung, KI-Assistenten und Betrieb</li>
             </ul>
             <p class="provider-action"><a class="button secondary-dark" href="#anfrage">Einsatz unverbindlich prüfen</a></p>
+            <p class="codiki-note">„KI packt an“ ist ein Angebot von Fabian Georgi / georgi.digital und wird perspektivisch unter CODIKI weitergeführt.</p>
           </div>
         </div>
       </section>
@@ -336,7 +352,7 @@
         <div class="contact-copy">
           <p class="eyebrow">Anfrage</p>
           <h2 id="anfrage-title">Welche Arbeit bleibt in Ihrem Unternehmen regelmäßig liegen?</h2>
-          <p>Beschreiben Sie einen wiederkehrenden Ablauf. Ich prüfe persönlich, ob ein begrenzter KI-Assistent sinnvoll ist.</p>
+          <p>Beschreiben Sie einen wiederkehrenden Ablauf. Ich prüfe persönlich, ob ein KI-Assistent sinnvoll ist, welche Systeme beteiligt sind und wie der Vorab-Check aussehen kann.</p>
         </div>
         <form class="lead-form" id="lead-form" action="/api/contact" method="post">
           <label>
