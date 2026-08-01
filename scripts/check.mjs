@@ -30,8 +30,15 @@ const required = [
   "So selbstständig arbeitet der Assistent.",
   "Sicher vom ersten Prozess in den laufenden Betrieb.",
   "Erst prüfen. Dann einen produktiven Assistenten begrenzt aufbauen.",
+  "Pilotkondition, regulär 490 EUR",
+  "Pilotkondition, regulär ab 2.900 EUR",
+  "2.950-4.950 EUR Pilotkondition",
+  "5.900-9.900 EUR",
+  "regulär ab 490 EUR/Monat",
+  "technische Erreichbarkeit und Zugänge",
+  "Anonymisierte Erkenntnisse",
   "Kein langfristiger Plattformvertrag erforderlich",
-  "Ihr technischer Ansprechpartner",
+  "Ich begleite die technische Umsetzung persönlich",
   "Fabian Georgi, technischer Ansprechpartner für KI packt an",
   "Softwareentwicklung, Integration und Betrieb",
   "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
@@ -134,7 +141,7 @@ if (!html.includes('data-sitekey="0x4AAAAAAEDDgd1QoPAr9Cby"')) {
   throw new Error("Lead form must include the configured Turnstile site key.");
 }
 
-if (!html.includes("https://challenges.cloudflare.com/turnstile/v0/api.js")) {
+if (!script.includes("https://challenges.cloudflare.com/turnstile/v0/api.js")) {
   throw new Error("Turnstile client script missing.");
 }
 

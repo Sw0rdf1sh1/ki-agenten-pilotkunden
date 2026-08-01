@@ -1,6 +1,15 @@
 const form = document.querySelector("#lead-form");
 const formStatus = document.querySelector("#lead-form-status");
 const workflowPhases = Array.from(document.querySelectorAll(".workflow-phase"));
+const turnstileHosts = new Set(["ki-packt-an.de", "www.ki-packt-an.de"]);
+
+if (turnstileHosts.has(window.location.hostname)) {
+  const turnstileScript = document.createElement("script");
+  turnstileScript.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+  turnstileScript.async = true;
+  turnstileScript.defer = true;
+  document.head.append(turnstileScript);
+}
 
 if (workflowPhases.length > 0 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let activePhase = 0;
