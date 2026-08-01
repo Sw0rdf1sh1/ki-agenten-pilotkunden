@@ -1076,8 +1076,26 @@ textarea {
     padding-top: 5.4rem;
   }
 
+  .section {
+    padding: 3rem 1.25rem;
+  }
+
+  .confidence-strip,
+  .site-footer {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   .hero-copy,
-  .workflow-visual {
+  .workflow-visual,
+  .section-heading,
+  .before-after,
+  .operations-layout,
+  .price-layout,
+  .expansion-panel,
+  .provider-layout,
+  .contact-section,
+  .lead-form {
     justify-self: stretch;
     max-width: none;
     width: 100%;
@@ -1151,6 +1169,7 @@ textarea {
 
   .service-grid {
     gap: 1rem;
+    width: 100%;
   }
 
   .service-grid article,
