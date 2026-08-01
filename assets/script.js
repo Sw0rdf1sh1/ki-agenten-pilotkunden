@@ -16,13 +16,15 @@ if (workflowPhases.length > 0 && !window.matchMedia("(prefers-reduced-motion: re
 
   const interval = window.setInterval(() => {
     workflowPhases[activePhase]?.classList.remove("is-active");
+    workflowPhases[activePhase]?.removeAttribute("aria-current");
     activePhase += 1;
     workflowPhases[activePhase]?.classList.add("is-active");
+    workflowPhases[activePhase]?.setAttribute("aria-current", "step");
 
     if (activePhase >= workflowPhases.length - 1) {
       window.clearInterval(interval);
     }
-  }, 1800);
+  }, 2500);
 }
 
 function buildMailtoUrl(data) {
