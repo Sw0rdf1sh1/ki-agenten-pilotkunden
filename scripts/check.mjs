@@ -30,7 +30,10 @@ const required = [
   "So selbstständig arbeitet der Assistent.",
   "Sicher vom ersten Prozess in den laufenden Betrieb.",
   "Erst prüfen. Dann einen produktiven Assistenten begrenzt aufbauen.",
-  "Direkte technische Verantwortung statt anonymer Agenturstruktur.",
+  "Kein langfristiger Plattformvertrag erforderlich",
+  "Ihr technischer Ansprechpartner",
+  "Fabian Georgi, technischer Ansprechpartner für KI packt an",
+  "Softwareentwicklung, Integration und Betrieb",
   "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
   "https://ki-packt-an.de/",
   "Gewünschter Startzeitraum",
@@ -54,6 +57,9 @@ const forbiddenVisibleText = [
   "Unternehmensprozesse automatisieren",
   "KI mit CRM und ERP verbinden",
   "KI-Assistent betreiben",
+  "Regulär",
+  "Prozess prüfen lassen",
+  "Pilot besprechen",
 ];
 
 for (const needle of forbiddenVisibleText) {
@@ -69,7 +75,7 @@ const visibleText = html
   .replace(/\s+/g, " ")
   .trim();
 
-if (visibleText.length > 6_700) {
+if (visibleText.length > 6_600) {
   throw new Error(`Visible page text is still too long: ${visibleText.length} chars.`);
 }
 
@@ -92,6 +98,10 @@ if (!html.includes('action="/api/contact"')) {
 
 if (!html.includes('id="lead-form-status"')) {
   throw new Error("Lead form status region missing.");
+}
+
+if (!html.includes("fabian-georgi-450.webp 450w") || !html.includes('sizes="(max-width: 1120px) 220px, 260px"')) {
+  throw new Error("Provider portrait must use a responsive WebP srcset.");
 }
 
 const requiredFields = [
