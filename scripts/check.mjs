@@ -25,21 +25,36 @@ const required = [
   "Dokumente",
   "Bereit zur Prüfung",
   "Von der Aufgabe zum betreuten KI-Assistenten.",
-  "So wird aus einer eingehenden Anfrage ein vorbereiteter Vorgang.",
+  "Aus Eingang wird vorbereiteter Vorgang.",
   "Weitere gute Startpunkte",
-  "So selbstständig arbeitet der Assistent.",
-  "Sicher vom ersten Prozess in den laufenden Betrieb.",
-  "Erst prüfen. Dann einen produktiven Assistenten begrenzt aufbauen.",
-  "Kein langfristiger Plattformvertrag erforderlich",
-  "Ihr technischer Ansprechpartner",
+  "Der Automatisierungsgrad bleibt steuerbar.",
+  "Vom ersten Prozess in den laufenden Betrieb.",
+  "Erst prüfen. Dann begrenzt produktiv umsetzen.",
+  "Der Prozess-Check ist der verbindliche erste Schritt.",
+  "60-90 Minuten 1:1 online",
+  "bei Pilot anrechenbar",
+  "ab 1.450 EUR",
+  "in der Pilotphase, regulär ab 2.900 EUR",
+  "ein angebundenes Postfach oder Einstiegssystem",
+  "Repository, Confluence oder Wiki",
+  "Ausbauentscheidung nach dem Pilot",
+  "Ausbau nach Konnektoren",
+  "Mehr Postfächer, Datenquellen",
+  "regulär ab 490 EUR/Monat",
+  "technische Erreichbarkeit, Zugänge",
+  "Erkenntnisse aus Ablauf und Betrieb",
+  "Bestehende Systeme bleiben",
+  "Vorab-Check vor jeder Umsetzung",
+  "Backups und Wiederanlauf",
+  "Ich begleite die technische Umsetzung persönlich",
+  "Sie sprechen direkt mit der Person",
   "Fabian Georgi, technischer Ansprechpartner für KI packt an",
   "Softwareentwicklung, Integration und Betrieb",
+  "perspektivisch unter CODIKI",
   "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
   "https://ki-packt-an.de/",
   "Gewünschter Startzeitraum",
   "Beteiligte Systeme",
-  "CODIKI",
-  "Fabian Georgi / georgi.digital",
   "hello@georgi.digital",
   "Impressum",
   "Datenschutz",
@@ -134,7 +149,7 @@ if (!html.includes('data-sitekey="0x4AAAAAAEDDgd1QoPAr9Cby"')) {
   throw new Error("Lead form must include the configured Turnstile site key.");
 }
 
-if (!html.includes("https://challenges.cloudflare.com/turnstile/v0/api.js")) {
+if (!script.includes("https://challenges.cloudflare.com/turnstile/v0/api.js")) {
   throw new Error("Turnstile client script missing.");
 }
 
