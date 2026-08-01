@@ -768,22 +768,20 @@ h4 {
   max-width: 1050px;
 }
 
-.portrait-placeholder {
-  align-items: center;
+.portrait-frame {
   aspect-ratio: 1;
-  background:
-    linear-gradient(135deg, rgba(242, 95, 92, 0.18), rgba(38, 139, 210, 0.18)),
-    var(--paper);
+  background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 18px;
-  display: flex;
-  justify-content: center;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
 }
 
-.portrait-placeholder span {
-  color: var(--ink);
-  font-size: 3rem;
-  font-weight: 950;
+.portrait-frame img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .competence-list {
