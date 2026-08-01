@@ -42,18 +42,15 @@ async function verifyTurnstile(token, request, env) {
 
 function buildEmailText(data) {
   return [
-    "Neue KI-packt-an Pilotanfrage",
+    "Neue KI-packt-an Anfrage",
     "",
     `Unternehmen: ${data.company}`,
-    `Name: ${data.name}`,
+    `Ansprechpartner: ${data.name}`,
     `E-Mail: ${data.email}`,
-    `Passender Startpunkt: ${data.pilot}`,
-    `Häufigkeit der Arbeit: ${data.frequency}`,
-    `Beteiligte Personen im Ablauf: ${data.teamSize}`,
-    `Gewünschter Pilotstart: ${data.timeline}`,
-    `Beteiligte Systeme oder Datenquellen: ${data.systems}`,
+    `Gewünschter Startzeitraum: ${data.timeline}`,
+    `Beteiligte Systeme: ${data.systems}`,
     "",
-    "Welche Arbeit die KI vorbereiten soll:",
+    "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
     data.message,
     "",
     "Quelle: https://ki-packt-an.de/",
@@ -63,13 +60,10 @@ function buildEmailText(data) {
 function buildEmailHtml(data) {
   const rows = [
     ["Unternehmen", data.company],
-    ["Name", data.name],
+    ["Ansprechpartner", data.name],
     ["E-Mail", data.email],
-    ["Passender Startpunkt", data.pilot],
-    ["Häufigkeit der Arbeit", data.frequency],
-    ["Beteiligte Personen im Ablauf", data.teamSize],
-    ["Gewünschter Pilotstart", data.timeline],
-    ["Beteiligte Systeme oder Datenquellen", data.systems],
+    ["Gewünschter Startzeitraum", data.timeline],
+    ["Beteiligte Systeme", data.systems],
   ];
 
   const detailRows = rows
@@ -81,9 +75,9 @@ function buildEmailHtml(data) {
   return `<!doctype html>
 <html lang="de">
   <body style="font-family:Arial,sans-serif;line-height:1.55;color:#18202f">
-    <h1 style="font-size:20px">Neue KI-packt-an Pilotanfrage</h1>
+    <h1 style="font-size:20px">Neue KI-packt-an Anfrage</h1>
     ${detailRows}
-    <p><strong>Welche Arbeit die KI vorbereiten soll:</strong></p>
+    <p><strong>Welche wiederkehrende Arbeit soll der Assistent übernehmen?</strong></p>
     <p>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p>
     <p style="color:#667085;font-size:13px">Quelle: https://ki-packt-an.de/</p>
   </body>
@@ -116,9 +110,6 @@ export async function onRequestPost({ request, env }) {
     company: clean(payload.company),
     name: clean(payload.name),
     email: clean(payload.email),
-    pilot: clean(payload.pilot || "Noch offen, bitte einschätzen"),
-    frequency: clean(payload.frequency),
-    teamSize: clean(payload.team_size),
     timeline: clean(payload.timeline),
     systems: clean(payload.systems),
     message: clean(payload.message),
@@ -147,7 +138,7 @@ export async function onRequestPost({ request, env }) {
       from: env.CONTACT_FROM_EMAIL,
       to: [env.CONTACT_TO_EMAIL || DEFAULT_TO_EMAIL],
       reply_to: data.email,
-      subject: `KI packt an Pilotanfrage: ${data.company}`,
+      subject: `KI packt an Anfrage: ${data.company}`,
       text: buildEmailText(data),
       html: buildEmailHtml(data),
     }),

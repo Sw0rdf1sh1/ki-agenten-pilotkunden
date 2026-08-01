@@ -1,23 +1,35 @@
 const form = document.querySelector("#lead-form");
 const formStatus = document.querySelector("#lead-form-status");
+const workflowPhases = Array.from(document.querySelectorAll(".workflow-phase"));
+
+if (workflowPhases.length > 0 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let activePhase = 0;
+
+  const interval = window.setInterval(() => {
+    workflowPhases[activePhase]?.classList.remove("is-active");
+    activePhase += 1;
+    workflowPhases[activePhase]?.classList.add("is-active");
+
+    if (activePhase >= workflowPhases.length - 1) {
+      window.clearInterval(interval);
+    }
+  }, 1800);
+}
 
 function buildMailtoUrl(data) {
-  const subject = `KI packt an Pilotgespräch: ${data.get("company") || "Unternehmen"}`;
+  const subject = `KI packt an Einsatzbereich: ${data.get("company") || "Unternehmen"}`;
   const body = [
     "Hallo Fabian,",
     "",
-    "ich interessiere mich für einen KI packt an Pilot.",
+    "ich möchte unverbindlich prüfen lassen, ob ein KI-Assistent für unseren Ablauf sinnvoll ist.",
     "",
     `Unternehmen: ${data.get("company") || ""}`,
-    `Name: ${data.get("name") || ""}`,
+    `Ansprechpartner: ${data.get("name") || ""}`,
     `E-Mail: ${data.get("email") || ""}`,
-    `Passender Startpunkt: ${data.get("pilot") || ""}`,
-    `Häufigkeit der Arbeit: ${data.get("frequency") || ""}`,
-    `Beteiligte Personen im Ablauf: ${data.get("team_size") || ""}`,
-    `Gewünschter Pilotstart: ${data.get("timeline") || ""}`,
-    `Beteiligte Systeme oder Datenquellen: ${data.get("systems") || ""}`,
+    `Gewünschter Startzeitraum: ${data.get("timeline") || ""}`,
+    `Beteiligte Systeme: ${data.get("systems") || ""}`,
     "",
-    "Welche Arbeit die KI vorbereiten soll:",
+    "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
     data.get("message") || "",
     "",
     "Viele Grüße",

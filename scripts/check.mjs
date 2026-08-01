@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { readFileSync } from "node:fs";
 
 const html = readFileSync("index.html", "utf8");
 const css = readFileSync("assets/styles.css", "utf8");
@@ -8,18 +8,36 @@ const cname = readFileSync("CNAME", "utf8").trim();
 const sitemap = readFileSync("sitemap.xml", "utf8");
 
 const required = [
-  "Pilotkunden",
+  "Einrichtung, Integration und Betrieb von KI-Assistenten",
+  "KI-Assistenten, die E-Mails, Dokumente und wiederkehrende Arbeit übernehmen.",
+  "Unverbindlich Einsatz prüfen",
+  "So arbeitet ein KI-Assistent",
+  "Klare Aufgaben",
+  "Bestehende Systeme",
+  "Menschliche Freigaben",
+  "Laufende Betreuung",
   "KI packt an",
   "KI-Assistenten",
-  "Clara Postmann",
-  "Nora Wissen",
-  "Felix Angebot",
+  "E-Mail-Assistent",
+  "Angebotsanfrage für 40 Arbeitsplätze",
+  "E-Mail",
+  "CRM",
+  "Dokumente",
+  "Bereit zur Prüfung",
+  "Von der Aufgabe zum betreuten KI-Assistenten.",
+  "So wird aus einer eingehenden Anfrage ein vorbereiteter Vorgang.",
+  "Weitere gute Startpunkte",
+  "So selbstständig arbeitet der Assistent.",
+  "Sicher vom ersten Prozess in den laufenden Betrieb.",
+  "Erst prüfen. Dann einen produktiven Assistenten begrenzt aufbauen.",
+  "Kein langfristiger Plattformvertrag erforderlich",
+  "Ihr technischer Ansprechpartner",
+  "Fabian Georgi, technischer Ansprechpartner für KI packt an",
+  "Softwareentwicklung, Integration und Betrieb",
+  "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
   "https://ki-packt-an.de/",
-  "50 Prozent",
-  "Häufigkeit der Arbeit",
-  "Beteiligte Personen im Ablauf",
-  "Gewünschter Pilotstart",
-  "Beteiligte Systeme oder Datenquellen",
+  "Gewünschter Startzeitraum",
+  "Beteiligte Systeme",
   "CODIKI",
   "Fabian Georgi / georgi.digital",
   "hello@georgi.digital",
@@ -31,6 +49,39 @@ for (const needle of required) {
   if (!html.includes(needle)) {
     throw new Error(`Missing required page content: ${needle}`);
   }
+}
+
+const forbiddenVisibleText = [
+  "Wer KI-Agenten einrichten will",
+  "Der Schwerpunkt liegt auf KI für den Mittelstand",
+  "Unternehmensprozesse automatisieren",
+  "KI mit CRM und ERP verbinden",
+  "KI-Assistent betreiben",
+  "Regulär",
+  "Prozess prüfen lassen",
+  "Pilot besprechen",
+];
+
+for (const needle of forbiddenVisibleText) {
+  if (html.includes(needle)) {
+    throw new Error(`Remove SEO-like visible text: ${needle}`);
+  }
+}
+
+const visibleText = html
+  .replace(/<script[\s\S]*?<\/script>/g, "")
+  .replace(/<style[\s\S]*?<\/style>/g, "")
+  .replace(/<[^>]+>/g, " ")
+  .replace(/\s+/g, " ")
+  .trim();
+
+if (visibleText.length > 6_600) {
+  throw new Error(`Visible page text is still too long: ${visibleText.length} chars.`);
+}
+
+const h1Count = (html.match(/<h1[\s>]/g) || []).length;
+if (h1Count !== 1) {
+  throw new Error(`Expected exactly one h1, found ${h1Count}.`);
 }
 
 if (/font-size:\s*[^;]*vw/.test(css)) {
@@ -49,6 +100,36 @@ if (!html.includes('id="lead-form-status"')) {
   throw new Error("Lead form status region missing.");
 }
 
+if (!html.includes("fabian-georgi-450.webp 450w") || !html.includes('sizes="(max-width: 1120px) 220px, 260px"')) {
+  throw new Error("Provider portrait must use a responsive WebP srcset.");
+}
+
+const requiredFields = [
+  'name="company"',
+  'name="name"',
+  'name="email"',
+  'name="message"',
+  'name="systems"',
+  'name="timeline"',
+];
+
+for (const field of requiredFields) {
+  if (!html.includes(field)) {
+    throw new Error(`Lead form field missing: ${field}`);
+  }
+}
+
+const removedFields = ['name="pilot"', 'name="frequency"', 'name="team_size"'];
+for (const field of removedFields) {
+  if (html.includes(field)) {
+    throw new Error(`Lead form still includes removed field: ${field}`);
+  }
+}
+
+if (html.includes("placeholder=")) {
+  throw new Error("Avoid placeholder text in the lead form.");
+}
+
 if (!html.includes('data-sitekey="0x4AAAAAAEDDgd1QoPAr9Cby"')) {
   throw new Error("Lead form must include the configured Turnstile site key.");
 }
@@ -65,6 +146,10 @@ if (!script.includes("turnstile?.reset")) {
   throw new Error("Lead form must reset Turnstile after submissions.");
 }
 
+if (!script.includes("workflow-phase") || !script.includes("clearInterval")) {
+  throw new Error("Workflow animation must run through phases and stop in a stable state.");
+}
+
 if (!contactFunction.includes("https://api.resend.com/emails")) {
   throw new Error("Contact function must use the Resend email API.");
 }
@@ -79,29 +164,6 @@ if (!contactFunction.includes("TURNSTILE_SECRET_KEY")) {
 
 if (!contactFunction.includes("https://challenges.cloudflare.com/turnstile/v0/siteverify")) {
   throw new Error("Contact function must validate Turnstile tokens server-side.");
-}
-
-const assistantImages = [
-  "assets/assistants/clara-postmann.webp",
-  "assets/assistants/nora-wissen.webp",
-  "assets/assistants/felix-angebot.webp",
-  "assets/assistants/mira-service.webp",
-  "assets/assistants/ben-ablauf.webp",
-  "assets/assistants/greta-zahlen.webp",
-];
-
-for (const image of assistantImages) {
-  if (!html.includes(image)) {
-    throw new Error(`Assistant image not referenced: ${image}`);
-  }
-
-  if (!existsSync(image)) {
-    throw new Error(`Assistant image missing: ${image}`);
-  }
-
-  if (statSync(image).size > 120_000) {
-    throw new Error(`Assistant image too large: ${image}`);
-  }
 }
 
 if (cname !== "ki-packt-an.de") {
