@@ -1009,8 +1009,104 @@ h3 {
   color: var(--muted);
 }
 
+.call-prep {
+  background:
+    linear-gradient(135deg, rgba(216, 243, 106, 0.18), rgba(38, 139, 210, 0.1)),
+    #f8faf6;
+}
+
+.prep-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.prep-grid article {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(24, 18, 43, 0.07);
+  display: grid;
+  gap: 0.7rem;
+  padding: 1.25rem;
+}
+
+.prep-grid span {
+  align-items: center;
+  background: rgba(24, 32, 47, 0.08);
+  border: 1px solid rgba(24, 32, 47, 0.16);
+  border-radius: 999px;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 900;
+  justify-self: start;
+  padding: 0.45rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.prep-grid article:nth-child(2) span {
+  background: rgba(38, 139, 210, 0.1);
+  border-color: rgba(38, 139, 210, 0.28);
+  color: #12629a;
+}
+
+.prep-grid article:nth-child(3) span {
+  background: rgba(242, 95, 92, 0.12);
+  border-color: rgba(242, 95, 92, 0.32);
+  color: #a73532;
+}
+
+.prep-grid h3,
+.prep-grid p {
+  margin-bottom: 0;
+}
+
+.prep-grid p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.prep-cta {
+  color: var(--ink);
+  display: inline-flex;
+  font-weight: 900;
+  margin-top: 1.5rem;
+}
+
 .contact {
   background: var(--white);
+}
+
+.contact-assurance {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.contact-assurance p {
+  background: #f7f4ef;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--mint);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0.95rem 1rem;
+}
+
+.contact-assurance p:nth-child(2) {
+  border-left-color: var(--cyan);
+}
+
+.contact-assurance p:nth-child(3) {
+  border-left-color: var(--coral);
+}
+
+.contact-assurance strong {
+  color: var(--ink);
 }
 
 .lead-form {
@@ -1172,7 +1268,8 @@ textarea {
   .metric-grid,
   .readiness-grid,
   .faq-grid,
-  .safety-grid {
+  .safety-grid,
+  .prep-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1243,7 +1340,8 @@ textarea {
   .metric-grid,
   .readiness-grid,
   .faq-grid,
-  .safety-grid {
+  .safety-grid,
+  .prep-grid {
     grid-template-columns: 1fr;
   }
 
