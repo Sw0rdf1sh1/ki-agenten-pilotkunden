@@ -1137,6 +1137,29 @@ textarea {
     padding-right: 1.25rem;
   }
 
+  .confidence-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .confidence-strip span {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 0.95rem;
+    padding: 0.95rem 0.85rem;
+  }
+
+  .confidence-strip span:nth-child(-n + 2) {
+    border-top: 0;
+  }
+
+  .confidence-strip span:nth-child(even) {
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .confidence-strip span:first-child {
+    padding-left: 0.85rem;
+  }
+
   .hero-copy,
   .workflow-visual,
   .section-heading,
@@ -1304,5 +1327,20 @@ textarea {
 
   .workflow-phase ul {
     display: grid;
+  }
+
+  .confidence-strip {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .confidence-strip span {
+    font-size: 0.88rem;
+    line-height: 1.28;
+    padding: 0.85rem 0.65rem;
+  }
+
+  .confidence-strip span:first-child {
+    padding-left: 0.65rem;
   }
 }
