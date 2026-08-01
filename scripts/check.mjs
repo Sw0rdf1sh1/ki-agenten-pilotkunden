@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { readFileSync } from "node:fs";
 
 const html = readFileSync("index.html", "utf8");
 const css = readFileSync("assets/styles.css", "utf8");
@@ -8,18 +8,40 @@ const cname = readFileSync("CNAME", "utf8").trim();
 const sitemap = readFileSync("sitemap.xml", "utf8");
 
 const required = [
-  "Pilotkunden",
+  "Einrichtung, Integration und Betrieb von KI-Assistenten",
+  "Wir richten KI-Assistenten ein, die in Ihrem Unternehmen mitarbeiten.",
+  "Einsatzbereich prüfen lassen",
+  "Beispielablauf ansehen",
+  "Klar begrenzte Aufgaben",
+  "Bestehende Systeme",
+  "Definierte Freigaben",
+  "Laufende Betreuung",
   "KI packt an",
   "KI-Assistenten",
-  "Clara Postmann",
-  "Nora Wissen",
-  "Felix Angebot",
+  "KI-Agenten einrichten",
+  "E-Mail-Assistent",
+  "Unternehmensprozesse automatisieren",
+  "KI mit CRM und ERP verbinden",
+  "KI-Assistent betreiben",
+  "KI-Workflow",
+  "KI für den Mittelstand",
+  "Angebot für 40 Arbeitsplätze",
+  "E-Mail",
+  "CRM",
+  "Dokumente",
+  "Zur Freigabe bereit",
+  "Kein weiterer Chatbot. Ein eingerichteter digitaler Arbeitsablauf.",
+  "Vom info@-Postfach bis zur fertigen Übergabe.",
+  "Wiederkehrende Arbeit, die ein KI-Assistent übernehmen kann.",
+  "Sie bestimmen, wie selbstständig der Assistent arbeitet.",
+  "Wir bauen nicht nur den Assistenten. Wir sorgen dafür, dass er arbeiten kann.",
+  "Zugriff nur dort, wo er gebraucht wird.",
+  "Klein starten. Im Alltag beweisen. Danach gezielt ausbauen.",
+  "Software- und Prozesskompetenz statt isolierter KI-Demo.",
+  "Welche Arbeit bleibt in Ihrem Unternehmen regelmäßig liegen?",
   "https://ki-packt-an.de/",
-  "50 Prozent",
-  "Häufigkeit der Arbeit",
-  "Beteiligte Personen im Ablauf",
-  "Gewünschter Pilotstart",
-  "Beteiligte Systeme oder Datenquellen",
+  "Gewünschter Startzeitraum",
+  "Beteiligte Systeme",
   "CODIKI",
   "Fabian Georgi / georgi.digital",
   "hello@georgi.digital",
@@ -31,6 +53,11 @@ for (const needle of required) {
   if (!html.includes(needle)) {
     throw new Error(`Missing required page content: ${needle}`);
   }
+}
+
+const h1Count = (html.match(/<h1[\s>]/g) || []).length;
+if (h1Count !== 1) {
+  throw new Error(`Expected exactly one h1, found ${h1Count}.`);
 }
 
 if (/font-size:\s*[^;]*vw/.test(css)) {
@@ -47,6 +74,32 @@ if (!html.includes('action="/api/contact"')) {
 
 if (!html.includes('id="lead-form-status"')) {
   throw new Error("Lead form status region missing.");
+}
+
+const requiredFields = [
+  'name="company"',
+  'name="name"',
+  'name="email"',
+  'name="message"',
+  'name="systems"',
+  'name="timeline"',
+];
+
+for (const field of requiredFields) {
+  if (!html.includes(field)) {
+    throw new Error(`Lead form field missing: ${field}`);
+  }
+}
+
+const removedFields = ['name="pilot"', 'name="frequency"', 'name="team_size"'];
+for (const field of removedFields) {
+  if (html.includes(field)) {
+    throw new Error(`Lead form still includes removed field: ${field}`);
+  }
+}
+
+if (html.includes("placeholder=")) {
+  throw new Error("Avoid placeholder text in the lead form.");
 }
 
 if (!html.includes('data-sitekey="0x4AAAAAAEDDgd1QoPAr9Cby"')) {
@@ -79,29 +132,6 @@ if (!contactFunction.includes("TURNSTILE_SECRET_KEY")) {
 
 if (!contactFunction.includes("https://challenges.cloudflare.com/turnstile/v0/siteverify")) {
   throw new Error("Contact function must validate Turnstile tokens server-side.");
-}
-
-const assistantImages = [
-  "assets/assistants/clara-postmann.webp",
-  "assets/assistants/nora-wissen.webp",
-  "assets/assistants/felix-angebot.webp",
-  "assets/assistants/mira-service.webp",
-  "assets/assistants/ben-ablauf.webp",
-  "assets/assistants/greta-zahlen.webp",
-];
-
-for (const image of assistantImages) {
-  if (!html.includes(image)) {
-    throw new Error(`Assistant image not referenced: ${image}`);
-  }
-
-  if (!existsSync(image)) {
-    throw new Error(`Assistant image missing: ${image}`);
-  }
-
-  if (statSync(image).size > 120_000) {
-    throw new Error(`Assistant image too large: ${image}`);
-  }
 }
 
 if (cname !== "ki-packt-an.de") {
