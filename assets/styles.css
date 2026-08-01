@@ -1045,27 +1045,67 @@ textarea {
   }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 900px) {
   .site-header {
-    min-height: 100px;
-    padding: 0.8rem 1rem;
+    align-items: center;
+    min-height: 66px;
+    padding: 0.7rem 1rem;
   }
 
   .brand span:last-child {
     display: none;
   }
 
+  .nav {
+    flex: 0 0 auto;
+  }
+
+  .nav a:not(.nav-cta) {
+    display: none;
+  }
+
   .nav a {
-    font-size: 0.82rem;
-    padding: 0.42rem 0.52rem;
+    font-size: 0.88rem;
+    padding: 0.56rem 0.78rem;
   }
 
   .hero {
-    padding-top: 8rem;
+    gap: 1.6rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 5.4rem;
+  }
+
+  .section {
+    padding: 3rem 1.25rem;
+  }
+
+  .confidence-strip,
+  .site-footer {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .hero-copy,
+  .workflow-visual,
+  .section-heading,
+  .before-after,
+  .operations-layout,
+  .price-layout,
+  .expansion-panel,
+  .provider-layout,
+  .contact-section,
+  .lead-form {
+    justify-self: stretch;
+    max-width: none;
+    width: 100%;
   }
 
   h1 {
-    font-size: 2.55rem;
+    font-size: 2.35rem;
+    line-height: 1.02;
+    margin-bottom: 1rem;
+    max-width: 100%;
   }
 
   h2 {
@@ -1073,12 +1113,38 @@ textarea {
   }
 
   .hero-lead {
-    font-size: 1.06rem;
+    font-size: 1rem;
+    line-height: 1.48;
+    max-width: 34rem;
+  }
+
+  .capability-row {
+    gap: 0.5rem;
+    margin-top: 1.1rem;
+  }
+
+  .capability-row li {
+    font-size: 0.82rem;
+    padding: 0.48rem 0.62rem;
+  }
+
+  .hero-claim {
+    font-size: 0.95rem;
+    margin-top: 1rem;
   }
 
   .hero-actions,
   .button {
     width: 100%;
+  }
+
+  .hero-actions {
+    gap: 0.65rem;
+    margin-top: 1.2rem;
+  }
+
+  .button {
+    min-height: 48px;
   }
 
   .workflow-header,
@@ -1091,15 +1157,19 @@ textarea {
   }
 
   .workflow-header {
-    display: grid;
+    display: block;
   }
 
   .status-pill {
+    display: inline-flex;
     justify-self: start;
+    margin-top: 0.65rem;
+    width: fit-content;
   }
 
   .service-grid {
     gap: 1rem;
+    width: 100%;
   }
 
   .service-grid article,
@@ -1120,11 +1190,27 @@ textarea {
 
 @media (max-width: 430px) {
   h1 {
-    font-size: 2.22rem;
+    font-size: 1.86rem;
+    line-height: 1.04;
   }
 
   h2 {
     font-size: 1.72rem;
+  }
+
+  .site-header {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+  }
+
+  .brand-mark {
+    height: 38px;
+    width: 38px;
+  }
+
+  .nav a {
+    font-size: 0.84rem;
+    padding: 0.52rem 0.68rem;
   }
 
   .section,
@@ -1133,8 +1219,25 @@ textarea {
     padding-right: 1rem;
   }
 
+  .hero {
+    padding-top: 5rem;
+  }
+
+  .hero .eyebrow {
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-lead {
+    font-size: 0.96rem;
+  }
+
   .workflow-visual {
     padding: 0.9rem;
+  }
+
+  .workflow-header h2 {
+    font-size: 1.28rem;
   }
 
   .workflow-phase ul {
