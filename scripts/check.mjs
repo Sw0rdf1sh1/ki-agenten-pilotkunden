@@ -25,6 +25,11 @@ const required = [
   "Dokumente",
   "Bereit zur Prüfung",
   "Von der Aufgabe zum betreuten KI-Assistenten.",
+  "Ein Assistent bekommt nur den Auftrag, den er wirklich braucht.",
+  "Rolle, Wissen, Werkzeuge und Freigaben werden vor dem Pilot konkret festgelegt.",
+  "Freigegebene Quellen",
+  "Begrenzte Rechte",
+  "Menschliche Kontrolle",
   "Aus Eingang wird vorbereiteter Vorgang.",
   "Weitere gute Startpunkte",
   "Der Automatisierungsgrad bleibt steuerbar.",
@@ -95,7 +100,7 @@ const visibleText = html
   .replace(/\s+/g, " ")
   .trim();
 
-if (visibleText.length > 6_600) {
+if (visibleText.length > 7_300) {
   throw new Error(`Visible page text is still too long: ${visibleText.length} chars.`);
 }
 

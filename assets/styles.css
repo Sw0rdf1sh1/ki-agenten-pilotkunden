@@ -514,6 +514,39 @@ h4 {
   font-weight: 900;
 }
 
+.guardrail-section {
+  background: #fbfaf7;
+}
+
+.guardrail-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.guardrail-grid article {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+}
+
+.guardrail-grid span {
+  color: var(--mint);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.guardrail-grid p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
 .process-section {
   background:
     linear-gradient(135deg, rgba(38, 139, 210, 0.1), rgba(216, 243, 106, 0.13)),
@@ -1062,6 +1095,7 @@ textarea {
   }
 
   .service-grid,
+  .guardrail-grid,
   .price-layout,
   .expansion-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1223,6 +1257,7 @@ textarea {
 
   .workflow-header,
   .service-grid,
+  .guardrail-grid,
   .price-layout,
   .expansion-panel,
   .lead-form,
