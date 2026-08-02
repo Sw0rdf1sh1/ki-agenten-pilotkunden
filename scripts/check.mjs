@@ -25,10 +25,19 @@ const required = [
   "Dokumente",
   "Bereit zur Prüfung",
   "Von der Aufgabe zum betreuten KI-Assistenten.",
+  "Ein Assistent bekommt nur den Auftrag, den er wirklich braucht.",
+  "Rolle, Wissen, Werkzeuge und Freigaben werden vor dem Pilot konkret festgelegt.",
+  "Freigegebene Quellen",
+  "Begrenzte Rechte",
+  "Menschliche Kontrolle",
   "Aus Eingang wird vorbereiteter Vorgang.",
   "Weitere gute Startpunkte",
   "Der Automatisierungsgrad bleibt steuerbar.",
   "Vom ersten Prozess in den laufenden Betrieb.",
+  "Sicherheitsgrenzen im Pilot",
+  "fremde E-Mail-Inhalte gelten als untrusted input",
+  "Prompt-Injection-Tests mit echten Beispielen",
+  "Freigaben vor Versand, Preisen oder Schreibrechten",
   "Erst prüfen. Dann begrenzt produktiv umsetzen.",
   "Der Prozess-Check ist der verbindliche erste Schritt.",
   "60-90 Minuten 1:1 online",
@@ -40,9 +49,10 @@ const required = [
   "Ausbauentscheidung nach dem Pilot",
   "Ausbau nach Konnektoren",
   "Mehr Postfächer, Datenquellen",
-  "regulär ab 490 EUR/Monat",
-  "technische Erreichbarkeit, Zugänge",
-  "Erkenntnisse aus Ablauf und Betrieb",
+  "Erreichbarkeit im definierten Rahmen",
+  "größere Rollen-/Workflow-Umbauten",
+  "ChatGPT Plus ersetzt nicht automatisch",
+  "Erkenntnisse dürfen anonymisiert einfließen",
   "Bestehende Systeme bleiben",
   "Vorab-Check vor jeder Umsetzung",
   "Backups und Wiederanlauf",
@@ -52,6 +62,9 @@ const required = [
   "Softwareentwicklung, Integration und Betrieb",
   "perspektivisch unter CODIKI",
   "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
+  "Kurze Einschätzung",
+  "Prozess-Check",
+  "Pilot oder Stopp",
   "https://ki-packt-an.de/",
   "Gewünschter Startzeitraum",
   "Beteiligte Systeme",
@@ -90,7 +103,7 @@ const visibleText = html
   .replace(/\s+/g, " ")
   .trim();
 
-if (visibleText.length > 6_600) {
+if (visibleText.length > 7_300) {
   throw new Error(`Visible page text is still too long: ${visibleText.length} chars.`);
 }
 

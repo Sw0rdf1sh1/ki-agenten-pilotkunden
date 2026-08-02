@@ -61,7 +61,7 @@
           <p class="eyebrow">KI-Assistenten für Unternehmen</p>
           <h1 id="hero-title">KI-Assistenten, die E-Mails, Dokumente und wiederkehrende Arbeit übernehmen.</h1>
           <p class="hero-lead">
-            Wir richten Assistenten ein, verbinden bestehende Systeme und betreuen den Betrieb. Sie sammeln Kontext und bereiten Entwürfe zur Freigabe vor.
+            Wir richten Assistenten ein, verbinden bestehende Systeme und betreuen den Betrieb. Sie sammeln Kontext und bereiten prüfbare Entwürfe vor.
           </p>
           <p class="hero-claim">KI packt an, wo Arbeit liegen bleibt.</p>
           <div class="hero-actions">
@@ -156,6 +156,36 @@
         </div>
       </section>
 
+      <section class="section guardrail-section" aria-labelledby="rahmen-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Arbeitsrahmen</p>
+          <h2 id="rahmen-title">Ein Assistent bekommt nur den Auftrag, den er wirklich braucht.</h2>
+          <p>Rolle, Wissen, Werkzeuge und Freigaben werden vor dem Pilot konkret festgelegt.</p>
+        </div>
+        <div class="guardrail-grid">
+          <article>
+            <span>Rolle</span>
+            <h3>Klarer Auftrag</h3>
+            <p>Zum Beispiel: Anfrage einordnen, Kontext suchen, Antwortentwurf vorbereiten.</p>
+          </article>
+          <article>
+            <span>Wissen</span>
+            <h3>Freigegebene Quellen</h3>
+            <p>Nur vereinbarte Postfächer, Dokumente, Wikis oder Systeme werden angebunden.</p>
+          </article>
+          <article>
+            <span>Werkzeuge</span>
+            <h3>Begrenzte Rechte</h3>
+            <p>Lesen, vorbereiten oder schreiben wird je Prozess technisch getrennt.</p>
+          </article>
+          <article>
+            <span>Freigabe</span>
+            <h3>Menschliche Kontrolle</h3>
+            <p>Unsichere Fälle, Preise, Versand und sensible Aktionen gehen zur Prüfung.</p>
+          </article>
+        </div>
+      </section>
+
       <section id="beispielprozess" class="section process-section" aria-labelledby="prozess-title">
         <div class="section-heading">
           <p class="eyebrow">Beispielprozess</p>
@@ -229,27 +259,27 @@
         <div class="section-heading">
           <p class="eyebrow">Einführung und sicherer Betrieb</p>
           <h2 id="ablauf-title">Vom ersten Prozess in den laufenden Betrieb.</h2>
-          <p>Einführung und Betrieb gehören zusammen.</p>
+          <p>Einführung, Sicherheit und Betrieb gehören zusammen.</p>
         </div>
         <div class="operations-layout">
           <ol class="timeline">
             <li><span>01</span><strong>Prozess auswählen</strong><p>Häufiger Vorgang, klarer Nutzen.</p></li>
             <li><span>02</span><strong>Regeln und Zugriffe definieren</strong><p>Datenzugriff, Freigaben, Fehlerfälle.</p></li>
-            <li><span>03</span><strong>Mit echten Fällen testen</strong><p>Anbindung, Korrekturen, Dokumentation.</p></li>
+            <li><span>03</span><strong>Mit echten Fällen testen</strong><p>Anbindung, Korrekturen.</p></li>
             <li><span>04</span><strong>Kontrolliert betreiben</strong><p>Monitoring, Kosten, Updates.</p></li>
           </ol>
           <aside class="safety-box" aria-labelledby="safety-box-title">
-            <h3 id="safety-box-title">Von Anfang an eingeplant</h3>
+            <h3 id="safety-box-title">Sicherheitsgrenzen im Pilot</h3>
             <ul>
-              <li>notwendige Berechtigungen</li>
-              <li>getrennte technische Zugänge</li>
-              <li>nachvollziehbare Aktivitäten</li>
-              <li>definierte Freigaben</li>
-              <li>Weiterleitung unsicherer Fälle</li>
+              <li>fremde E-Mail-Inhalte gelten als untrusted input</li>
+              <li>Prompt-Injection-Tests mit echten Beispielen</li>
+              <li>getrennte technische Zugänge mit nötigen Rechten</li>
+              <li>Protokolle für prüfbare Aktivitäten</li>
+              <li>Freigaben vor Versand, Preisen oder Schreibrechten</li>
               <li>Backups und Wiederanlauf</li>
               <li>Kosten- und Fehlerüberwachung</li>
             </ul>
-            <p>Bestehende Systeme bleiben, externe Kosten werden vorab sichtbar.</p>
+            <p>Bestehende Systeme bleiben, externe Kosten und Grenzen werden vorab sichtbar.</p>
           </aside>
         </div>
       </section>
@@ -299,16 +329,17 @@
         <div class="expansion-panel">
           <div>
             <h3>Ausbau nach Konnektoren</h3>
-            <p>Mehr Postfächer, Datenquellen, CRM-/ERP-Anbindungen oder Schreibrechte erhöhen den Aufwand. Nach dem Check folgt ein klares Angebot.</p>
+            <p>Mehr Postfächer, Datenquellen, CRM-/ERP-Anbindungen oder Schreibrechte: separat im Angebot.</p>
           </div>
           <div>
-            <h3>Zusatz: laufender Betrieb</h3>
-            <p>Ab 245 EUR/Monat in der Pilotphase, regulär ab 490 EUR/Monat: technische Erreichbarkeit, Zugänge, Fehleranalyse, Updates, Kostenkontrolle; Änderungen nach Kontingent oder Aufwand.</p>
-            <p>KI-/LLM-Kosten (OpenAI, Claude, Gemini) kommen nutzungsabhängig hinzu. Bestehende Zugänge wie ChatGPT Plus prüfen wir bei passendem Einsatz.</p>
+            <h3>Laufender Betrieb</h3>
+            <p>Ab 245 EUR/Monat: Erreichbarkeit im definierten Rahmen, Monitoring, Fehleranalyse, Kostenkontrolle, Backups und kleine Sicherheitsupdates.</p>
+            <p>Erweiterungen sind neue Konnektoren, größere Rollen-/Workflow-Umbauten, Modellwechsel mit Tests und fachliche Dauerpflege.</p>
+            <p>LLM-, API- und Lizenzkosten sind nutzungsabhängig; ChatGPT Plus ersetzt nicht automatisch Business-/API-Nutzung.</p>
           </div>
         </div>
         <p class="pilot-note">
-          Pilotkonditionen gelten für begrenzte erste Umsetzungen. Erkenntnisse aus Ablauf und Betrieb dürfen anonymisiert in Standards einfließen; vertrauliche Inhalte bleiben geschützt.
+          Pilotkonditionen gelten für begrenzte Umsetzungen. Erkenntnisse dürfen anonymisiert einfließen; vertrauliche Inhalte bleiben geschützt.
         </p>
       </section>
 
@@ -334,7 +365,7 @@
           <div class="provider-copy">
             <p>
               Ich begleite die technische Umsetzung persönlich – von der Prozessanalyse bis zum laufenden Betrieb.
-              Seit über 18 Jahren entwickle ich Software, Schnittstellen und digitale Prozesse.
+              Seit über 18 Jahren entwickle ich Software, Schnittstellen und Prozesse.
             </p>
             <p>Sie sprechen direkt mit der Person, die technische Entscheidungen trifft und für die Umsetzung verantwortlich ist.</p>
             <ul class="competence-list">
@@ -353,7 +384,12 @@
         <div class="contact-copy">
           <p class="eyebrow">Anfrage</p>
           <h2 id="anfrage-title">Welche Arbeit bleibt in Ihrem Unternehmen regelmäßig liegen?</h2>
-          <p>Beschreiben Sie einen wiederkehrenden Ablauf. Ich prüfe persönlich, ob ein KI-Assistent sinnvoll ist, welche Systeme beteiligt sind und wie der Vorab-Check aussehen kann.</p>
+          <p>Beschreiben Sie einen wiederkehrenden Ablauf. Ich prüfe persönlich, ob ein KI-Assistent und der Prozess-Check passen.</p>
+          <ol class="next-step-list" aria-label="Nächste Schritte nach der Anfrage">
+            <li><strong>Kurze Einschätzung:</strong> Nutzen und Risiken einordnen.</li>
+            <li><strong>Prozess-Check:</strong> Ablauf, Zugriffe und Kosten klären.</li>
+            <li><strong>Pilot oder Stopp:</strong> Nur umsetzen, wenn es sinnvoll ist.</li>
+          </ol>
         </div>
         <form class="lead-form" id="lead-form" action="/api/contact" method="post">
           <label>
