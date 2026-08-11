@@ -1,0 +1,298 @@
+# KI packt an
+
+KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.
+
+# KI-Assistenten für Unternehmen
+
+Ein KI-Assistent für Unternehmen ist eine Softwarekomponente, die einen klar definierten Arbeitsauftrag erhält, freigegebene Daten und Werkzeuge nutzt und Aufgaben selbstständig vorbereitet oder innerhalb festgelegter Regeln ausführt.
+
+## Was übernimmt ein KI-Assistent im Unternehmen?
+
+Ein KI-Assistent sortiert wiederkehrende digitale Arbeit, sammelt Kontext, prüft bekannte Regeln und bereitet Entscheidungen oder Antworten vor.
+
+Geeignete Aufgaben sind zum Beispiel eingehende Anfragen, Angebotsvorbereitung, Recherche in Dokumenten, Ticket-Triage, CRM-Notizen oder interne Statusabfragen.
+
+## Welche Systeme kann ein KI-Assistent nutzen?
+
+Typische Anbindungen sind E-Mail-Postfächer, CRM, ERP, Dokumentenablagen, Wikis, Ticketsysteme und fachliche APIs.
+
+Der Assistent erhält nicht pauschal Zugriff auf alle Unternehmensdaten. Pro Prozess werden Datenquellen, Rollen, Service Accounts und Schreibrechte getrennt festgelegt.
+
+## Welche Automatisierungsstufen gibt es?
+
+Die niedrigste Stufe sammelt Informationen und erzeugt Entwürfe. Danach kann ein Assistent Vorgänge nach Freigabe ausführen. Erst bei stabilen Regeln werden einfache Fälle automatisch erledigt.
+
+Unsichere Vorgänge, Preise, sensible Kommunikation und Schreibaktionen bleiben kontrollierbar und können jederzeit an Menschen eskaliert werden.
+
+## Wann eignet sich ein Prozess?
+
+Geeignet sind wiederkehrende Abläufe mit klaren Eingängen, bekannten Datenquellen, prüfbaren Ergebnissen und nachvollziehbarer Verantwortung.
+
+Nicht geeignet sind einmalige Sonderfälle, unklare Zuständigkeiten, schlechte Stammdaten oder Vorgänge, bei denen jede Entscheidung stark vom Einzelfall abhängt.
+
+## Was kostet ein KI-Assistent?
+
+Die Kosten bestehen aus Prozess-Check, Einrichtung, Integration, Betrieb und nutzungsabhängigen Modell-, API- oder Lizenzkosten.
+
+Der bestehende Prozess-Check von KI packt an bleibt der erste Schritt. Danach wird der Pilotumfang begrenzt angeboten, statt pauschal ein großes KI-Projekt zu starten.
+
+# KI-E-Mail-Assistent für Unternehmen
+
+Ein KI-E-Mail-Assistent bereitet eingehende E-Mails vor, indem er Anliegen erkennt, Kontext lädt, Antworten entwirft und je nach Regel eine Freigabe oder Eskalation anfordert.
+
+## Darf ein KI-Assistent selbstständig E-Mails versenden?
+
+Nicht jede E-Mail sollte automatisch beantwortet werden. Sinnvoll ist ein abgestuftes Modell aus Vorbereitung, Freigabe und begrenzter Autonomie.
+
+Klare Standardfälle können später automatisch laufen. Alles mit Preis, Haftung, personenbezogenen Details oder unsicherem Kontext geht zur Prüfung.
+
+## Wie wird Sicherheit bei eingehenden E-Mails berücksichtigt?
+
+E-Mail-Inhalte gelten als fremde, nicht vertrauenswürdige Eingaben. Der Assistent darf daraus keine neuen Systemregeln ableiten und bekommt nur notwendige Werkzeuge.
+
+Prompt-Injection-Tests, Protokolle, Rechtebegrenzung und Freigabepunkte gehören deshalb bereits in den Pilot.
+
+## Welche Systeme werden typischerweise angebunden?
+
+Postfach, CRM, Angebotsdaten, Dokumentenablage, Wissensdatenbank und Ticketsystem reichen für viele erste E-Mail-Prozesse aus.
+
+Schreibrechte werden getrennt betrachtet: Eine CRM-Notiz vorzubereiten ist weniger kritisch als einen Auftrag anzulegen oder eine verbindliche Zusage zu versenden.
+
+# OpenClaw für Unternehmen
+
+OpenClaw ist eine technische Umgebung, mit der KI-Agenten, Werkzeuge, Berechtigungen und wiederkehrende Arbeitsabläufe im Unternehmenskontext organisiert werden können.
+
+## Wofür wird OpenClaw im Unternehmen eingesetzt?
+
+OpenClaw kann Agenten mit Werkzeugen verbinden, Aufgaben koordinieren und den Zugriff auf Systeme strukturieren.
+
+Im produktiven Umfeld geht es nicht um eine lokale Spielinstallation, sondern um Rollen, Betrieb, Monitoring, Updates und abgesicherte Integrationen.
+
+## Wie sieht produktiver Betrieb aus?
+
+Betrieb umfasst Hosting, Secrets, Backups, Protokolle, Updates, Fehlerbehandlung, Kostenkontrolle und klare Zuständigkeiten.
+
+Je nach Sicherheitsbedarf kann OpenClaw auf eigener Infrastruktur oder in einer betreuten Umgebung laufen.
+
+## Wie werden Rechte begrenzt?
+
+Werkzeuge und Service Accounts erhalten nur die Rechte, die für den jeweiligen Prozess notwendig sind.
+
+Lesen, Schreiben, Senden und Löschen werden getrennt betrachtet. Kritische Aktionen brauchen Freigaben oder technische Schranken.
+
+# KI-Assistent mit CRM und ERP verbinden
+
+Eine CRM- oder ERP-Anbindung für KI-Assistenten sollte kontrolliert, protokolliert und möglichst datenminimiert erfolgen, statt dem Assistenten pauschalen Vollzugriff zu geben.
+
+## Was bedeutet Read-only bei KI-Agenten?
+
+Read-only heißt, dass ein Assistent Informationen suchen und zusammenfassen darf, aber keine Datensätze verändert.
+
+Für viele Pilotprozesse reicht diese Stufe aus: Der Assistent bereitet Notizen, Rückfragen und Entwürfe vor, ein Mensch übernimmt die verbindliche Aktion.
+
+## Wann sind Schreibrechte sinnvoll?
+
+Schreibrechte sind sinnvoll, wenn der Prozess stabil ist und die Auswirkungen begrenzt sind, zum Beispiel bei internen Notizen oder Statusvorschlägen.
+
+Kritische Aktionen wie Preise, Vertragsdaten, Bestellungen oder personenbezogene Änderungen benötigen zusätzliche Freigaben und Protokollierung.
+
+## Wie werden Fehlerfälle behandelt?
+
+Bei nicht gefundenen Kunden, widersprüchlichen Daten, API-Fehlern oder unsicherem Modelloutput muss der Vorgang eskalieren.
+
+Ein guter Assistent dokumentiert, welche Quellen genutzt wurden und welche Annahmen offen geblieben sind.
+
+# KI-Assistent Betrieb und Betreuung
+
+Ein produktiver KI-Assistent braucht laufenden Betrieb: Monitoring, Updates, Kostenkontrolle, sichere Zugänge, Fehlerbehandlung und Tests bei Änderungen.
+
+## Warum endet ein KI-Projekt nicht mit der Einrichtung?
+
+Modelle, APIs, Regeln, Datenquellen und Unternehmensprozesse ändern sich. Deshalb braucht ein Assistent technische Betreuung und fachliche Nachjustierung.
+
+Betrieb bedeutet auch, Fehler sichtbar zu machen und nach einem Ausfall wieder geordnet starten zu können.
+
+## Was gehört zum laufenden Betrieb?
+
+Dazu gehören Hosting, Updates, API- und Token-Kosten, Monitoring, Logs, Backups, Secrets, Sicherheitsupdates und kleinere Korrekturen.
+
+Größere Erweiterungen wie neue Konnektoren oder neue Rollen werden separat geplant und getestet.
+
+## Wie werden Modellwechsel abgesichert?
+
+Ein Modellwechsel sollte nicht blind passieren. Relevante Testfälle, Prompt-Injection-Beispiele und erwartete Ausgaben werden erneut geprüft.
+
+So bleibt der Assistent nachvollziehbar, auch wenn sich die technische Basis verändert.
+
+# Wissen
+
+## Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung
+
+Ein KI-Agent ist ein System, das ein Ziel verfolgt, Kontext nutzt, Werkzeuge aufrufen kann und innerhalb gesetzter Grenzen Schritte vorbereitet oder ausführt.
+
+## KI-Agenten im Mittelstand: sinnvolle Prozesse, Grenzen und Einstieg
+
+KI-Agenten eignen sich im Mittelstand besonders für wiederkehrende digitale Vorgänge mit klaren Datenquellen, bekannten Regeln und prüfbaren Ergebnissen.
+
+## KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe
+
+Ein KI-E-Mail-Assistent ist sicherer, wenn er zunächst Entwürfe vorbereitet, Quellen offenlegt und nur geregelte Vorgänge mit definierten Rechten ausführt.
+
+## Was kostet ein KI-Agent für Unternehmen?
+
+Die Kosten eines KI-Agenten entstehen nicht nur durch das Modell, sondern durch Prozessklärung, Integration, Betrieb, Tests und laufende Betreuung.
+
+## KI-Agenten und Prompt Injection: Warum E-Mails und Dokumente nicht vertrauenswürdig sind
+
+Prompt Injection entsteht, wenn fremde Inhalte versuchen, das Verhalten eines KI-Systems zu verändern oder Werkzeuge außerhalb der vorgesehenen Regeln zu nutzen.
+
+# Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-11
+
+Ein KI-Agent ist ein System, das ein Ziel verfolgt, Kontext nutzt, Werkzeuge aufrufen kann und innerhalb gesetzter Grenzen Schritte vorbereitet oder ausführt.
+
+## Was unterscheidet einen KI-Agenten vom Chatbot?
+
+Ein Chatbot beantwortet vor allem Nachrichten. Ein KI-Agent kann zusätzlich Werkzeuge nutzen, Informationen aus Systemen holen und Arbeitsschritte anstoßen.
+
+Der Unterschied liegt nicht im Namen, sondern in Kontext, Werkzeugzugriff, Autonomie und Verantwortungsgrenzen.
+
+## Was ist klassische Workflow-Automatisierung?
+
+Workflow-Automatisierung folgt festen Regeln: Wenn A passiert, führe B aus. Das ist robust, solange Fälle eindeutig strukturiert sind.
+
+KI-Agenten ergänzen solche Workflows, wenn Texte verstanden, Dokumente ausgewertet oder unstrukturierte Informationen eingeordnet werden müssen.
+
+## Welche Rolle spielen Freigaben?
+
+Freigaben verhindern, dass ein Assistent unsichere Entscheidungen still ausführt.
+
+In Unternehmen ist oft die beste erste Stufe: Der Assistent sammelt, prüft und entwirft; Menschen geben frei.
+
+# KI-Agenten im Mittelstand: sinnvolle Prozesse, Grenzen und Einstieg
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-11
+
+KI-Agenten eignen sich im Mittelstand besonders für wiederkehrende digitale Vorgänge mit klaren Datenquellen, bekannten Regeln und prüfbaren Ergebnissen.
+
+## Welche Prozesse eignen sich für KI-Agenten?
+
+Geeignet sind Supportanfragen, Angebotsvorbereitung, Dokumentenprüfung, interne Recherche, CRM-Ergänzungen und wiederkehrende Statusabfragen.
+
+Wichtig ist, dass der Prozess häufig genug vorkommt und ein vorbereitetes Ergebnis wirklich Zeit spart.
+
+## Welche Prozesse eignen sich nicht?
+
+Schlechte Kandidaten sind Sonderfälle, unklare Verantwortlichkeiten, chaotische Stammdaten oder Entscheidungen mit hoher rechtlicher Wirkung.
+
+Auch Prozesse ohne fachliche Ansprechperson sind ungeeignet, weil niemand Qualität und Grenzen prüfen kann.
+
+## Wie gelingt der Einstieg?
+
+Der Einstieg gelingt über einen begrenzten Prozess, echte Beispiele, klare Freigaben und eine Entscheidung nach dem Pilot.
+
+So entsteht Nutzen ohne den Versuch, direkt das ganze Unternehmen zu automatisieren.
+
+# KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-11
+
+Ein KI-E-Mail-Assistent ist sicherer, wenn er zunächst Entwürfe vorbereitet, Quellen offenlegt und nur geregelte Vorgänge mit definierten Rechten ausführt.
+
+## Warum braucht E-Mail besondere Vorsicht?
+
+E-Mails kommen von außen und können falsche Angaben, manipulierte Anweisungen oder schädliche Anhänge enthalten.
+
+Der Assistent darf E-Mail-Text deshalb als Arbeitsdaten nutzen, aber nicht als neue Systemanweisung übernehmen.
+
+## Welche Freigaben sind sinnvoll?
+
+Freigaben sind sinnvoll vor Versand, Preiszusagen, Vertragsänderungen, personenbezogenen Aussagen und allen unsicheren Fällen.
+
+Der Assistent sollte erklären, welche Quellen genutzt wurden und welche Annahmen offen sind.
+
+## Wie sieht ein typischer Ablauf aus?
+
+Eingang klassifizieren, Absender erkennen, CRM-Kontext laden, Wissen prüfen, Entwurf erzeugen, Freigabe anfordern, Versand dokumentieren.
+
+Diese Stufen lassen sich einzeln testen und später kontrolliert erweitern.
+
+# Was kostet ein KI-Agent für Unternehmen?
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-11
+
+Die Kosten eines KI-Agenten entstehen nicht nur durch das Modell, sondern durch Prozessklärung, Integration, Betrieb, Tests und laufende Betreuung.
+
+## Welche Kostenbestandteile gibt es?
+
+Typische Bestandteile sind Prozess-Check, Einrichtung, Systemanbindung, Hosting, Modell- und API-Nutzung, Monitoring, Pflege und Erweiterungen.
+
+Bei KI packt an startet die Klärung mit dem Prozess-Check; der Pilotumfang wird anschließend konkret begrenzt.
+
+## Warum reichen Fantasiepreise nicht?
+
+Pauschale Preise ohne Prozess, Datenquellen und Rechte sind selten belastbar.
+
+Ein E-Mail-Assistent mit einem Postfach ist anders zu kalkulieren als ein Agent mit CRM-, ERP- und Schreibrechten.
+
+## Welche laufenden Kosten sind realistisch?
+
+Laufende Kosten entstehen durch Betrieb, Monitoring, API-Nutzung, Modellwechsel, Sicherheitsupdates und kleinere Korrekturen.
+
+Sie sollten transparent ausgewiesen werden, damit Automatisierung nicht zur versteckten Betriebslast wird.
+
+# KI-Agenten und Prompt Injection: Warum E-Mails und Dokumente nicht vertrauenswürdig sind
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-11
+
+Prompt Injection entsteht, wenn fremde Inhalte versuchen, das Verhalten eines KI-Systems zu verändern oder Werkzeuge außerhalb der vorgesehenen Regeln zu nutzen.
+
+## Warum sind E-Mails und Dokumente untrusted input?
+
+Externe Inhalte können Anweisungen enthalten, die für Menschen wie Text wirken, für ein Modell aber wie Steuerungsversuche aussehen.
+
+Deshalb müssen Systemanweisungen, erlaubte Werkzeuge und Arbeitsdaten technisch und konzeptionell getrennt werden.
+
+## Welche Schutzmaßnahmen sind wichtig?
+
+Least Privilege, getrennte Service Accounts, Tool-Freigaben, Human-in-the-loop, Logging und Tests mit realistischen Angriffsmustern reduzieren das Risiko.
+
+Kein einzelner Prompt ist eine ausreichende Sicherheitsmaßnahme, wenn der Agent echte Werkzeuge nutzen darf.
+
+## Was sagt OWASP zu Prompt Injection?
+
+OWASP führt Prompt Injection als zentrales Risiko für LLM-Anwendungen und beschreibt unter anderem manipulierte Eingaben, Tool-Missbrauch und Datenabfluss als praktische Gefahren.
+
+Für Unternehmensassistenten heißt das: Sicherheit muss in Prozess, Rechte und Betrieb eingebaut werden.
+
+# Fabian Georgi
+
+Fabian Georgi verbindet Softwareentwicklung, Schnittstellen, Serverbetrieb und Prozessautomatisierung mit dem praktischen Aufbau von KI-Assistenten für Unternehmen.
+
+## Fachlicher Hintergrund
+
+Fabian arbeitet seit über 18 Jahren in Softwareentwicklung, Integrationen und technischen Betriebsumgebungen.
+
+Der Schwerpunkt liegt auf pragmatischen Lösungen: bestehende Systeme verstehen, Schnittstellen nutzen, Rechte begrenzen und Abläufe betreibbar machen.
+
+## Verbindung zu KI packt an
+
+KI packt an ist das Angebot für Unternehmen, die einen klar begrenzten KI-Assistenten einrichten und produktiv betreiben möchten.
+
+Fabian ist der technische Ansprechpartner von der Prozessklärung über die Umsetzung bis zur Betreuung.

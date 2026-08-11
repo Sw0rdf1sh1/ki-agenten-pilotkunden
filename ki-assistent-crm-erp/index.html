@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KI mit CRM und ERP verbinden | KI packt an</title>
+    <meta name="description" content="KI-Assistenten mit CRM und ERP verbinden: APIs, Service Accounts, Read-only-Zugriff, Freigaben, Logging und Datenminimierung sauber planen.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#18202f">
+    <link rel="canonical" href="https://ki-packt-an.de/ki-assistent-crm-erp/">
+    <link rel="icon" href="/assets/icons/ki-packt-an-logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/social/ki-packt-an-logo-512.png">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <meta property="og:site_name" content="KI packt an">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KI mit CRM und ERP verbinden | KI packt an">
+    <meta property="og:description" content="KI-Assistenten mit CRM und ERP verbinden: APIs, Service Accounts, Read-only-Zugriff, Freigaben, Logging und Datenminimierung sauber planen.">
+    <meta property="og:url" content="https://ki-packt-an.de/ki-assistent-crm-erp/">
+    <meta property="og:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KI mit CRM und ERP verbinden | KI packt an">
+    <meta name="twitter:description" content="KI-Assistenten mit CRM und ERP verbinden: APIs, Service Accounts, Read-only-Zugriff, Freigaben, Logging und Datenminimierung sauber planen.">
+    <meta name="twitter:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ki-packt-an.de/#website","name":"KI packt an","url":"https://ki-packt-an.de","inLanguage":"de-DE","publisher":{"@id":"https://ki-packt-an.de/#organization"}},{"@type":"ProfessionalService","@id":"https://ki-packt-an.de/#organization","name":"KI packt an","url":"https://ki-packt-an.de","logo":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-logo-512.png","width":512,"height":512},"image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","description":"KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.","areaServed":"DE","founder":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"email":"hello@georgi.digital"},{"@type":"Person","@id":"https://ki-packt-an.de/fabian-georgi/#person","name":"Fabian Georgi","url":"https://ki-packt-an.de/fabian-georgi/","image":"https://ki-packt-an.de/assets/people/fabian-georgi.webp","jobTitle":"Senior Software Developer · Software-, Integrations- und Prozessentwicklung","worksFor":{"@id":"https://ki-packt-an.de/#organization"},"sameAs":["https://georgi.digital/"]},{"@type":"WebPage","@id":"https://ki-packt-an.de/ki-assistent-crm-erp/#webpage","url":"https://ki-packt-an.de/ki-assistent-crm-erp/","name":"KI-Assistent mit CRM und ERP verbinden","headline":"KI-Assistent mit CRM und ERP verbinden","description":"KI-Assistenten mit CRM und ERP verbinden: APIs, Service Accounts, Read-only-Zugriff, Freigaben, Logging und Datenminimierung sauber planen.","isPartOf":{"@id":"https://ki-packt-an.de/#website"},"inLanguage":"de-DE","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","primaryImageOfPage":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","width":1200,"height":630},"mainEntity":{"@type":"Service","@id":"https://ki-packt-an.de/ki-assistent-crm-erp/#service","name":"KI-Systemintegration","serviceType":"KI-Systemintegration","provider":{"@id":"https://ki-packt-an.de/#organization"},"areaServed":"DE","url":"https://ki-packt-an.de/ki-assistent-crm-erp/","description":"KI-Assistenten mit CRM und ERP verbinden: APIs, Service Accounts, Read-only-Zugriff, Freigaben, Logging und Datenminimierung sauber planen."},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://ki-packt-an.de/"},{"@type":"ListItem","position":2,"name":"KI-Assistent mit CRM und ERP verbinden"}]}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://ki-packt-an.de/ki-assistent-crm-erp/#faq","mainEntity":[{"@type":"Question","name":"Braucht der Assistent Zugriff auf alle Unternehmensdaten?","acceptedAnswer":{"@type":"Answer","text":"Nein. Zugriff wird pro Prozess, Rolle und Datenquelle begrenzt."}},{"@type":"Question","name":"Wie werden API-Zugänge verwaltet?","acceptedAnswer":{"@type":"Answer","text":"Über dedizierte technische Konten, Secrets-Handling und nachvollziehbare Rechtevergabe."}},{"@type":"Question","name":"Kann ein Assistent ERP-Daten ändern?","acceptedAnswer":{"@type":"Answer","text":"Technisch ja, fachlich nur mit sehr klaren Regeln, Tests, Protokollen und Freigaben."}}]}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Direkt zum Inhalt</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="KI packt an Startseite">
+        <span class="brand-mark" aria-hidden="true">KI</span>
+        <span>KI packt an</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/ki-assistenten-unternehmen/">Leistungen</a>
+        <a href="/email-assistent/">E-Mail</a>
+        <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+        <a href="/wissen/">Wissen</a>
+        <a href="/fabian-georgi/">Fabian Georgi</a>
+        <a href="/#anfrage">Anfrage</a>
+      </nav>
+    </header>
+    <main id="main" class="page-shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Startseite</a></li><li><span aria-current="page">KI-Assistent mit CRM und ERP verbinden</span></li>
+      </ol>
+    </nav>
+      <article class="content-page">
+        <p class="eyebrow">Leistung</p>
+        <h1>KI-Assistent mit CRM und ERP verbinden</h1>
+        <p class="answer-block">Eine CRM- oder ERP-Anbindung für KI-Assistenten sollte kontrolliert, protokolliert und möglichst datenminimiert erfolgen, statt dem Assistenten pauschalen Vollzugriff zu geben.</p>
+        
+        <section class="content-section">
+        <h2>Was bedeutet Read-only bei KI-Agenten?</h2>
+        <p>Read-only heißt, dass ein Assistent Informationen suchen und zusammenfassen darf, aber keine Datensätze verändert.</p>
+        <p>Für viele Pilotprozesse reicht diese Stufe aus: Der Assistent bereitet Notizen, Rückfragen und Entwürfe vor, ein Mensch übernimmt die verbindliche Aktion.</p>
+      </section>
+<section class="content-section">
+        <h2>Wann sind Schreibrechte sinnvoll?</h2>
+        <p>Schreibrechte sind sinnvoll, wenn der Prozess stabil ist und die Auswirkungen begrenzt sind, zum Beispiel bei internen Notizen oder Statusvorschlägen.</p>
+        <p>Kritische Aktionen wie Preise, Vertragsdaten, Bestellungen oder personenbezogene Änderungen benötigen zusätzliche Freigaben und Protokollierung.</p>
+      </section>
+<section class="content-section">
+        <h2>Wie werden Fehlerfälle behandelt?</h2>
+        <p>Bei nicht gefundenen Kunden, widersprüchlichen Daten, API-Fehlern oder unsicherem Modelloutput muss der Vorgang eskalieren.</p>
+        <p>Ein guter Assistent dokumentiert, welche Quellen genutzt wurden und welche Annahmen offen geblieben sind.</p>
+      </section>
+        
+        <section class="content-section faq-section">
+        <h2>Häufige Fragen</h2>
+        <details><summary>Braucht der Assistent Zugriff auf alle Unternehmensdaten?</summary><p>Nein. Zugriff wird pro Prozess, Rolle und Datenquelle begrenzt.</p></details>
+        <details><summary>Wie werden API-Zugänge verwaltet?</summary><p>Über dedizierte technische Konten, Secrets-Handling und nachvollziehbare Rechtevergabe.</p></details>
+        <details><summary>Kann ein Assistent ERP-Daten ändern?</summary><p>Technisch ja, fachlich nur mit sehr klaren Regeln, Tests, Protokollen und Freigaben.</p></details>
+      </section>
+        <section class="content-section">
+        <h2>Passende nächste Seiten</h2>
+        <ul class="link-list">
+          <li><a href="/email-assistent/">E-Mail-Prozesse mit CRM-Kontext</a></li>
+          <li><a href="/ki-assistenten-unternehmen/">KI-Assistenten im Unternehmenskontext</a></li>
+          <li><a href="/wissen/ki-agent-sicherheit-prompt-injection/">Sicherheitsrisiken bei Tool-Nutzung</a></li>
+        </ul>
+      </section>
+        <section class="content-cta">
+          <h2>Konkreten Prozess prüfen lassen</h2>
+          <p>Beschreiben Sie den Ablauf, die beteiligten Systeme und die gewünschten Grenzen. Fabian prüft, ob ein KI-Assistent sinnvoll passt.</p>
+          <a class="button primary" href="/#anfrage">Einsatz unverbindlich prüfen</a>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <span>KI packt an · Fabian Georgi</span>
+      <nav aria-label="Footer-Navigation">
+        <a href="/ki-assistenten-unternehmen/">Leistungen</a>
+        <a href="/wissen/">Wissen</a>
+        <a href="/fabian-georgi/">Fabian Georgi</a>
+        <a href="https://georgi.digital/impressum/">Impressum</a>
+        <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        <a href="mailto:hello@georgi.digital">hello@georgi.digital</a>
+      </nav>
+    </footer>
+  </body>
+</html>
