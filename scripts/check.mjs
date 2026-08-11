@@ -102,6 +102,7 @@ const home = readFileSync("index.html", "utf8");
 const requiredHome = [
   "KI-Assistenten, die E-Mails, Dokumente und wiederkehrende Arbeit übernehmen.",
   "Ein KI-Assistent für Unternehmen erhält einen klaren Arbeitsauftrag",
+  "Alle fachlichen Seiten im Überblick.",
   "form class=\"lead-form\"",
   "action=\"/api/contact\"",
   "data-sitekey=\"0x4AAAAAAEDDgd1QoPAr9Cby\"",
@@ -110,6 +111,12 @@ const requiredHome = [
 
 for (const needle of requiredHome) {
   assert(home.includes(needle), `Homepage missing required content: ${needle}`);
+}
+
+const homepageLinks = [...home.matchAll(/<a\s+[^>]*href="([^"]+)"/g)].map((match) => match[1].split("#")[0]);
+for (const file of siteFiles.filter((file) => file !== "index.html")) {
+  const path = `/${dirname(file)}/`;
+  assert(homepageLinks.includes(path), `Homepage must directly link to ${path}.`);
 }
 
 assert(!/font-size:\s*[^;]*vw/.test(css), "Avoid viewport-width font sizing in CSS.");

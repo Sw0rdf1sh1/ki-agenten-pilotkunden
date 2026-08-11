@@ -896,6 +896,49 @@ function updateHomepageHead() {
             Ein KI-Assistent für Unternehmen erhält einen klaren Arbeitsauftrag, nutzt freigegebene Daten und Werkzeuge und bereitet wiederkehrende Vorgänge prüfbar vor.
           </p>`,
   );
+  const homepageDirectory = `<section class="section directory-section" aria-labelledby="seiten-title">
+        <div class="section-heading">
+          <p class="eyebrow">Themen und Unterseiten</p>
+          <h2 id="seiten-title">Alle fachlichen Seiten im Überblick.</h2>
+          <p>Direkte Einstiege in Leistungen, technische Vertiefungen und Wissensartikel.</p>
+        </div>
+        <div class="directory-grid">
+          <article>
+            <h3>Leistungen</h3>
+            <ul>
+              <li><a href="/ki-assistenten-unternehmen/">KI-Assistenten für Unternehmen</a></li>
+              <li><a href="/email-assistent/">KI-E-Mail-Assistent</a></li>
+              <li><a href="/openclaw-fuer-unternehmen/">OpenClaw für Unternehmen</a></li>
+              <li><a href="/ki-assistent-crm-erp/">KI-Assistent mit CRM und ERP verbinden</a></li>
+              <li><a href="/ki-assistent-betrieb-betreuung/">KI-Assistent Betrieb und Betreuung</a></li>
+            </ul>
+          </article>
+          <article>
+            <h3>Wissen</h3>
+            <ul>
+              <li><a href="/wissen/was-ist-ein-ki-agent/">Was ist ein KI-Agent?</a></li>
+              <li><a href="/wissen/ki-agenten-im-mittelstand/">KI-Agenten im Mittelstand</a></li>
+              <li><a href="/wissen/ki-email-assistent-sicher-einsetzen/">KI-E-Mail-Assistent sicher einsetzen</a></li>
+              <li><a href="/wissen/ki-agent-kosten/">Was kostet ein KI-Agent?</a></li>
+              <li><a href="/wissen/ki-agent-sicherheit-prompt-injection/">KI-Agenten und Prompt Injection</a></li>
+            </ul>
+          </article>
+          <article>
+            <h3>Anbieter</h3>
+            <ul>
+              <li><a href="/wissen/">Wissensbereich</a></li>
+              <li><a href="/fabian-georgi/">Fabian Georgi</a></li>
+              <li><a href="/#anfrage">Prozess prüfen lassen</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>`;
+  if (!html.includes('class="section directory-section"')) {
+    html = html.replace(
+      /(\s+<section class="confidence-strip" aria-label="Vertrauenssignale">)/,
+      `\n      ${homepageDirectory}$1`,
+    );
+  }
   html = html.replace(/href="assets\//g, 'href="/assets/');
   html = html.replace(/src="assets\//g, 'src="/assets/');
   html = html.replace(/srcset="assets\//g, 'srcset="/assets/');

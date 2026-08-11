@@ -553,6 +553,39 @@ h4 {
   margin-bottom: 0;
 }
 
+.directory-section {
+  background: #ffffff;
+}
+
+.directory-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.directory-grid article {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.15rem;
+}
+
+.directory-grid ul {
+  display: grid;
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.directory-grid a {
+  color: var(--cyan);
+  font-weight: 850;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
 .process-section {
   background:
     linear-gradient(135deg, rgba(38, 139, 210, 0.1), rgba(216, 243, 106, 0.13)),
@@ -1146,6 +1179,7 @@ textarea {
 
   .service-grid,
   .guardrail-grid,
+  .directory-grid,
   .price-layout,
   .expansion-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1163,6 +1197,7 @@ textarea {
   }
 
   .use-grid,
+  .directory-grid,
   .example-process,
   .maturity-track {
     grid-template-columns: 1fr;
