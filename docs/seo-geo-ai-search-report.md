@@ -162,7 +162,7 @@ It contains 12 canonical indexable URLs and no preview, query parameter, redirec
 
 - Homepage now directly links all generated indexable subpages from the visible `Themen und Unterseiten` section.
 - Knowledge articles were expanded beyond FAQ-length summaries:
-  - `/wissen/ki-agent-kosten/` now includes real KI packt an prices, eight cost blocks, three scenarios and underestimated cost drivers.
+  - `/wissen/ki-agent-kosten/` now includes real KI packt an prices with `zzgl. USt.`, eight cost blocks, three scenarios and underestimated cost drivers.
   - `/wissen/was-ist-ein-ki-agent/` now includes a comparison table, an enterprise e-mail example and a section explaining when classic automation is preferable.
   - `/wissen/ki-agent-sicherheit-prompt-injection/` now includes a concrete malicious e-mail example, defense-in-depth flow and technical controls.
   - `/wissen/ki-agenten-im-mittelstand/` and `/wissen/ki-email-assistent-sicher-einsetzen/` were expanded with process-selection and operational safety criteria.

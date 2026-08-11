@@ -439,8 +439,8 @@ const articles = [
         "Bei KI packt an startet die Klärung mit dem Prozess-Check; der Pilotumfang wird anschließend konkret begrenzt."
       ]],
       ["Welche konkreten Preise bietet KI packt an an?", [
-        "Der Prozess-Check kostet 245 EUR und dient dazu, Nutzen, Risiken, Datenquellen, Freigaben und den sinnvollen Pilotumfang zu prüfen.",
-        "Ein produktiver Pilot startet ab 1.450 EUR. Diese Pilotkondition ist bewusst begrenzt; regulär beginnt ein produktiver KI-Assistent ab 2.900 EUR. Laufender Betrieb startet ab 245 EUR pro Monat."
+        "Der Prozess-Check kostet 245 EUR zzgl. USt. und dient dazu, Nutzen, Risiken, Datenquellen, Freigaben und den sinnvollen Pilotumfang zu prüfen.",
+        "Ein produktiver Pilot startet ab 1.450 EUR zzgl. USt. Diese Pilotkondition ist bewusst begrenzt; regulär beginnt ein produktiver KI-Assistent ab 2.900 EUR zzgl. USt. Laufender Betrieb startet ab 245 EUR pro Monat zzgl. USt."
       ]],
       ["Warum reichen Fantasiepreise nicht?", [
         "Pauschale Preise ohne Prozess, Datenquellen und Rechte sind selten belastbar.",
