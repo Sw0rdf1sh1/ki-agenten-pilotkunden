@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Was ist ein KI-Agent? Chatbot, Workflow und Assistent erklärt</title>
+    <meta name="description" content="Was ein KI-Agent ist, wie er sich von Chatbots und Workflow-Automatisierung unterscheidet und warum Kontext, Werkzeuge und Freigaben entscheidend sind.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#18202f">
+    <link rel="canonical" href="https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/">
+    <link rel="icon" href="/assets/icons/ki-packt-an-logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/social/ki-packt-an-logo-512.png">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <meta property="og:site_name" content="KI packt an">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Was ist ein KI-Agent? Chatbot, Workflow und Assistent erklärt">
+    <meta property="og:description" content="Was ein KI-Agent ist, wie er sich von Chatbots und Workflow-Automatisierung unterscheidet und warum Kontext, Werkzeuge und Freigaben entscheidend sind.">
+    <meta property="og:url" content="https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/">
+    <meta property="og:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Was ist ein KI-Agent? Chatbot, Workflow und Assistent erklärt">
+    <meta name="twitter:description" content="Was ein KI-Agent ist, wie er sich von Chatbots und Workflow-Automatisierung unterscheidet und warum Kontext, Werkzeuge und Freigaben entscheidend sind.">
+    <meta name="twitter:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ki-packt-an.de/#website","name":"KI packt an","url":"https://ki-packt-an.de","inLanguage":"de-DE","publisher":{"@id":"https://ki-packt-an.de/#organization"}},{"@type":"ProfessionalService","@id":"https://ki-packt-an.de/#organization","name":"KI packt an","url":"https://ki-packt-an.de","logo":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-logo-512.png","width":512,"height":512},"image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","description":"KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.","areaServed":"DE","founder":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"email":"hello@georgi.digital"},{"@type":"Person","@id":"https://ki-packt-an.de/fabian-georgi/#person","name":"Fabian Georgi","url":"https://ki-packt-an.de/fabian-georgi/","image":"https://ki-packt-an.de/assets/people/fabian-georgi.webp","jobTitle":"Senior Software Developer · Software-, Integrations- und Prozessentwicklung","worksFor":{"@id":"https://ki-packt-an.de/#organization"},"sameAs":["https://georgi.digital/"]},{"@type":"WebPage","@id":"https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/#webpage","url":"https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/","name":"Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung","headline":"Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung","description":"Was ein KI-Agent ist, wie er sich von Chatbots und Workflow-Automatisierung unterscheidet und warum Kontext, Werkzeuge und Freigaben entscheidend sind.","isPartOf":{"@id":"https://ki-packt-an.de/#website"},"inLanguage":"de-DE","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","primaryImageOfPage":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","width":1200,"height":630},"mainEntity":{"@type":"Article","@id":"https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/#article","headline":"Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung","description":"Was ein KI-Agent ist, wie er sich von Chatbots und Workflow-Automatisierung unterscheidet und warum Kontext, Werkzeuge und Freigaben entscheidend sind.","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","author":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"publisher":{"@id":"https://ki-packt-an.de/#organization"},"datePublished":"2026-08-11","dateModified":"2026-08-11","mainEntityOfPage":{"@id":"https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/#webpage"}},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://ki-packt-an.de/"},{"@type":"ListItem","position":2,"name":"Praxiswissen","item":"https://ki-packt-an.de/wissen/"},{"@type":"ListItem","position":3,"name":"Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung"}]}}]}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Direkt zum Inhalt</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="KI packt an Startseite">
+        <span class="brand-mark" aria-hidden="true">KI</span>
+        <span>KI packt an</span>
+      </a>
+      <nav class="desktop-nav" id="site-navigation" aria-label="Hauptnavigation">
+        <div class="desktop-nav-group">
+          <button class="desktop-nav-trigger" type="button" aria-expanded="false">Leistungen</button>
+          <div class="desktop-nav-dropdown">
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+        </div>
+        <a aria-current="page" href="/wissen/">Praxiswissen</a>
+        <a href="/#ablauf">Ablauf</a>
+        <a href="/#preise">Preise</a>
+        <a href="/fabian-georgi/">Über mich</a>
+        <a class="nav-cta" href="/#anfrage">Einsatz prüfen</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Navigation öffnen">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Menü</span>
+      </button>
+      <div class="mobile-backdrop" data-menu-close hidden></div>
+      <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" tabindex="-1">
+        <div class="mobile-drawer-head">
+          <span class="mobile-drawer-brand">KI packt an</span>
+          <button class="drawer-close" type="button" data-menu-close aria-label="Navigation schließen">×</button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile Hauptnavigation">
+          <button class="mobile-accordion" type="button" aria-expanded="false" aria-controls="mobile-services">Leistungen</button>
+          <div class="mobile-subnav" id="mobile-services" hidden>
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+          <a aria-current="page" href="/wissen/">Praxiswissen</a>
+          <a href="/fabian-georgi/">Über mich</a>
+        </nav>
+        <div class="mobile-drawer-action">
+          <a class="button primary" href="/#anfrage">Einsatz prüfen</a>
+          <span>Unverbindlich · persönliche Einschätzung</span>
+        </div>
+        <div class="mobile-legal">
+          <a href="https://georgi.digital/impressum/">Impressum</a>
+          <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        </div>
+      </aside>
+    </header>
+    <main id="main" class="page-shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Startseite</a></li><li><a href="/wissen/">Praxiswissen</a></li><li><span aria-current="page">Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung</span></li>
+      </ol>
+    </nav>
+      <article class="content-page article-page">
+        <p class="eyebrow">Praxiswissen</p>
+        <h1>Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung</h1>
+        <p class="answer-block">Ein KI-Agent ist ein System, das ein Ziel verfolgt, Kontext nutzt, Werkzeuge aufrufen kann und innerhalb gesetzter Grenzen Schritte vorbereitet oder ausführt.</p>
+        <div class="byline">
+          <img src="/assets/people/fabian-georgi-450.webp" alt="Fabian Georgi" width="450" height="450" loading="lazy" decoding="async">
+          <p><strong>Autor: Fabian Georgi</strong><span>Senior Software Developer · Software-, Integrations- und Prozessentwicklung</span><span>Veröffentlicht: 11. August 2026 · Fachlich geprüft: 11. August 2026</span></p>
+        </div>
+        <section class="content-section">
+        <h2>Was unterscheidet einen KI-Agenten vom Chatbot?</h2>
+        <p>Ein Chatbot beantwortet vor allem Nachrichten. Ein KI-Agent kann zusätzlich Werkzeuge nutzen, Informationen aus Systemen holen und Arbeitsschritte anstoßen.</p>
+        <p>Der Unterschied liegt nicht im Namen, sondern in Kontext, Werkzeugzugriff, Autonomie und Verantwortungsgrenzen.</p>
+      </section>
+<section class="content-section">
+        <h2>Was ist klassische Workflow-Automatisierung?</h2>
+        <p>Workflow-Automatisierung folgt festen Regeln: Wenn A passiert, führe B aus. Das ist robust, solange Fälle eindeutig strukturiert sind.</p>
+        <p>KI-Agenten ergänzen solche Workflows, wenn Texte verstanden, Dokumente ausgewertet oder unstrukturierte Informationen eingeordnet werden müssen.</p>
+      </section>
+<section class="content-section">
+        <h2>Welche Rolle spielen Freigaben?</h2>
+        <p>Freigaben verhindern, dass ein Assistent unsichere Entscheidungen still ausführt.</p>
+        <p>In Unternehmen ist oft die beste erste Stufe: Der Assistent sammelt, prüft und entwirft; Menschen geben frei.</p>
+      </section>
+<section class="content-section">
+        <h2>Warum sind die Begriffe nicht absolut?</h2>
+        <p>Chatbot, KI-Assistent und KI-Agent werden am Markt nicht einheitlich verwendet. Manche Anbieter nennen bereits einen Chatbot mit Dokumentensuche Agent, andere meinen damit Systeme mit Planung, Tool-Nutzung und eigener Aufgabensteuerung.</p>
+        <p>Für Unternehmen ist deshalb wichtiger, welche Rechte, Datenquellen, Werkzeuge und Freigaben ein System wirklich bekommt, nicht welches Etikett auf der Oberfläche steht.</p>
+      </section>
+<section class="content-section">
+        <h2>Wann braucht man keinen KI-Agenten?</h2>
+        <p>Wenn ein Ablauf deterministisch ist, reicht klassische Automation oft aus. Eine CSV-Transformation, ein Datenbankabgleich, ein Cronjob oder ein festes Wenn-Dann-Verhalten braucht kein Sprachmodell.</p>
+        <p>Gerade aus Wartungs- und Kostensicht ist es besser, einfache Regeln einfach zu halten. KI wird interessant, wenn unstrukturierte Inhalte verstanden, Quellen bewertet oder Entwürfe aus Kontext erzeugt werden müssen.</p>
+      </section>
+<section class="content-section">
+        <h2>Vergleich: Chatbot, Automation, KI-Assistent und KI-Agent</h2>
+        <div class="comparison-table" role="region" aria-label="Vergleich von Automatisierungssystemen">
+          <table>
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Versteht unstrukturierte Inhalte</th>
+                <th>Nutzt Werkzeuge</th>
+                <th>Feste Abläufe</th>
+                <th>Autonome Schritte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th>Chatbot</th><td>ja</td><td>teilweise</td><td>nein</td><td>gering</td></tr>
+              <tr><th>klassische Automation</th><td>nein/gering</td><td>ja</td><td>ja</td><td>regelbasiert</td></tr>
+              <tr><th>KI-Assistent</th><td>ja</td><td>ja</td><td>teilweise</td><td>begrenzt</td></tr>
+              <tr><th>KI-Agent</th><td>ja</td><td>ja</td><td>flexibel</td><td>innerhalb definierter Grenzen</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Die Tabelle beschreibt typische Ausprägungen. Entscheidend bleibt die konkrete technische Ausgestaltung mit Rollen, Rechten, Freigaben und Protokollierung.</p>
+      </section>
+      <section class="content-section">
+        <h2>Unternehmensbeispiel: E-Mail wird zum prüfbaren Vorgang</h2>
+        <figure class="diagram" aria-labelledby="agent-email-diagram-title">
+          <figcaption id="agent-email-diagram-title">Ein KI-Agent verbindet unstrukturierte E-Mail-Inhalte mit CRM, Wissen und menschlicher Freigabe.</figcaption>
+          <div class="flow-diagram">
+            <span>E-Mail</span>
+            <span>Klassifikation</span>
+            <span>CRM-Abfrage</span>
+            <span>Dokumentensuche</span>
+            <span>Entwurf</span>
+            <span>Freigabe</span>
+            <span>Versand</span>
+          </div>
+        </figure>
+      </section>
+        
+        <section class="content-section">
+        <h2>Passende nächste Seiten</h2>
+        <ul class="link-list">
+          <li><a href="/#leistungen">KI-Assistenten auf der Startseite einordnen</a></li>
+          <li><a href="/wissen/ki-agenten-im-mittelstand/">Geeignete Prozesse im Mittelstand</a></li>
+        </ul>
+      </section>
+        <section class="content-cta">
+          <h2>Vom Praxiswissen zum ersten Prozess</h2>
+          <p>KI packt an prüft konkrete Unternehmensprozesse und setzt nur begrenzte, nachvollziehbare Assistenten produktiv um.</p>
+          <a class="button primary" href="/#anfrage">Prozess prüfen lassen</a>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <span>KI packt an · Fabian Georgi</span>
+      <nav aria-label="Footer-Navigation">
+        <a href="/email-assistent/">Leistungen</a>
+        <a href="/wissen/">Praxiswissen</a>
+        <a href="/fabian-georgi/">Fabian Georgi</a>
+        <a href="https://georgi.digital/impressum/">Impressum</a>
+        <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        <a href="mailto:hello@georgi.digital">hello@georgi.digital</a>
+      </nav>
+    </footer>
+    <script src="/assets/script.js" defer></script>
+  </body>
+</html>

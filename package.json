@@ -5,6 +5,8 @@
   "description": "GitHub Pages landing page for KI packt an pilot customers.",
   "type": "module",
   "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs",
     "check": "node scripts/check.mjs"
   }
 }

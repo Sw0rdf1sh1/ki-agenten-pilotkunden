@@ -1,0 +1,32 @@
+# KI packt an
+
+> KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.
+
+KI packt an ist ein Angebot für Unternehmen, die wiederkehrende digitale Arbeit durch klar begrenzte KI-Assistenten vorbereiten oder automatisieren möchten. Typische Systeme sind E-Mail, CRM, ERP, Dokumentenablagen, Wissenssysteme und APIs. Verantwortlicher technischer Ansprechpartner ist Fabian Georgi.
+
+## Leistungen
+
+- [Ein KI-Assistent für Ihr gemeinsames E-Mail-Postfach.](https://ki-packt-an.de/email-assistent/): Ein KI-E-Mail-Assistent sortiert Team-Postfächer, ergänzt Kundenkontext, bereitet Antworten vor und hält kritische Entscheidungen beim Menschen.
+- [OpenClaw produktiv im Unternehmen betreiben.](https://ki-packt-an.de/openclaw-fuer-unternehmen/): OpenClaw für Unternehmen: Einrichtung, Hosting, Betrieb und Integration von Agenten mit Rollen, Monitoring und klaren Sicherheitsgrenzen.
+- [KI-Assistenten kontrolliert mit CRM und ERP verbinden.](https://ki-packt-an.de/ki-assistent-crm-erp/): KI-Assistenten mit CRM und ERP verbinden: APIs, Service Accounts, Read-only-Zugriff, Freigaben, Logging und Datenminimierung sauber planen.
+- [KI-Assistenten nach dem Go-live betreiben.](https://ki-packt-an.de/ki-assistent-betrieb-betreuung/): Managed Betrieb für KI-Assistenten: Hosting, Monitoring, Updates, Kostenkontrolle, Backups, Secrets, Modellwechsel und Fehlerbehandlung.
+
+## Praxiswissen
+
+- [Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung](https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/)
+- [KI-Agenten im Mittelstand: sinnvolle Prozesse, Grenzen und Einstieg](https://ki-packt-an.de/wissen/ki-agenten-im-mittelstand/)
+- [KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe](https://ki-packt-an.de/wissen/ki-email-assistent-sicher-einsetzen/)
+- [Was kostet ein KI-Agent für Unternehmen?](https://ki-packt-an.de/wissen/ki-agent-kosten/)
+- [KI-Agenten und Prompt Injection: Warum E-Mails und Dokumente nicht vertrauenswürdig sind](https://ki-packt-an.de/wissen/ki-agent-sicherheit-prompt-injection/)
+
+## Anbieter
+
+- [Fabian Georgi](https://ki-packt-an.de/fabian-georgi/): Technischer Ansprechpartner für Softwareentwicklung, Integration und Betrieb.
+- [Anfrage](https://ki-packt-an.de/#anfrage): Einen konkreten Unternehmensprozess prüfen lassen.
+
+## Hinweise
+
+- KI packt an verkauft keine Standard-Chatbot-Lösung.
+- Automatisierungsgrad und Schreibrechte werden pro Prozess festgelegt.
+- Externe Modell-, API-, Hosting- und Lizenzkosten werden transparent ausgewiesen.
+- Für ChatGPT Search ist OAI-SearchBot relevant; GPTBot betrifft Modelltraining und ist dafür nicht erforderlich.
