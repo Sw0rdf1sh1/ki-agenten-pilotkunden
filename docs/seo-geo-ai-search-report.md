@@ -114,6 +114,7 @@ It contains 13 canonical indexable URLs and no preview, query parameter, redirec
 
 - `npm run build`: passed
 - `npm run check`: passed for 13 indexable pages
+- `npm run audit:seo -- http://127.0.0.1:4173 production`: passed for 13 routes
 - `git diff --check`: passed
 - Local HTTP checks: all 13 pages plus `robots.txt`, `sitemap.xml`, `llms.txt` and `llms-full.txt` returned HTTP 200
 - Internal static link check: passed
@@ -122,11 +123,15 @@ It contains 13 canonical indexable URLs and no preview, query parameter, redirec
 - Lighthouse local homepage mobile: Performance 100, Accessibility 100, Best Practices 100, SEO 100
 - Lighthouse local homepage desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100
 - Lighthouse local service page desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100
+- Lighthouse local follow-up homepage mobile: Performance 100, Accessibility 100, Best Practices 100, SEO 100
+- Lighthouse local follow-up costs article desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100
+- Lighthouse local follow-up OpenClaw page desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100
 - JavaScript-free text rendering via `lynx`: core content is visible for homepage, service page and Prompt Injection article
 
 ## Preview And Indexing
 
 - `_headers` contains a Cloudflare Pages preview rule for `https://*.pages.dev/*` with `X-Robots-Tag: noindex, nofollow`
+- `functions/_middleware.js` injects `<meta name="robots" content="noindex,nofollow">` and `X-Robots-Tag: noindex, nofollow` for `.pages.dev` preview hosts
 - `_redirects` contains a non-www canonical redirect from `https://www.ki-packt-an.de/*` to `https://ki-packt-an.de/:splat`
 - Cloudflare Pages documentation states preview deployments include `X-Robots-Tag: noindex` by default.
 - Pull Request preview checked after deployment:
@@ -149,6 +154,27 @@ It contains 13 canonical indexable URLs and no preview, query parameter, redirec
 - Run Google Rich Results Test on production URLs
 - Run Schema.org Validator on production URLs
 - Use Search Console URL Inspection for the most important new URLs
+
+## Follow-up SEO/GEO Refinements
+
+- Homepage now directly links all generated indexable subpages from the visible `Themen und Unterseiten` section.
+- Knowledge articles were expanded beyond FAQ-length summaries:
+  - `/wissen/ki-agent-kosten/` now includes real KI packt an prices, eight cost blocks, three scenarios and underestimated cost drivers.
+  - `/wissen/was-ist-ein-ki-agent/` now includes a comparison table, an enterprise e-mail example and a section explaining when classic automation is preferable.
+  - `/wissen/ki-agent-sicherheit-prompt-injection/` now includes a concrete malicious e-mail example, defense-in-depth flow and technical controls.
+  - `/wissen/ki-agenten-im-mittelstand/` and `/wissen/ki-email-assistent-sicher-einsetzen/` were expanded with process-selection and operational safety criteria.
+- Technical pages were deepened:
+  - `/openclaw-fuer-unternehmen/` now explains deployment architecture, Docker/server operation, secrets, agent roles, tools, monitoring, updates, backups, model providers and production operation.
+  - `/ki-assistent-crm-erp/` now covers API vs. database access, webhooks, service accounts, OAuth scopes, rate limits, idempotency and audit trails.
+  - `/ki-assistent-betrieb-betreuung/` now covers health checks, log monitoring, cost limits, token/API usage, model changes, regression tests, backups, recovery, secrets rotation and incident handling.
+- Own technical diagrams were added as HTML/CSS:
+  - E-mail assistant flow
+  - Agent/e-mail classification flow
+  - OpenClaw architecture
+  - CRM/ERP integration flow
+  - Prompt Injection defense-in-depth flow
+- `FAQPage` markup was removed; visible FAQs remain where useful, but structured data focuses on WebPage, Service, Article, BreadcrumbList, Person and ProfessionalService.
+- `scripts/audit-seo.mjs` was added for HTTP-based SEO regression checks in production and preview modes.
 
 ## External Sources Checked
 

@@ -51,12 +51,48 @@ function textOnly(html) {
     .trim();
 }
 
+function jsonLdTypes(value, types = new Set()) {
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      jsonLdTypes(item, types);
+    }
+    return types;
+  }
+
+  if (!value || typeof value !== "object") {
+    return types;
+  }
+
+  if (value["@type"]) {
+    if (Array.isArray(value["@type"])) {
+      for (const type of value["@type"]) {
+        types.add(type);
+      }
+    } else {
+      types.add(value["@type"]);
+    }
+  }
+
+  for (const nested of Object.values(value)) {
+    jsonLdTypes(nested, types);
+  }
+
+  return types;
+}
+
+function parseJsonLd(html) {
+  return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((json) => JSON.parse(json[1]));
+}
+
 assert(cname === "ki-packt-an.de", "CNAME must point to ki-packt-an.de.");
 assert(robots.includes("User-agent: OAI-SearchBot\nAllow: /"), "robots.txt must explicitly allow OAI-SearchBot.");
 assert(robots.includes("User-agent: GPTBot\nDisallow: /"), "robots.txt must keep GPTBot separate from ChatGPT Search.");
 assert(robots.includes(`Sitemap: ${origin}/sitemap.xml`), "robots.txt must reference the canonical sitemap.");
 assert(headers.includes("https://*.pages.dev/*") && headers.includes("X-Robots-Tag: noindex, nofollow"), "_headers must protect Cloudflare Pages previews.");
 assert(redirects.includes("https://www.ki-packt-an.de/* https://ki-packt-an.de/:splat 301"), "_redirects must canonicalize www to non-www.");
+assert(existsSync("functions/_middleware.js"), "Preview noindex middleware must exist.");
+const middleware = readFileSync("functions/_middleware.js", "utf8");
+assert(middleware.includes(".pages.dev") && middleware.includes("noindex,nofollow") && middleware.includes("X-Robots-Tag"), "Preview middleware must inject noindex meta and header.");
 
 for (const file of siteFiles) {
   assert(existsSync(file), `Missing page: ${file}`);
@@ -84,8 +120,24 @@ for (const file of siteFiles) {
     assert(/\swidth=/.test(attrs) && /\sheight=/.test(attrs), `${file} has an image without fixed dimensions.`);
   }
 
-  for (const json of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
-    JSON.parse(json[1]);
+  const jsonLd = parseJsonLd(html);
+  const types = jsonLdTypes(jsonLd);
+  assert(types.has("WebSite"), `${file} JSON-LD must include WebSite.`);
+  assert(types.has("ProfessionalService"), `${file} JSON-LD must include ProfessionalService.`);
+  assert(types.has("Person"), `${file} JSON-LD must include Person.`);
+  assert(types.has("WebPage") || types.has("CollectionPage") || types.has("ProfilePage"), `${file} JSON-LD must include a page type.`);
+  assert(!types.has("FAQPage"), `${file} must not use FAQPage markup as a rich-result shortcut.`);
+
+  if (file.startsWith("wissen/") && file !== "wissen/index.html") {
+    assert(types.has("Article"), `${file} JSON-LD must include Article.`);
+    assert(types.has("BreadcrumbList"), `${file} JSON-LD must include BreadcrumbList.`);
+    assert(html.includes('"datePublished":"2026-08-11"'), `${file} Article datePublished must match visible date.`);
+    assert(html.includes('"dateModified":"2026-08-11"'), `${file} Article dateModified must match visible review date.`);
+  }
+
+  if (!file.startsWith("wissen/") && file !== "index.html" && file !== "fabian-georgi/index.html") {
+    assert(types.has("Service"), `${file} JSON-LD must include Service.`);
+    assert(types.has("BreadcrumbList"), `${file} JSON-LD must include BreadcrumbList.`);
   }
 
   assert(sitemap.includes(`<loc>${url}</loc>`), `Sitemap missing ${url}.`);
@@ -128,6 +180,7 @@ assert(contactFunction.includes("TURNSTILE_SECRET_KEY"), "Contact function must 
 
 assert(llms.includes("# KI packt an") && llms.includes("OAI-SearchBot"), "llms.txt must describe the site and ChatGPT Search crawler distinction.");
 assert(llmsFull.includes("KI-Agenten und Prompt Injection"), "llms-full.txt must include public knowledge content.");
+assert(llmsFull.includes("Kostenblöcke eines KI-Agenten"), "llms-full.txt must include generated rich content.");
 assert(!llmsFull.includes("SECRET") && !llmsFull.includes("RESEND_API_KEY"), "llms-full.txt must not include internal secrets.");
 assert(existsSync("404.html"), "404.html must exist.");
 assert(existsSync("assets/social/ki-packt-an-social.png"), "Social preview PNG must exist.");
