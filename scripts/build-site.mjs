@@ -627,7 +627,11 @@ function header(activePath) {
         <span class="brand-mark" aria-hidden="true">KI</span>
         <span>KI packt an</span>
       </a>
-      <nav class="nav" aria-label="Hauptnavigation">
+      <button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Menü</span>
+      </button>
+      <nav class="nav" id="site-navigation" aria-label="Hauptnavigation">
         ${links}
       </nav>
     </header>`;
@@ -814,6 +818,7 @@ ${renderExtra(page)}
       </article>
     </main>
     ${footer()}
+    <script src="/assets/script.js" defer></script>
   </body>
 </html>
 `;
@@ -877,6 +882,7 @@ ${renderExtra(page)}
       </article>
     </main>
     ${footer()}
+    <script src="/assets/script.js" defer></script>
   </body>
 </html>
 `;
@@ -916,6 +922,7 @@ function renderKnowledgeIndex() {
       </section>
     </main>
     ${footer()}
+    <script src="/assets/script.js" defer></script>
   </body>
 </html>
 `;
@@ -958,6 +965,7 @@ function renderAuthor() {
       </article>
     </main>
     ${footer()}
+    <script src="/assets/script.js" defer></script>
   </body>
 </html>
 `;
@@ -983,6 +991,7 @@ function render404() {
       </section>
     </main>
     ${footer()}
+    <script src="/assets/script.js" defer></script>
   </body>
 </html>
 `;
@@ -1123,8 +1132,12 @@ function updateHomepageHead() {
     '<a class="brand" href="/" aria-label="KI packt an Startseite">',
   );
   html = html.replace(
-    /<nav class="nav" aria-label="Hauptnavigation">[\s\S]*?<\/nav>/,
-    `<nav class="nav" aria-label="Hauptnavigation">
+    /(?:<button class="menu-toggle"[\s\S]*?<\/button>\s*)?<nav class="nav"(?: id="site-navigation")? aria-label="Hauptnavigation">[\s\S]*?<\/nav>/,
+    `<button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Menü</span>
+      </button>
+      <nav class="nav" id="site-navigation" aria-label="Hauptnavigation">
         <a href="/ki-assistenten-unternehmen/">Leistungen</a>
         <a href="/email-assistent/">E-Mail</a>
         <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>

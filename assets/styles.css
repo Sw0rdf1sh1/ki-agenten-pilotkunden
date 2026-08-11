@@ -131,6 +131,33 @@ textarea:focus-visible {
   color: #ffffff;
 }
 
+.menu-toggle {
+  align-items: center;
+  background: var(--ink);
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  display: none;
+  font-weight: 950;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.65rem 0.82rem;
+}
+
+.menu-icon {
+  display: grid;
+  gap: 4px;
+  width: 18px;
+}
+
+.menu-icon span {
+  background: currentColor;
+  border-radius: 999px;
+  display: block;
+  height: 2px;
+}
+
 .hero {
   background:
     radial-gradient(circle at 20% 18%, rgba(216, 243, 106, 0.13), transparent 26rem),
@@ -1227,16 +1254,37 @@ textarea {
   }
 
   .nav {
-    flex: 0 0 auto;
-  }
-
-  .nav a:not(.nav-cta) {
+    background: rgba(246, 242, 234, 0.98);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 18px 42px rgba(24, 32, 47, 0.16);
     display: none;
+    gap: 0.35rem;
+    left: 1rem;
+    padding: 0.6rem;
+    position: absolute;
+    right: 1rem;
+    top: calc(100% + 0.45rem);
   }
 
   .nav a {
+    border-radius: 8px;
     font-size: 0.88rem;
-    padding: 0.56rem 0.78rem;
+    justify-content: flex-start;
+    padding: 0.72rem 0.78rem;
+    width: 100%;
+  }
+
+  .nav .nav-cta {
+    justify-content: center;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header.is-menu-open .nav {
+    display: grid;
   }
 
   .hero {

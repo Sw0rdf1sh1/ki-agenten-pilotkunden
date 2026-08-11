@@ -1,7 +1,40 @@
 const form = document.querySelector("#lead-form");
 const formStatus = document.querySelector("#lead-form-status");
+const menuToggle = document.querySelector(".menu-toggle");
+const siteHeader = document.querySelector(".site-header");
+const siteNavigation = document.querySelector("#site-navigation");
 const workflowPhases = Array.from(document.querySelectorAll(".workflow-phase"));
 const turnstileHosts = new Set(["ki-packt-an.de", "www.ki-packt-an.de"]);
+
+function closeMenu() {
+  siteHeader?.classList.remove("is-menu-open");
+  menuToggle?.setAttribute("aria-expanded", "false");
+}
+
+if (menuToggle && siteHeader && siteNavigation) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = siteHeader.classList.toggle("is-menu-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  siteNavigation.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (event.target instanceof Node && !siteHeader.contains(event.target)) {
+      closeMenu();
+    }
+  });
+}
 
 if (turnstileHosts.has(window.location.hostname)) {
   const turnstileScript = document.createElement("script");

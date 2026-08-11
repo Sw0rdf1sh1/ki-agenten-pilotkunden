@@ -101,6 +101,9 @@ for (const file of siteFiles) {
   const visibleText = textOnly(html);
 
   assert(html.includes("<main"), `${file} must include a main element.`);
+  assert(html.includes('class="menu-toggle"'), `${file} must include the mobile menu toggle.`);
+  assert(html.includes('id="site-navigation"'), `${file} must include the main navigation target.`);
+  assert(html.includes('src="/assets/script.js" defer'), `${file} must load the shared interaction script.`);
   assert((html.match(/<h1[\s>]/g) || []).length === 1, `${file} must have exactly one h1.`);
   assert(html.includes(`<link rel="canonical" href="${url}">`), `${file} must have a self-referencing canonical.`);
   assert(html.includes('<meta name="robots" content="index, follow">'), `${file} must be indexable in production.`);
@@ -173,6 +176,7 @@ for (const file of siteFiles.filter((file) => file !== "index.html")) {
 
 assert(!/font-size:\s*[^;]*vw/.test(css), "Avoid viewport-width font sizing in CSS.");
 assert(script.includes("https://challenges.cloudflare.com/turnstile/v0/api.js"), "Turnstile client script missing.");
+assert(script.includes("is-menu-open") && script.includes("aria-expanded"), "Mobile navigation toggle script missing.");
 assert(script.includes("fetch(form.action"), "Lead form must submit through fetch.");
 assert(script.includes("turnstile?.reset"), "Lead form must reset Turnstile after submissions.");
 assert(contactFunction.includes("https://api.resend.com/emails"), "Contact function must use the Resend email API.");
