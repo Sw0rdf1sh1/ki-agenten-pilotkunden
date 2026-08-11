@@ -31,18 +31,52 @@
         <span class="brand-mark" aria-hidden="true">KI</span>
         <span>KI packt an</span>
       </a>
-      <button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false">
+      <nav class="desktop-nav" id="site-navigation" aria-label="Hauptnavigation">
+        <div class="desktop-nav-group">
+          <button class="desktop-nav-trigger" type="button" aria-expanded="false">Leistungen</button>
+          <div class="desktop-nav-dropdown">
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+        </div>
+        <a href="/wissen/">Praxiswissen</a>
+        <a href="/#ablauf">Ablauf</a>
+        <a href="/#preise">Preise</a>
+        <a href="/fabian-georgi/">Über mich</a>
+        <a class="nav-cta" href="/#anfrage">Einsatz prüfen</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Navigation öffnen">
         <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>Menü</span>
       </button>
-      <nav class="nav" id="site-navigation" aria-label="Hauptnavigation">
-        <a href="/ki-assistenten-unternehmen/">Leistungen</a>
-        <a href="/email-assistent/">E-Mail</a>
-        <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
-        <a href="/wissen/">Wissen</a>
-        <a href="/fabian-georgi/">Fabian Georgi</a>
-        <a href="/#anfrage">Anfrage</a>
-      </nav>
+      <div class="mobile-backdrop" data-menu-close hidden></div>
+      <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" tabindex="-1">
+        <div class="mobile-drawer-head">
+          <span class="mobile-drawer-brand">KI packt an</span>
+          <button class="drawer-close" type="button" data-menu-close aria-label="Navigation schließen">×</button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile Hauptnavigation">
+          <button class="mobile-accordion" type="button" aria-expanded="false" aria-controls="mobile-services">Leistungen</button>
+          <div class="mobile-subnav" id="mobile-services" hidden>
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+          <a href="/wissen/">Praxiswissen</a>
+          <a href="/fabian-georgi/">Über mich</a>
+        </nav>
+        <div class="mobile-drawer-action">
+          <a class="button primary" href="/#anfrage">Einsatz prüfen</a>
+          <span>Unverbindlich · persönliche Einschätzung</span>
+        </div>
+        <div class="mobile-legal">
+          <a href="https://georgi.digital/impressum/">Impressum</a>
+          <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        </div>
+      </aside>
     </header>
     <main class="page-shell">
       <section class="content-page error-page">
@@ -55,8 +89,8 @@
     <footer class="site-footer">
       <span>KI packt an · Fabian Georgi</span>
       <nav aria-label="Footer-Navigation">
-        <a href="/ki-assistenten-unternehmen/">Leistungen</a>
-        <a href="/wissen/">Wissen</a>
+        <a href="/email-assistent/">Leistungen</a>
+        <a href="/wissen/">Praxiswissen</a>
         <a href="/fabian-georgi/">Fabian Georgi</a>
         <a href="https://georgi.digital/impressum/">Impressum</a>
         <a href="https://georgi.digital/datenschutz/">Datenschutz</a>

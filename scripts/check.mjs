@@ -4,7 +4,6 @@ import { dirname, join } from "node:path";
 const origin = "https://ki-packt-an.de";
 const siteFiles = [
   "index.html",
-  "ki-assistenten-unternehmen/index.html",
   "email-assistent/index.html",
   "openclaw-fuer-unternehmen/index.html",
   "ki-assistent-crm-erp/index.html",
@@ -102,7 +101,9 @@ for (const file of siteFiles) {
 
   assert(html.includes("<main"), `${file} must include a main element.`);
   assert(html.includes('class="menu-toggle"'), `${file} must include the mobile menu toggle.`);
-  assert(html.includes('id="site-navigation"'), `${file} must include the main navigation target.`);
+  assert(html.includes('id="site-navigation"'), `${file} must include the desktop navigation target.`);
+  assert(html.includes('id="mobile-drawer"'), `${file} must include the mobile drawer.`);
+  assert(html.includes('class="mobile-accordion"') && html.includes('id="mobile-services"'), `${file} must include the mobile service accordion.`);
   assert(html.includes('src="/assets/script.js" defer'), `${file} must load the shared interaction script.`);
   assert((html.match(/<h1[\s>]/g) || []).length === 1, `${file} must have exactly one h1.`);
   assert(html.includes(`<link rel="canonical" href="${url}">`), `${file} must have a self-referencing canonical.`);
@@ -177,6 +178,7 @@ for (const file of siteFiles.filter((file) => file !== "index.html")) {
 assert(!/font-size:\s*[^;]*vw/.test(css), "Avoid viewport-width font sizing in CSS.");
 assert(script.includes("https://challenges.cloudflare.com/turnstile/v0/api.js"), "Turnstile client script missing.");
 assert(script.includes("is-menu-open") && script.includes("aria-expanded"), "Mobile navigation toggle script missing.");
+assert(script.includes("menu-lock") && script.includes("trapFocus") && script.includes("mobile-accordion"), "Mobile drawer must lock scroll, trap focus and expose the services accordion.");
 assert(script.includes("fetch(form.action"), "Lead form must submit through fetch.");
 assert(script.includes("turnstile?.reset"), "Lead form must reset Turnstile after submissions.");
 assert(contactFunction.includes("https://api.resend.com/emails"), "Contact function must use the Resend email API.");
@@ -189,5 +191,7 @@ assert(!llmsFull.includes("SECRET") && !llmsFull.includes("RESEND_API_KEY"), "ll
 assert(existsSync("404.html"), "404.html must exist.");
 assert(existsSync("assets/social/ki-packt-an-social.png"), "Social preview PNG must exist.");
 assert(existsSync("assets/social/ki-packt-an-logo-512.png"), "Square logo PNG must exist.");
+
+assert(redirects.includes("/ki-assistenten-unternehmen/ / 301"), "The removed KI assistants subpage must redirect to the homepage.");
 
 console.log(`SEO/GEO checks passed for ${siteFiles.length} indexable pages.`);

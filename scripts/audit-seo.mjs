@@ -1,7 +1,6 @@
 const productionOrigin = "https://ki-packt-an.de";
 const routes = [
   "/",
-  "/ki-assistenten-unternehmen/",
   "/email-assistent/",
   "/openclaw-fuer-unternehmen/",
   "/ki-assistent-crm-erp/",
@@ -16,6 +15,9 @@ const routes = [
 ];
 
 const staticFiles = ["/robots.txt", "/sitemap.xml", "/llms.txt", "/llms-full.txt"];
+const redirects = new Map([
+  ["/ki-assistenten-unternehmen/", "/"],
+]);
 
 const baseUrl = (process.argv[2] || "").replace(/\/$/, "");
 const mode = process.argv[3] || "production";
@@ -116,6 +118,15 @@ for (const path of staticFiles) {
     assert(body.includes("User-agent: OAI-SearchBot"), "robots.txt must mention OAI-SearchBot");
     assert(body.includes("User-agent: GPTBot"), "robots.txt must explicitly handle GPTBot");
     assert(body.includes(`Sitemap: ${productionOrigin}/sitemap.xml`), "robots.txt must reference the production sitemap");
+  }
+}
+
+if (!baseUrl.includes("127.0.0.1") && !baseUrl.includes("localhost")) {
+  for (const [from, to] of redirects) {
+    const { response } = await get(from);
+    assert([301, 302, 308].includes(response.status), `${from} must redirect, got ${response.status}`);
+    const location = response.headers.get("location") || "";
+    assert(location === to || location === `${productionOrigin}${to}` || location === `${baseUrl}${to}`, `${from} must redirect to ${to}, got ${location}`);
   }
 }
 

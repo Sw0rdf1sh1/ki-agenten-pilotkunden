@@ -24,11 +24,10 @@ Date: 2026-08-11
 
 ## Implemented Architecture
 
-The homepage remains the commercial entry point. The new SEO/GEO architecture adds dedicated pages for specific search intent instead of inflating the homepage.
+The homepage remains the commercial entry point for `KI-Assistenten für Unternehmen`. Follow-up review showed that `/ki-assistenten-unternehmen/` competed too closely with the homepage, so the page was removed from the indexable architecture and redirected to `/`.
 
 ### New URLs
 
-- `https://ki-packt-an.de/ki-assistenten-unternehmen/`
 - `https://ki-packt-an.de/email-assistent/`
 - `https://ki-packt-an.de/openclaw-fuer-unternehmen/`
 - `https://ki-packt-an.de/ki-assistent-crm-erp/`
@@ -40,6 +39,10 @@ The homepage remains the commercial entry point. The new SEO/GEO architecture ad
 - `https://ki-packt-an.de/wissen/ki-agent-kosten/`
 - `https://ki-packt-an.de/wissen/ki-agent-sicherheit-prompt-injection/`
 - `https://ki-packt-an.de/fabian-georgi/`
+
+### Redirects
+
+- `https://ki-packt-an.de/ki-assistenten-unternehmen/` -> `https://ki-packt-an.de/` (`301`)
 
 ## Metadata Overview
 
@@ -68,7 +71,6 @@ Used Schema.org types:
 - `Service`
 - `Article`
 - `BreadcrumbList`
-- `FAQPage` only where visible FAQ content exists
 
 Not used:
 
@@ -108,15 +110,15 @@ Sitemap URL:
 
 `https://ki-packt-an.de/sitemap.xml`
 
-It contains 13 canonical indexable URLs and no preview, query parameter, redirect or noindex URLs.
+It contains 12 canonical indexable URLs and no preview, query parameter, redirect or noindex URLs.
 
 ## Validation Results
 
 - `npm run build`: passed
-- `npm run check`: passed for 13 indexable pages
-- `npm run audit:seo -- http://127.0.0.1:4173 production`: passed for 13 routes
+- `npm run check`: passed for 12 indexable pages
+- `npm run audit:seo -- http://127.0.0.1:4173 production`: passed for 12 routes
 - `git diff --check`: passed
-- Local HTTP checks: all 13 pages plus `robots.txt`, `sitemap.xml`, `llms.txt` and `llms-full.txt` returned HTTP 200
+- Local HTTP checks: all 12 indexable pages plus `robots.txt`, `sitemap.xml`, `llms.txt` and `llms-full.txt` returned HTTP 200
 - Internal static link check: passed
 - JSON-LD parsing: passed for all generated pages
 - Tidy HTML check: only warnings for modern attributes such as `loading`, `decoding` and `aria-current`
@@ -126,6 +128,7 @@ It contains 13 canonical indexable URLs and no preview, query parameter, redirec
 - Lighthouse local follow-up homepage mobile: Performance 100, Accessibility 100, Best Practices 100, SEO 100
 - Lighthouse local follow-up costs article desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100
 - Lighthouse local follow-up OpenClaw page desktop: Performance 100, Accessibility 100, Best Practices 100, SEO 100
+- Lighthouse local Praxiswissen mobile: Performance 100, Accessibility 95, Best Practices 100, SEO 100
 - JavaScript-free text rendering via `lynx`: core content is visible for homepage, service page and Prompt Injection article
 
 ## Preview And Indexing
@@ -175,6 +178,40 @@ It contains 13 canonical indexable URLs and no preview, query parameter, redirec
   - Prompt Injection defense-in-depth flow
 - `FAQPage` markup was removed; visible FAQs remain where useful, but structured data focuses on WebPage, Service, Article, BreadcrumbList, Person and ProfessionalService.
 - `scripts/audit-seo.mjs` was added for HTTP-based SEO regression checks in production and preview modes.
+
+## Unterseiten- und Mobile-Navigation-Follow-up
+
+Decision per subpage:
+
+- `/`: kept as the primary commercial homepage for KI assistants in companies.
+- `/ki-assistenten-unternehmen/`: removed from the indexable structure and redirected to `/` to avoid search-intent cannibalization.
+- `/email-assistent/`: kept and repositioned around the visitor question: how a shared mailbox assistant would actually work.
+- `/openclaw-fuer-unternehmen/`: kept and repositioned for technical buyers evaluating productive OpenClaw setup, hosting and operation.
+- `/ki-assistent-crm-erp/`: kept and focused on controlled data access without full CRM/ERP access.
+- `/ki-assistent-betrieb-betreuung/`: kept and focused on what happens after go-live: monitoring, regression tests, recovery and cost control.
+- `/wissen/`: kept as `Praxiswissen`, with decision-oriented entry questions and a process-fit checklist.
+- Knowledge articles: kept as practical decision resources, with visible author/date metadata and stronger takeaways.
+- `/fabian-georgi/`: kept as a trust page explaining who builds and operates the solution.
+
+Mobile navigation was rebuilt as an off-canvas drawer:
+
+- Header shows the `KI packt an` wordmark and a compact menu button.
+- Drawer width is `min(88vw, 380px)` and height is `100dvh`.
+- The page background receives a dark backdrop.
+- Body scroll is locked while the drawer is open.
+- Drawer closes via close button, backdrop, Escape and link selection.
+- Focus moves into the drawer on open and returns to the menu button on close.
+- Focus trapping keeps keyboard navigation inside the drawer.
+- `Leistungen` is an accordion with E-Mail-Assistent, OpenClaw, CRM & ERP and Betrieb & Betreuung.
+- `Einsatz prüfen` is a dedicated drawer CTA instead of a regular text link.
+
+Mobile browser checks:
+
+- Widths checked: 320, 360, 375, 390, 430 and 768 px.
+- Representative page screenshots were captured for Praxiswissen, E-Mail-Assistent, OpenClaw, CRM/ERP and Betrieb & Betreuung.
+- H1 line counts at 390 px are now 3-4 lines for the tested subpages.
+- Breadcrumbs are visually smaller on mobile and use `›`.
+- Drawer accessibility checks covered `aria-expanded`, `aria-controls`, `aria-hidden`, Escape close, focus return, focus trap and body scroll lock.
 
 ## External Sources Checked
 
