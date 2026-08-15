@@ -815,25 +815,20 @@ h4 {
 }
 
 .example-process {
-  border-bottom: 1px solid var(--line);
-  border-top: 1px solid var(--line);
   display: grid;
-  gap: 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   margin-top: 2rem;
-  max-width: 1040px;
+  max-width: none;
 }
 
 .example-process article {
   background: rgba(255, 255, 255, 0.62);
-  border-left: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: 12px;
   display: grid;
   gap: 0.55rem;
-  padding: 1.15rem;
-}
-
-.example-process article:first-child {
-  border-left: 0;
+  padding: 1.25rem;
 }
 
 .example-process span {
