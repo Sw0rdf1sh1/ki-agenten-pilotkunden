@@ -1,0 +1,27 @@
+name: ki-agenten-pilotkunden
+recipe: node
+config:
+  node: "20"
+
+proxy:
+  appserver:
+    - ki-agenten-pilotkunden.lndo.site:8080
+
+services:
+  appserver:
+    command: /bin/sh -c "npm install --no-package-lock && npm run build && npm run serve -- --host 0.0.0.0 --port 8080"
+
+tooling:
+  npm:
+    service: appserver
+  node:
+    service: appserver
+  build:
+    service: appserver
+    cmd: npm run build
+  check:
+    service: appserver
+    cmd: npm run check
+  audit-seo:
+    service: appserver
+    cmd: npm run audit:seo

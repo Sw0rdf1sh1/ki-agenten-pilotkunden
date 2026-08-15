@@ -22,6 +22,26 @@ Open `http://127.0.0.1:8080`.
 The local static preview does not execute Cloudflare Pages Functions. Use Cloudflare Pages branch previews
 or `wrangler pages dev` when the contact endpoint needs to be tested locally.
 
+## Local Editing With Lando
+
+```bash
+lando start
+```
+
+Open `https://ki-agenten-pilotkunden.lndo.site`.
+
+The Lando appserver uses Node 20, runs `npm install --no-package-lock`, builds the static pages with `npm run build`,
+and serves the repository through the local static server on port `8080`.
+
+Useful commands:
+
+```bash
+lando npm install
+lando build
+lando check
+lando audit-seo
+```
+
 ## Validation
 
 ```bash
