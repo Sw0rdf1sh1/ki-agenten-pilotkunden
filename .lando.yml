@@ -1,4 +1,4 @@
-name: ki-agenten-pilotkunden
+name: ki-packt-an
 recipe: lamp
 config:
   php: "8.3"
