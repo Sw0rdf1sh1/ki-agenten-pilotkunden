@@ -1462,6 +1462,10 @@ textarea {
     gap: 0.85rem;
   }
 
+  .example-process {
+    gap: 0.85rem;
+  }
+
   .maturity-track article,
   .maturity-track article:first-child,
   .maturity-track article:last-child {
