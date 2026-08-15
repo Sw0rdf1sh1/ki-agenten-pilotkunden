@@ -51,6 +51,8 @@ function buildLeadEmailText(data) {
     `Unternehmen: ${data.company}`,
     `Ansprechpartner: ${data.name}`,
     `E-Mail: ${data.email}`,
+    `Telefon: ${data.phone}`,
+    `Webseite: ${data.website}`,
     `Gewünschter Startzeitraum: ${data.timeline}`,
     `Beteiligte Systeme: ${data.systems}`,
     "",
@@ -66,6 +68,8 @@ function buildLeadEmailHtml(data) {
     ["Unternehmen", data.company],
     ["Ansprechpartner", data.name],
     ["E-Mail", data.email],
+    ["Telefon", data.phone],
+    ["Webseite", data.website],
     ["Gewünschter Startzeitraum", data.timeline],
     ["Beteiligte Systeme", data.systems],
   ];
@@ -99,6 +103,8 @@ function buildRequesterCopyText(data) {
     `Unternehmen: ${displayValue(data.company)}`,
     `Ansprechpartner: ${displayValue(data.name)}`,
     `E-Mail: ${displayValue(data.email)}`,
+    `Telefon: ${displayValue(data.phone)}`,
+    `Webseite: ${displayValue(data.website)}`,
     `Gewünschter Startzeitraum: ${displayValue(data.timeline)}`,
     `Beteiligte Systeme: ${displayValue(data.systems)}`,
     "",
@@ -118,6 +124,8 @@ function buildRequesterCopyHtml(data) {
     ["Unternehmen", data.company],
     ["Ansprechpartner", data.name],
     ["E-Mail", data.email],
+    ["Telefon", data.phone],
+    ["Webseite", data.website],
     ["Gewünschter Startzeitraum", data.timeline],
     ["Beteiligte Systeme", data.systems],
   ];
@@ -177,7 +185,7 @@ export async function onRequestPost({ request, env }) {
     return jsonResponse({ message: "Die Anfrage konnte nicht gelesen werden." }, 400);
   }
 
-  if (clean(payload.website)) {
+  if (clean(payload.address)) {
     return jsonResponse({ message: "Danke, die Anfrage wurde aufgenommen." });
   }
 
@@ -185,6 +193,8 @@ export async function onRequestPost({ request, env }) {
     company: clean(payload.company),
     name: clean(payload.name),
     email: clean(payload.email),
+    phone: clean(payload.phone),
+    website: clean(payload.website),
     timeline: clean(payload.timeline),
     systems: clean(payload.systems),
     message: clean(payload.message),
@@ -205,27 +215,30 @@ export async function onRequestPost({ request, env }) {
 
   const contactEmail = env.CONTACT_TO_EMAIL || DEFAULT_TO_EMAIL;
 
-  const [leadResponse, copyResponse] = await Promise.all([
-    sendEmail(env, {
-      from: env.CONTACT_FROM_EMAIL,
-      to: [contactEmail],
-      reply_to: data.email,
-      subject: `KI packt an Anfrage: ${data.company}`,
-      text: buildLeadEmailText(data),
-      html: buildLeadEmailHtml(data),
-    }),
-    sendEmail(env, {
-      from: env.CONTACT_FROM_EMAIL,
-      to: [data.email],
-      reply_to: contactEmail,
-      subject: "Kopie Ihrer Anfrage bei KI packt an",
-      text: buildRequesterCopyText(data),
-      html: buildRequesterCopyHtml(data),
-    }),
+  const leadResponse = await sendEmail(env, {
+    from: env.CONTACT_FROM_EMAIL,
+    to: [contactEmail],
+    reply_to: data.email,
+    subject: `KI packt an Anfrage: ${data.company}`,
+    text: buildLeadEmailText(data),
+    html: buildLeadEmailHtml(data),
   });
 
-  if (!leadResponse.ok || !copyResponse.ok) {
+  if (!leadResponse.ok) {
     return jsonResponse({ message: "Die Anfrage konnte gerade nicht versendet werden." }, 502);
+  }
+
+  const copyResponse = await sendEmail(env, {
+    from: env.CONTACT_FROM_EMAIL,
+    to: [data.email],
+    reply_to: contactEmail,
+    subject: "Kopie Ihrer Anfrage bei KI packt an",
+    text: buildRequesterCopyText(data),
+    html: buildRequesterCopyHtml(data),
+  });
+
+  if (!copyResponse.ok) {
+    console.warn("Requester copy could not be sent.");
   }
 
   return jsonResponse({ message: "Danke, die Anfrage wurde versendet. Sie erhalten eine Kopie per E-Mail." });

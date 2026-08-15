@@ -143,6 +143,8 @@ function buildMailtoUrl(data) {
     `Unternehmen: ${data.get("company") || ""}`,
     `Ansprechpartner: ${data.get("name") || ""}`,
     `E-Mail: ${data.get("email") || ""}`,
+    `Telefon: ${data.get("phone") || ""}`,
+    `Webseite: ${data.get("website") || ""}`,
     `Gewünschter Startzeitraum: ${data.get("timeline") || ""}`,
     `Beteiligte Systeme: ${data.get("systems") || ""}`,
     "",

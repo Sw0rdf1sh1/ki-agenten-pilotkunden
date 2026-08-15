@@ -28,6 +28,8 @@ const llmsFull = readFileSync("llms-full.txt", "utf8");
 const headers = readFileSync("_headers", "utf8");
 const redirects = readFileSync("_redirects", "utf8");
 
+await import(`data:text/javascript;charset=utf-8,${encodeURIComponent(contactFunction)}`);
+
 function assert(condition, message) {
   if (!condition) {
     throw new Error(message);
@@ -161,6 +163,8 @@ const requiredHome = [
   "Alle fachlichen Seiten im Überblick.",
   "form class=\"lead-form\"",
   "action=\"/api/contact\"",
+  "name=\"phone\"",
+  "name=\"website\"",
   "data-sitekey=\"0x4AAAAAAEDDgd1QoPAr9Cby\"",
   "fabian-georgi-450.webp 450w",
 ];
@@ -184,6 +188,7 @@ assert(script.includes("turnstile?.reset"), "Lead form must reset Turnstile afte
 assert(contactFunction.includes("https://api.resend.com/emails"), "Contact function must use the Resend email API.");
 assert(contactFunction.includes("TURNSTILE_SECRET_KEY"), "Contact function must validate Turnstile tokens server-side.");
 assert(contactFunction.includes("Kopie Ihrer Anfrage bei KI packt an"), "Contact function must send a requester copy.");
+assert(contactFunction.includes("clean(payload.address)"), "Contact function must keep the spam trap separate from the visible website field.");
 
 assert(llms.includes("# KI packt an") && llms.includes("OAI-SearchBot"), "llms.txt must describe the site and ChatGPT Search crawler distinction.");
 assert(llmsFull.includes("KI-Agenten und Prompt Injection"), "llms-full.txt must include public knowledge content.");
