@@ -137,7 +137,11 @@ for (const route of routes) {
 for (const [label, userAgent] of crawlerAgents) {
   const { response, body } = await getWithUserAgent("/", userAgent);
   assert(response.status === 200, `${label} must receive HTTP 200 on the homepage, got ${response.status}`);
-  assert(!/noindex/i.test(body), `${label} must not receive noindex on the homepage`);
+  if (mode === "production") {
+    assert(!/noindex/i.test(body), `${label} must not receive noindex on the homepage in production`);
+  } else {
+    assert(/noindex/i.test(body), `${label} must receive preview noindex on the homepage`);
+  }
 }
 
 for (const path of staticFiles) {
