@@ -776,21 +776,22 @@ h4 {
 }
 
 .directory-section {
-  background: #ffffff;
+  background: #fbfaf7;
+  padding-top: clamp(2.6rem, 4.5rem, 4.5rem);
 }
 
 .directory-grid {
   display: grid;
-  gap: 1rem;
+  gap: 0.8rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 2rem;
+  margin-top: 1.35rem;
 }
 
 .directory-grid article {
-  background: var(--surface-soft);
+  background: rgba(255, 255, 255, 0.58);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 1.15rem;
+  padding: 1rem 1.05rem;
 }
 
 .directory-grid ul {
@@ -802,10 +803,17 @@ h4 {
 }
 
 .directory-grid a {
-  color: var(--cyan);
+  color: var(--ink-soft);
   font-weight: 850;
-  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(31, 111, 165, 0.35);
+  text-decoration-thickness: 1px;
   text-underline-offset: 0.22em;
+}
+
+.directory-grid a:hover,
+.directory-grid a:focus-visible {
+  color: var(--cyan);
+  text-decoration-color: currentColor;
 }
 
 .process-section {

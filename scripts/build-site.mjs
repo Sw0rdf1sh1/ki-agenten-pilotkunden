@@ -550,8 +550,12 @@ const authorPage = {
   description:
     "Fabian Georgi ist technischer Ansprechpartner für KI packt an: Softwareentwicklung, Schnittstellen, Serverbetrieb, Prozessautomatisierung und KI-Agenten.",
   intro:
-    "Fabian Georgi baut und betreut die Lösungen hinter KI packt an: mit Fokus auf Software, Schnittstellen, Betrieb und kontrollierbare Automatisierung.",
+    "Fabian Georgi baut und betreut die Lösungen hinter KI packt an: mit Fokus auf Software, Schnittstellen, Betrieb und kontrollierbare Automatisierung. Er nutzt KI-Agenten selbst im Arbeitsalltag und kennt deshalb nicht nur die Möglichkeiten, sondern auch die Stellen, an denen klare Grenzen, Tests und Verantwortlichkeiten wichtiger sind als eine beeindruckende Demo.",
   sections: [
+    ["Warum Fabian der richtige Ansprechpartner ist", [
+      "Fabian arbeitet seit vielen Jahren an der Schnittstelle zwischen Fachprozess und produktiver Software. Genau dort entscheidet sich, ob ein KI-Assistent im Alltag hilft: nicht im Modell allein, sondern bei Datenquellen, Rechten, Freigaben, Fehlerfällen und Betrieb.",
+      "Er nutzt Agenten selbst für Recherche, Strukturierung, Codearbeit, Dokumentation und wiederkehrende Vorbereitung. Dadurch entsteht ein praktischer Blick dafür, welche Aufgaben ein Assistent gut vorbereiten kann und welche Entscheidungen bewusst beim Menschen bleiben sollten."
+    ]],
     ["Wofür Fabian direkt verantwortlich ist", [
       "Fabian prüft den Prozess, plant die technische Umsetzung, setzt Anbindungen auf und betreut den produktiven Betrieb.",
       "Das ist bewusst keine anonyme Plattformleistung: Wenn ein Agent E-Mail, CRM, Dokumente oder interne APIs nutzen soll, braucht es jemanden, der Rechte, Fehlerfälle und Betrieb zusammen denkt."
@@ -609,7 +613,6 @@ function header(activePath) {
             <a${activePath === "/ki-assistent-betrieb-betreuung/" ? ' aria-current="page"' : ""} href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
           </div>
         </div>
-        <a${activePath === "/wissen/" ? ' aria-current="page"' : ""} href="/wissen/">Praxiswissen</a>
         <a href="/#ablauf">Ablauf</a>
         <a href="/#preise">Preise</a>
         <a${activePath === "/fabian-georgi/" ? ' aria-current="page"' : ""} href="/fabian-georgi/">Über mich</a>
@@ -633,7 +636,8 @@ function header(activePath) {
             <a${activePath === "/ki-assistent-crm-erp/" ? ' aria-current="page"' : ""} href="/ki-assistent-crm-erp/">CRM & ERP</a>
             <a${activePath === "/ki-assistent-betrieb-betreuung/" ? ' aria-current="page"' : ""} href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
           </div>
-          <a${activePath === "/wissen/" ? ' aria-current="page"' : ""} href="/wissen/">Praxiswissen</a>
+          <a href="/#ablauf">Ablauf</a>
+          <a href="/#preise">Preise</a>
           <a${activePath === "/fabian-georgi/" ? ' aria-current="page"' : ""} href="/fabian-georgi/">Über mich</a>
         </nav>
         <div class="mobile-drawer-action">
@@ -1245,13 +1249,13 @@ function updateHomepageHead() {
   );
   const homepageDirectory = `<section class="section directory-section" aria-labelledby="seiten-title">
         <div class="section-heading">
-          <p class="eyebrow">Themen und Unterseiten</p>
-          <h2 id="seiten-title">Alle fachlichen Seiten im Überblick.</h2>
-          <p>Direkte Einstiege in konkrete Anwendungsfälle, technische Vertiefungen und Praxisartikel.</p>
+          <p class="eyebrow">Vertiefung</p>
+          <h2 id="seiten-title">Wenn Sie einzelne Fragen vorher genauer prüfen möchten.</h2>
+          <p>Die Startseite führt bewusst zum Prozess-Check. Diese Einstiege bleiben für Leser, die vorab Kosten, Sicherheit, Einsatzfelder oder technische Grenzen vertiefen möchten.</p>
         </div>
         <div class="directory-grid">
           <article>
-            <h3>Leistungen</h3>
+            <h3>Einsatzfelder</h3>
             <ul>
               <li><a href="/email-assistent/">KI-E-Mail-Assistent</a></li>
               <li><a href="/openclaw-fuer-unternehmen/">OpenClaw für Unternehmen</a></li>
@@ -1260,26 +1264,31 @@ function updateHomepageHead() {
             </ul>
           </article>
           <article>
-            <h3>Praxiswissen</h3>
+            <h3>Kosten und Sicherheit</h3>
             <ul>
-              <li><a href="/wissen/was-ist-ein-ki-agent/">Was ist ein KI-Agent?</a></li>
-              <li><a href="/wissen/ki-agenten-im-mittelstand/">KI-Agenten im Mittelstand</a></li>
-              <li><a href="/wissen/ki-email-assistent-sicher-einsetzen/">KI-E-Mail-Assistent sicher einsetzen</a></li>
               <li><a href="/wissen/ki-agent-kosten/">Was kostet ein KI-Agent?</a></li>
               <li><a href="/wissen/ki-agent-sicherheit-prompt-injection/">KI-Agenten und Prompt Injection</a></li>
+              <li><a href="/wissen/ki-email-assistent-sicher-einsetzen/">KI-E-Mail-Assistent sicher einsetzen</a></li>
+              <li><a href="/wissen/ki-agenten-im-mittelstand/">KI-Agenten im Mittelstand</a></li>
             </ul>
           </article>
           <article>
-            <h3>Anbieter</h3>
+            <h3>Hintergrund</h3>
             <ul>
-              <li><a href="/wissen/">Praxiswissen</a></li>
+              <li><a href="/wissen/was-ist-ein-ki-agent/">Was ist ein KI-Agent?</a></li>
+              <li><a href="/wissen/">Alle Wissensartikel</a></li>
               <li><a href="/fabian-georgi/">Fabian Georgi</a></li>
               <li><a href="/#anfrage">Prozess prüfen lassen</a></li>
             </ul>
           </article>
         </div>
       </section>`;
-  if (!html.includes('class="section directory-section"')) {
+  if (html.includes('class="section directory-section"')) {
+    html = html.replace(
+      /<section class="section directory-section" aria-labelledby="seiten-title">[\s\S]*?<\/section>/,
+      homepageDirectory,
+    );
+  } else {
     html = html.replace(
       /(\s+<\/main>)/,
       `\n      ${homepageDirectory}$1`,

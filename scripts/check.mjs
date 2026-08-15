@@ -160,7 +160,7 @@ const home = readFileSync("index.html", "utf8");
 const requiredHome = [
   "KI-Assistenten, die E-Mails, Dokumente und wiederkehrende Arbeit übernehmen.",
   "Ein KI-Assistent für Unternehmen erhält einen klaren Arbeitsauftrag",
-  "Alle fachlichen Seiten im Überblick.",
+  "Wenn Sie einzelne Fragen vorher genauer prüfen möchten.",
   "form class=\"lead-form\"",
   "action=\"/api/contact\"",
   "name=\"phone\"",
