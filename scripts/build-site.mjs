@@ -1281,7 +1281,7 @@ function updateHomepageHead() {
       </section>`;
   if (!html.includes('class="section directory-section"')) {
     html = html.replace(
-      /(\s+<section class="confidence-strip" aria-label="Vertrauenssignale">)/,
+      /(\s+<\/main>)/,
       `\n      ${homepageDirectory}$1`,
     );
   }

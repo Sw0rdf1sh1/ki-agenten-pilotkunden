@@ -708,27 +708,20 @@ h4 {
 
 .service-grid {
   display: grid;
-  gap: 0;
+  gap: 1rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 2rem;
 }
 
 .service-grid article {
-  border-left: 1px solid var(--line);
-  padding: 0 1.25rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
 }
 
 .service-grid article:nth-child(2) {
   background: var(--surface-soft);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  margin: -0.8rem 0;
-  padding: 1rem 1.25rem;
-}
-
-.service-grid article:first-child {
-  border-left: 0;
-  padding-left: 0;
 }
 
 .service-grid p,
@@ -822,25 +815,20 @@ h4 {
 }
 
 .example-process {
-  border-bottom: 1px solid var(--line);
-  border-top: 1px solid var(--line);
   display: grid;
-  gap: 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   margin-top: 2rem;
-  max-width: 1040px;
+  max-width: none;
 }
 
 .example-process article {
   background: rgba(255, 255, 255, 0.62);
-  border-left: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: 12px;
   display: grid;
   gap: 0.55rem;
-  padding: 1.15rem;
-}
-
-.example-process article:first-child {
-  border-left: 0;
+  padding: 1.25rem;
 }
 
 .example-process span {
@@ -1013,6 +1001,7 @@ h4 {
 
 .safety-box ul,
 .price-card ul,
+.expansion-panel ul,
 .competence-list {
   display: grid;
   gap: 0.65rem;
@@ -1024,6 +1013,7 @@ h4 {
 .safety-box li,
 .safety-box p,
 .price-card li,
+.expansion-panel li,
 .competence-list li {
   padding-left: 1.35rem;
   position: relative;
@@ -1032,6 +1022,7 @@ h4 {
 .safety-box li::before,
 .safety-box p::before,
 .price-card li::before,
+.expansion-panel li::before,
 .competence-list li::before {
   background: var(--mint);
   border-radius: 999px;
@@ -1162,6 +1153,16 @@ h4 {
   max-width: 780px;
 }
 
+.provider-intro {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 780px;
+}
+
+.provider-intro p {
+  margin: 0;
+}
+
 .portrait-frame {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -1211,13 +1212,26 @@ h4 {
 }
 
 .provider-action {
-  margin: 1.15rem 0 0;
+  margin: 1.35rem 0 1.9rem;
 }
 
 .codiki-note {
   border-top: 1px solid var(--line);
   font-size: 0.96rem;
-  padding-top: 1rem;
+  margin-top: 0;
+  padding-top: 1.25rem;
+}
+
+.codiki-note a {
+  border-bottom: 1px solid rgba(95, 104, 120, 0.28);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.codiki-note a:hover,
+.codiki-note a:focus-visible {
+  border-bottom-color: currentColor;
+  color: var(--ink-soft);
 }
 
 .contact-section {
@@ -1430,6 +1444,14 @@ textarea {
   .example-process,
   .maturity-track {
     grid-template-columns: 1fr;
+  }
+
+  .maturity-track {
+    gap: 0.85rem;
+  }
+
+  .example-process {
+    gap: 0.85rem;
   }
 
   .maturity-track article,
