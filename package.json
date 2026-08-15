@@ -7,7 +7,6 @@
   "scripts": {
     "build": "node scripts/build-site.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
-    "check": "node scripts/check.mjs",
-    "serve": "node scripts/serve-local.mjs"
+    "check": "node scripts/check.mjs"
   }
 }

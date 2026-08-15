@@ -30,8 +30,8 @@ lando start
 
 Open `https://ki-agenten-pilotkunden.lndo.site`.
 
-The Lando appserver uses Node 20, runs `npm install --no-package-lock`, builds the static pages with `npm run build`,
-and serves the repository through the local static server on port `8080`.
+Lando serves the static site directly through the LAMP appserver. A separate Node 20 service is available
+for build and validation commands.
 
 Useful commands:
 

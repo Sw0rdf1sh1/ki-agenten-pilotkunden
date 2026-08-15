@@ -1,27 +1,24 @@
 name: ki-agenten-pilotkunden
-recipe: node
+recipe: lamp
 config:
-  node: "20"
-
-proxy:
-  appserver:
-    - ki-agenten-pilotkunden.lndo.site:8080
+  php: "8.3"
+  webroot: .
 
 services:
-  appserver:
-    command: /bin/sh -c "npm install --no-package-lock && npm run build && npm run serve -- --host 0.0.0.0 --port 8080"
+  node:
+    type: node:20
 
 tooling:
   npm:
-    service: appserver
+    service: node
   node:
-    service: appserver
+    service: node
   build:
-    service: appserver
-    cmd: npm run build
+    service: node
+    cmd: npm install --no-package-lock && npm run build
   check:
-    service: appserver
+    service: node
     cmd: npm run check
   audit-seo:
-    service: appserver
+    service: node
     cmd: npm run audit:seo
