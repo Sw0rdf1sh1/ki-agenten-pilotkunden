@@ -185,10 +185,6 @@ export async function onRequestPost({ request, env }) {
     return jsonResponse({ message: "Die Anfrage konnte nicht gelesen werden." }, 400);
   }
 
-  if (clean(payload.address)) {
-    return jsonResponse({ message: "Danke, die Anfrage wurde aufgenommen." });
-  }
-
   const data = {
     company: clean(payload.company),
     name: clean(payload.name),
