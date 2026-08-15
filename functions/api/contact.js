@@ -239,6 +239,9 @@ export async function onRequestPost({ request, env }) {
 
   if (!copyResponse.ok) {
     console.warn("Requester copy could not be sent.");
+    return jsonResponse({
+      message: "Danke, die Anfrage wurde versendet. Die Kopie per E-Mail konnte gerade nicht zugestellt werden.",
+    });
   }
 
   return jsonResponse({ message: "Danke, die Anfrage wurde versendet. Sie erhalten eine Kopie per E-Mail." });
