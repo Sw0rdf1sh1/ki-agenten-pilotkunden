@@ -204,10 +204,7 @@ export async function onRequestPost({ request, env }) {
     return jsonResponse({ message: "Bitte füllen Sie alle Pflichtfelder vollständig aus." }, 422);
   }
 
-  const temporaryTestBypass =
-    data.email === DEFAULT_TO_EMAIL &&
-    request.headers.get("x-openclaw-test-bypass") === "72dfa4f45969d50f462a6f256e019f14e9d9c645682b06bf";
-  const turnstileOk = temporaryTestBypass || (await verifyTurnstile(clean(payload["cf-turnstile-response"]), request, env));
+  const turnstileOk = await verifyTurnstile(clean(payload["cf-turnstile-response"]), request, env);
   if (!turnstileOk) {
     return jsonResponse({ message: "Die Sicherheitsprüfung ist fehlgeschlagen." }, 403);
   }
