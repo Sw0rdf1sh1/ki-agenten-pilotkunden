@@ -708,27 +708,20 @@ h4 {
 
 .service-grid {
   display: grid;
-  gap: 0;
+  gap: 1rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 2rem;
 }
 
 .service-grid article {
-  border-left: 1px solid var(--line);
-  padding: 0 1.25rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
 }
 
 .service-grid article:nth-child(2) {
   background: var(--surface-soft);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  margin: -0.8rem 0;
-  padding: 1rem 1.25rem;
-}
-
-.service-grid article:first-child {
-  border-left: 0;
-  padding-left: 0;
 }
 
 .service-grid p,
