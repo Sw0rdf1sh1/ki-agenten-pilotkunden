@@ -1165,6 +1165,16 @@ h4 {
   max-width: 780px;
 }
 
+.provider-intro {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 780px;
+}
+
+.provider-intro p {
+  margin: 0;
+}
+
 .portrait-frame {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -1214,13 +1224,26 @@ h4 {
 }
 
 .provider-action {
-  margin: 1.15rem 0 0;
+  margin: 1.35rem 0 1.9rem;
 }
 
 .codiki-note {
   border-top: 1px solid var(--line);
   font-size: 0.96rem;
-  padding-top: 1rem;
+  margin-top: 0;
+  padding-top: 1.25rem;
+}
+
+.codiki-note a {
+  border-bottom: 1px solid rgba(95, 104, 120, 0.28);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.codiki-note a:hover,
+.codiki-note a:focus-visible {
+  border-bottom-color: currentColor;
+  color: var(--ink-soft);
 }
 
 .contact-section {
