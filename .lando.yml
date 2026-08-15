@@ -1,0 +1,24 @@
+name: ki-packt-an
+recipe: lamp
+config:
+  php: "8.3"
+  webroot: .
+
+services:
+  node:
+    type: node:20
+
+tooling:
+  npm:
+    service: node
+  node:
+    service: node
+  build:
+    service: node
+    cmd: npm install --no-package-lock && npm run build
+  check:
+    service: node
+    cmd: npm run check
+  audit-seo:
+    service: node
+    cmd: npm run audit:seo
