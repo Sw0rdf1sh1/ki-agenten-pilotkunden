@@ -11,6 +11,7 @@ const siteFiles = [
   "wissen/index.html",
   "wissen/was-ist-ein-ki-agent/index.html",
   "wissen/ki-agenten-im-mittelstand/index.html",
+  "wissen/produktive-ki-agenten-openclaw-mittelstand/index.html",
   "wissen/ki-email-assistent-sicher-einsetzen/index.html",
   "wissen/ki-agent-kosten/index.html",
   "wissen/ki-agent-sicherheit-prompt-injection/index.html",
@@ -87,6 +88,7 @@ function parseJsonLd(html) {
 
 assert(cname === "ki-packt-an.de", "CNAME must point to ki-packt-an.de.");
 assert(robots.includes("User-agent: OAI-SearchBot\nAllow: /"), "robots.txt must explicitly allow OAI-SearchBot.");
+assert(robots.includes("User-agent: ChatGPT-User\nAllow: /"), "robots.txt must explicitly allow user-triggered ChatGPT fetches.");
 assert(robots.includes("User-agent: GPTBot\nDisallow: /"), "robots.txt must keep GPTBot separate from ChatGPT Search.");
 assert(robots.includes(`Sitemap: ${origin}/sitemap.xml`), "robots.txt must reference the canonical sitemap.");
 assert(headers.includes("https://*.pages.dev/*") && headers.includes("X-Robots-Tag: noindex, nofollow"), "_headers must protect Cloudflare Pages previews.");
@@ -142,7 +144,7 @@ for (const file of siteFiles) {
     assert(types.has("Article"), `${file} JSON-LD must include Article.`);
     assert(types.has("BreadcrumbList"), `${file} JSON-LD must include BreadcrumbList.`);
     assert(html.includes('"datePublished":"2026-08-11"'), `${file} Article datePublished must match visible date.`);
-    assert(html.includes('"dateModified":"2026-08-11"'), `${file} Article dateModified must match visible review date.`);
+    assert(html.includes('"dateModified":"2026-08-15"'), `${file} Article dateModified must match visible review date.`);
   }
 
   if (!file.startsWith("wissen/") && file !== "index.html" && file !== "fabian-georgi/index.html") {
@@ -198,7 +200,9 @@ assert(
 );
 
 assert(llms.includes("# KI packt an") && llms.includes("OAI-SearchBot"), "llms.txt must describe the site and ChatGPT Search crawler distinction.");
+assert(llms.includes("ChatGPT-User"), "llms.txt must mention user-triggered ChatGPT fetches.");
 assert(llmsFull.includes("KI-Agenten und Prompt Injection"), "llms-full.txt must include public knowledge content.");
+assert(llmsFull.includes("Produktive KI-Agenten mit OpenClaw im Mittelstand"), "llms-full.txt must include the OpenClaw cornerstone content.");
 assert(llmsFull.includes("Kostenblöcke eines KI-Agenten"), "llms-full.txt must include generated rich content.");
 assert(!llmsFull.includes("SECRET") && !llmsFull.includes("RESEND_API_KEY"), "llms-full.txt must not include internal secrets.");
 assert(existsSync("404.html"), "404.html must exist.");

@@ -8,6 +8,7 @@ const routes = [
   "/wissen/",
   "/wissen/was-ist-ein-ki-agent/",
   "/wissen/ki-agenten-im-mittelstand/",
+  "/wissen/produktive-ki-agenten-openclaw-mittelstand/",
   "/wissen/ki-email-assistent-sicher-einsetzen/",
   "/wissen/ki-agent-kosten/",
   "/wissen/ki-agent-sicherheit-prompt-injection/",
@@ -15,6 +16,11 @@ const routes = [
 ];
 
 const staticFiles = ["/robots.txt", "/sitemap.xml", "/llms.txt", "/llms-full.txt"];
+const crawlerAgents = [
+  ["Googlebot", "Googlebot/2.1 (+http://www.google.com/bot.html)"],
+  ["OAI-SearchBot", "OAI-SearchBot/1.0; +https://openai.com/searchbot"],
+  ["ChatGPT-User", "ChatGPT-User/1.0; +https://openai.com/bot"],
+];
 const redirects = new Map([
   ["/ki-assistenten-unternehmen/", "/"],
 ]);
@@ -40,6 +46,30 @@ function extractJsonLd(html) {
   return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
 }
 
+function jsonLdTypes(value, types = new Set()) {
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      jsonLdTypes(item, types);
+    }
+    return types;
+  }
+
+  if (!value || typeof value !== "object") {
+    return types;
+  }
+
+  if (value["@type"]) {
+    if (Array.isArray(value["@type"])) {
+      value["@type"].forEach((type) => types.add(type));
+    } else {
+      types.add(value["@type"]);
+    }
+  }
+
+  Object.values(value).forEach((nested) => jsonLdTypes(nested, types));
+  return types;
+}
+
 function textOnly(html) {
   return html
     .replace(/<script[\s\S]*?<\/script>/g, "")
@@ -50,10 +80,14 @@ function textOnly(html) {
 }
 
 async function get(path) {
+  return getWithUserAgent(path, "ki-packt-an-seo-audit/1.0");
+}
+
+async function getWithUserAgent(path, userAgent) {
   const response = await fetch(`${baseUrl}${path}`, {
     redirect: "manual",
     headers: {
-      "user-agent": "ki-packt-an-seo-audit/1.0",
+      "user-agent": userAgent,
     },
   });
   const body = await response.text();
@@ -88,6 +122,22 @@ for (const route of routes) {
 
   const jsonLdBlocks = extractJsonLd(body);
   assert(jsonLdBlocks.length >= 1, `${route} must contain JSON-LD`);
+  const types = jsonLdTypes(jsonLdBlocks);
+  assert(types.has("WebSite"), `${route} JSON-LD must include WebSite`);
+  assert(types.has("ProfessionalService"), `${route} JSON-LD must include ProfessionalService`);
+  assert(types.has("Person"), `${route} JSON-LD must include Person`);
+  assert(types.has("WebPage") || types.has("CollectionPage") || types.has("ProfilePage"), `${route} JSON-LD must include a page node`);
+
+  if (route.startsWith("/wissen/") && route !== "/wissen/") {
+    assert(types.has("Article"), `${route} JSON-LD must include Article`);
+    assert(body.includes('"dateModified":"2026-08-15"'), `${route} Article must expose the current review date`);
+  }
+}
+
+for (const [label, userAgent] of crawlerAgents) {
+  const { response, body } = await getWithUserAgent("/", userAgent);
+  assert(response.status === 200, `${label} must receive HTTP 200 on the homepage, got ${response.status}`);
+  assert(!/noindex/i.test(body), `${label} must not receive noindex on the homepage`);
 }
 
 for (const path of staticFiles) {
@@ -116,6 +166,7 @@ for (const path of staticFiles) {
 
   if (path === "/robots.txt") {
     assert(body.includes("User-agent: OAI-SearchBot"), "robots.txt must mention OAI-SearchBot");
+    assert(body.includes("User-agent: ChatGPT-User"), "robots.txt must mention ChatGPT-User");
     assert(body.includes("User-agent: GPTBot"), "robots.txt must explicitly handle GPTBot");
     assert(body.includes(`Sitemap: ${productionOrigin}/sitemap.xml`), "robots.txt must reference the production sitemap");
   }

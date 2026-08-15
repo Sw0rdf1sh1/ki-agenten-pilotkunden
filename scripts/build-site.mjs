@@ -8,11 +8,24 @@ const site = {
   author: "Fabian Georgi",
   authorTitle: "Senior Software Developer · Software-, Integrations- und Prozessentwicklung",
   datePublished: "2026-08-11",
-  dateModified: "2026-08-11",
+  dateModified: "2026-08-15",
   description:
     "KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.",
   socialImage: "/assets/social/ki-packt-an-social.png",
 };
+
+const knowledgeTopics = [
+  "produktive KI-Agenten",
+  "OpenClaw im Mittelstand",
+  "KI-Assistenten für Unternehmen",
+  "E-Mail-Assistenten",
+  "CRM- und ERP-Integration",
+  "Prompt Injection",
+  "Human-in-the-loop",
+  "Betrieb von KI-Systemen",
+  "LLM-Kostenkontrolle",
+  "technische Prozessautomatisierung",
+];
 
 const nav = [
   ["Leistungen", "/email-assistent/"],
@@ -97,7 +110,7 @@ const services = [
     title: "OpenClaw produktiv im Unternehmen betreiben.",
     metaTitle: "OpenClaw im Unternehmen einrichten und betreiben | KI packt an",
     description:
-      "OpenClaw für Unternehmen: Einrichtung, Hosting, Betrieb und Integration von Agenten mit Rollen, Monitoring und klaren Sicherheitsgrenzen.",
+      "OpenClaw für Unternehmen: Einrichtung, Betrieb und Integration von Agenten mit Rollen, Monitoring und klaren Sicherheitsgrenzen.",
     intro:
       "OpenClaw ist eine technische Umgebung, mit der KI-Agenten, Werkzeuge, Berechtigungen und wiederkehrende Arbeitsabläufe im Unternehmenskontext organisiert werden können.",
     serviceType: "OpenClaw Einrichtung und Betrieb",
@@ -113,6 +126,10 @@ const services = [
       ["Welche Architektur ist typisch?", [
         "In einer produktiven Installation laufen Agent, Werkzeuge und Betriebsrahmen getrennt von den angebundenen Unternehmenssystemen. Docker oder ein vergleichbarer Service-Betrieb hilft, Updates, Rollbacks und Logs nachvollziehbar zu halten.",
         "Secrets wie API-Schlüssel, OAuth-Tokens und Datenbankzugänge gehören nicht in Prompts oder Konfigurationsdateien im Repository, sondern in eine kontrollierte Secret-Verwaltung der Laufzeitumgebung."
+      ]],
+      ["Was passiert, wenn Kundensysteme nur intern erreichbar sind?", [
+        "Wenn CRM, ERP, Datenbank, Fileserver oder Shop-Backend nur im Kundennetz verfügbar sind, braucht der Agent einen kontrollierten Zugang statt pauschalen Vollzugriff.",
+        "Realistische Varianten sind eine OpenClaw-Laufzeitumgebung beim Kunden, ein begrenzter VPN- oder Tunnelzugang zu einzelnen Diensten, ein kleiner interner Connector mit auditierbarer Schnittstelle oder ein regelmäßiger Daten-Sync. Für den Einstieg reicht manchmal auch ein vorbereitender Assistent ohne direkten Systemzugriff."
       ]],
       ["Was ich konkret übernehme", [
         "Ich übernehme Installation, Konfiguration, Rollen- und Agentenstruktur, Systemanbindungen, Deployment, Monitoring und laufende Wartung.",
@@ -227,7 +244,7 @@ const services = [
     title: "KI-Assistenten nach dem Go-live betreiben.",
     metaTitle: "KI-Assistent betreiben und betreuen | KI packt an",
     description:
-      "Managed Betrieb für KI-Assistenten: Hosting, Monitoring, Updates, Kostenkontrolle, Backups, Secrets, Modellwechsel und Fehlerbehandlung.",
+      "Managed Betrieb für KI-Assistenten: Monitoring, Updates, Kostenkontrolle, Backups, Secrets, Modellwechsel und Fehlerbehandlung.",
     intro:
       "Ein produktiver KI-Assistent braucht laufenden Betrieb: Monitoring, Updates, Kostenkontrolle, sichere Zugänge, Fehlerbehandlung und Tests bei Änderungen.",
     serviceType: "Managed KI-Assistent",
@@ -379,6 +396,86 @@ const articles = [
     links: [["/#leistungen", "Angebot von KI packt an einordnen"], ["/wissen/ki-agent-kosten/", "Kosten realistisch einordnen"]],
   },
   {
+    slug: "wissen/produktive-ki-agenten-openclaw-mittelstand",
+    title: "Produktive KI-Agenten mit OpenClaw im Mittelstand: Betrieb, Sicherheit und Grenzen",
+    metaTitle: "Produktive KI-Agenten mit OpenClaw im Mittelstand | KI packt an",
+    description:
+      "Wie produktive KI-Agenten im Mittelstand mit OpenClaw geplant, betrieben und sicher begrenzt werden: Architektur, interne Systeme, Freigaben, Monitoring und Kosten.",
+    intro:
+      "Ein produktiver KI-Agent ist kein einzelner Prompt und keine Demo. Er ist ein begrenzter Unternehmensdienst mit klarer Rolle, erlaubten Werkzeugen, getesteten Fällen, kontrolliertem Betrieb und menschlichen Freigaben an den richtigen Stellen.",
+    sections: [
+      ["Kurzdefinition: Wann ist ein KI-Agent produktiv?", [
+        "Ein KI-Agent ist produktiv, wenn er in einem echten Unternehmensprozess regelmäßig nutzbare Arbeit vorbereitet oder ausführt und dabei überwacht, dokumentiert und begrenzt betrieben wird.",
+        "Dazu gehören eine definierte Aufgabe, erreichbare Datenquellen, klare Tool-Rechte, Testfälle, Fehlerwege, Freigaben, Kostenkontrolle und ein Verantwortlicher für Betrieb und fachliche Bewertung."
+      ]],
+      ["Welche Rolle spielt OpenClaw?", [
+        "OpenClaw kann die technische Umgebung sein, in der Agenten, Werkzeuge, Berechtigungen, wiederkehrende Aufgaben und Betriebsregeln organisiert werden.",
+        "Der eigentliche Nutzen entsteht aber nicht durch OpenClaw allein, sondern durch die sauber begrenzte Rolle: zum Beispiel E-Mail-Anfragen vorsortieren, CRM-Kontext lesen, Wissen prüfen und eine Antwort oder Übergabe vorbereiten."
+      ]],
+      ["Was unterscheidet produktiven Betrieb von einem Prototyp?", [
+        "Ein Prototyp beweist, dass ein Modell eine Aufgabe grundsätzlich lösen kann. Produktiver Betrieb muss zusätzlich erreichbar, wartbar, protokolliert, kostenkontrolliert und rücksetzbar sein.",
+        "Im Mittelstand sind gerade diese Punkte entscheidend: Wer darf den Agenten ändern? Welche Daten darf er sehen? Welche Aktion braucht Freigabe? Was passiert bei API-Fehlern, Modellwechseln, falschen Stammdaten oder Sicherheitsmeldungen?"
+      ]],
+      ["Wie werden interne Kundensysteme angebunden?", [
+        "Wenn Systeme nur intern verfügbar sind, ist ein Cloud-Agent allein nicht ausreichend. Dann braucht es ein Betriebsmodell: OpenClaw in der Kundenumgebung, ein klar begrenzter VPN-/Tunnelzugang, ein interner Connector oder ein Daten-Sync.",
+        "Die beste Lösung hängt vom Risiko ab. Für reine Wissensabfragen kann ein Sync reichen. Für schreibende Vorgänge braucht es meist Service Accounts, Audit Logs, Freigaben und eine technische Rückfallstrategie."
+      ]],
+      ["Welche Sicherheitsgrenzen sind Pflicht?", [
+        "Pflicht sind Least Privilege, getrennte Service Accounts, keine Secrets im Prompt, Tool-Allowlisting, Argumentprüfung, Protokollierung, Kostenlimits, Regressionstests und menschliche Freigaben für kritische Aktionen.",
+        "E-Mails, Dokumente und Tickets bleiben untrusted input. Ein Agent darf solche Inhalte auswerten, aber nicht als neue Systemanweisung behandeln."
+      ]],
+      ["Welche Prozesse eignen sich zuerst?", [
+        "Gute Startpunkte sind info@- oder Support-Postfächer, wiederkehrende Angebotsanfragen, CRM-Vorbereitung, Dokumentenrecherche, Ticket-Triage und interne Statusabfragen.",
+        "Der erste produktive Agent sollte einen klaren Eingang, ein prüfbares Ergebnis und begrenzte Rechte haben. Ein kleiner stabiler Vorgang ist wertvoller als ein großer unkontrollierter Automatisierungsversuch."
+      ]],
+      ["Welche Kosten entstehen wirklich?", [
+        "Kosten entstehen durch Prozessklärung, Einrichtung, Systemanbindung, Betrieb, Monitoring, Modell-/API-Nutzung, Tests und spätere Erweiterungen.",
+        "OpenClaw oder ein anderes Agenten-Framework ersetzt diese Arbeit nicht. Es macht sie strukturierbarer, wenn Rollen, Tools, Rechte und Betrieb bewusst geplant werden."
+      ]],
+    ],
+    extraHtml: `<section class="content-section">
+        <h2>Entscheidungsmatrix für den ersten produktiven Agenten</h2>
+        <div class="comparison-table" role="region" aria-label="Entscheidungsmatrix für produktive KI-Agenten">
+          <table>
+            <thead>
+              <tr>
+                <th>Kriterium</th>
+                <th>Guter Start</th>
+                <th>Erst später automatisieren</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th>Datenzugriff</th><td>eine klar freigegebene Quelle</td><td>mehrere Systeme mit unklaren Rechten</td></tr>
+              <tr><th>Ergebnis</th><td>Entwurf, Zusammenfassung, Übergabe</td><td>verbindliche Entscheidung ohne Freigabe</td></tr>
+              <tr><th>Fehlerwirkung</th><td>Fehler kann geprüft und korrigiert werden</td><td>Fehler löst sofort rechtliche oder finanzielle Folgen aus</td></tr>
+              <tr><th>Betrieb</th><td>Logs, Tests, Kostenlimit, Verantwortlicher</td><td>keine Zuständigkeit nach dem Go-live</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="content-section">
+        <h2>Referenzarchitektur in Worten</h2>
+        <figure class="diagram" aria-labelledby="productive-agent-architecture-title">
+          <figcaption id="productive-agent-architecture-title">Ein produktiver Agent trennt Eingangsdaten, Agentenrolle, Werkzeuge, Rechte, Freigaben und Betrieb.</figcaption>
+          <div class="flow-diagram">
+            <span>Eingang</span>
+            <span>Agentenrolle</span>
+            <span>Tool Policy</span>
+            <span>Service Account</span>
+            <span>Fachsystem</span>
+            <span>Freigabe</span>
+            <span>Audit Log</span>
+          </div>
+        </figure>
+      </section>`,
+    links: [
+      ["/openclaw-fuer-unternehmen/", "OpenClaw produktiv betreiben"],
+      ["/ki-assistent-betrieb-betreuung/", "Betrieb und Betreuung planen"],
+      ["/wissen/ki-agent-sicherheit-prompt-injection/", "Sicherheitsgrenzen verstehen"],
+      ["/wissen/ki-agent-kosten/", "Kosten realistisch einordnen"],
+    ],
+  },
+  {
     slug: "wissen/ki-email-assistent-sicher-einsetzen",
     title: "KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe",
     metaTitle: "KI-E-Mail-Assistent sicher einsetzen | KI packt an",
@@ -430,12 +527,12 @@ const articles = [
     title: "Was kostet ein KI-Agent für Unternehmen?",
     metaTitle: "Was kostet ein KI-Agent für Unternehmen? | KI packt an",
     description:
-      "Kosten eines KI-Agenten: Prozess-Check, Einrichtung, Integration, Hosting, Modellnutzung, Monitoring, Pflege und Ausbau transparent erklärt.",
+      "Kosten eines KI-Agenten: Prozess-Check, Einrichtung, Integration, Betrieb, Modellnutzung, Monitoring, Pflege und Ausbau transparent erklärt.",
     intro:
       "Die Kosten eines KI-Agenten entstehen nicht nur durch das Modell, sondern durch Prozessklärung, Integration, Betrieb, Tests und laufende Betreuung.",
     sections: [
       ["Welche Kostenbestandteile gibt es?", [
-        "Typische Bestandteile sind Prozess-Check, Einrichtung, Systemanbindung, Hosting, Modell- und API-Nutzung, Monitoring, Pflege und Erweiterungen.",
+        "Typische Bestandteile sind Prozess-Check, Einrichtung, Systemanbindung, Laufzeitumgebung, Modell- und API-Nutzung, Monitoring, Pflege und Erweiterungen.",
         "Bei KI packt an startet die Klärung mit dem Prozess-Check; der Pilotumfang wird anschließend konkret begrenzt."
       ]],
       ["Welche konkreten Preise bietet KI packt an an?", [
@@ -461,7 +558,7 @@ const articles = [
           <article><h3>1. Prozessanalyse</h3><p>Prozess-Check, Nutzenprüfung, Risiken, Freigaben und Startumfang.</p></article>
           <article><h3>2. Einrichtung</h3><p>Rolle, Anweisungen, Testfälle, Wissensquellen und Eskalationen.</p></article>
           <article><h3>3. Integration</h3><p>Postfach, CRM, ERP, Dokumente, APIs, Service Accounts und Rechte.</p></article>
-          <article><h3>4. Hosting</h3><p>Laufzeitumgebung, Secrets, Deployments, Backups und Wiederanlauf.</p></article>
+          <article><h3>4. Betrieb</h3><p>Laufzeitumgebung, Secrets, Deployments, Backups und Wiederanlauf.</p></article>
           <article><h3>5. Modell-/API-Nutzung</h3><p>Token, Anbieterpreise, Limits und nutzungsabhängige Zusatzkosten.</p></article>
           <article><h3>6. Monitoring</h3><p>Logs, Fehlerraten, Kostenkontrolle und technische Alarme.</p></article>
           <article><h3>7. Wartung</h3><p>Updates, kleinere Korrekturen, Sicherheitsprüfungen und Rechtepflege.</p></article>
@@ -689,6 +786,7 @@ function breadcrumbs(items) {
 
 function jsonLd(page, type, path, extra = {}) {
   const url = absolute(path);
+  const topicList = page.topics || knowledgeTopics;
   const graph = [
     {
       "@type": "WebSite",
@@ -714,6 +812,7 @@ function jsonLd(page, type, path, extra = {}) {
       areaServed: "DE",
       founder: { "@id": `${site.origin}/fabian-georgi/#person` },
       email: site.email,
+      knowsAbout: knowledgeTopics,
     },
     {
       "@type": "Person",
@@ -724,6 +823,7 @@ function jsonLd(page, type, path, extra = {}) {
       jobTitle: site.authorTitle,
       worksFor: { "@id": `${site.origin}/#organization` },
       sameAs: ["https://georgi.digital/"],
+      knowsAbout: knowledgeTopics,
     },
     {
       "@type": type,
@@ -736,6 +836,8 @@ function jsonLd(page, type, path, extra = {}) {
       inLanguage: "de-DE",
       image: absolute(site.socialImage),
       primaryImageOfPage: { "@type": "ImageObject", url: absolute(site.socialImage), width: 1200, height: 630 },
+      about: topicList.map((name) => ({ "@type": "Thing", name })),
+      keywords: topicList.join(", "),
       ...extra,
     },
   ];
@@ -875,6 +977,8 @@ function renderArticle(page) {
     publisher: { "@id": `${site.origin}/#organization` },
     datePublished: site.datePublished,
     dateModified: site.dateModified,
+    about: (page.topics || knowledgeTopics).map((name) => ({ "@type": "Thing", name })),
+    keywords: (page.topics || knowledgeTopics).join(", "),
     mainEntityOfPage: { "@id": `${absolute(path)}#webpage` },
   };
   return `<!DOCTYPE html>
@@ -933,6 +1037,12 @@ function renderKnowledgeIndex() {
       benefit: "Sie erkennen, welche Abläufe einen Pilot wert sind und wo klassische Prozessarbeit zuerst dran ist.",
       takeaways: ["geeignete und ungeeignete Prozesse", "Kriterien für einen belastbaren Pilot", "ehrliche Grenzen vor dem Start"],
       readingTime: "6 Min. Lesezeit",
+    }],
+    ["wissen/produktive-ki-agenten-openclaw-mittelstand", {
+      category: "OpenClaw",
+      benefit: "Sie verstehen, was einen produktiven KI-Agenten von einer Demo unterscheidet und welche Betriebsgrenzen im Mittelstand zählen.",
+      takeaways: ["OpenClaw als Betriebsrahmen", "interne Systeme und Connector-Optionen", "Pflichtgrenzen für Sicherheit, Rechte und Betrieb"],
+      readingTime: "9 Min. Lesezeit",
     }],
     ["wissen/ki-agent-kosten", {
       category: "Kosten",
@@ -993,6 +1103,11 @@ function renderKnowledgeIndex() {
               <h3>Was ist technisch ein KI-Agent?</h3>
               <p>Unterschied zwischen Chatbot, klassischer Automation, KI-Assistent und KI-Agent.</p>
               <a href="/wissen/was-ist-ein-ki-agent/">Begriffe sauber trennen</a>
+            </article>
+            <article>
+              <h3>Wie wird daraus ein produktiver Dienst?</h3>
+              <p>OpenClaw, Betrieb, interne Systeme, Freigaben und Sicherheitsgrenzen in einem Gesamtbild.</p>
+              <a href="/wissen/produktive-ki-agenten-openclaw-mittelstand/">Produktivbetrieb verstehen</a>
             </article>
           </div>
         </section>
@@ -1156,8 +1271,9 @@ ${articles.map((page) => `- [${page.title}](${absolute(pagePath(page.slug))})`).
 
 - KI packt an verkauft keine Standard-Chatbot-Lösung.
 - Automatisierungsgrad und Schreibrechte werden pro Prozess festgelegt.
-- Externe Modell-, API-, Hosting- und Lizenzkosten werden transparent ausgewiesen.
+- Externe Modell-, API-, Betriebs- und Lizenzkosten werden transparent ausgewiesen.
 - Für ChatGPT Search ist OAI-SearchBot relevant; GPTBot betrifft Modelltraining und ist dafür nicht erforderlich.
+- User-ausgelöste ChatGPT-Abrufe sind über ChatGPT-User erlaubt.
 `;
 }
 
@@ -1281,14 +1397,15 @@ function updateHomepageHead() {
             <ul>
               <li><a href="/wissen/ki-agent-kosten/">Was kostet ein KI-Agent?</a></li>
               <li><a href="/wissen/ki-agent-sicherheit-prompt-injection/">KI-Agenten und Prompt Injection</a></li>
+              <li><a href="/wissen/produktive-ki-agenten-openclaw-mittelstand/">Produktive KI-Agenten mit OpenClaw</a></li>
               <li><a href="/wissen/ki-email-assistent-sicher-einsetzen/">KI-E-Mail-Assistent sicher einsetzen</a></li>
-              <li><a href="/wissen/ki-agenten-im-mittelstand/">KI-Agenten im Mittelstand</a></li>
             </ul>
           </article>
           <article>
             <h3>Hintergrund</h3>
             <ul>
               <li><a href="/wissen/was-ist-ein-ki-agent/">Was ist ein KI-Agent?</a></li>
+              <li><a href="/wissen/ki-agenten-im-mittelstand/">KI-Agenten im Mittelstand</a></li>
               <li><a href="/wissen/">Alle Wissensartikel</a></li>
               <li><a href="/fabian-georgi/">Fabian Georgi</a></li>
               <li><a href="/#anfrage">Prozess prüfen lassen</a></li>
@@ -1346,6 +1463,9 @@ write(
 Allow: /
 
 User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: GPTBot
