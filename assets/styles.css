@@ -1013,6 +1013,7 @@ h4 {
 
 .safety-box ul,
 .price-card ul,
+.expansion-panel ul,
 .competence-list {
   display: grid;
   gap: 0.65rem;
@@ -1024,6 +1025,7 @@ h4 {
 .safety-box li,
 .safety-box p,
 .price-card li,
+.expansion-panel li,
 .competence-list li {
   padding-left: 1.35rem;
   position: relative;
@@ -1032,6 +1034,7 @@ h4 {
 .safety-box li::before,
 .safety-box p::before,
 .price-card li::before,
+.expansion-panel li::before,
 .competence-list li::before {
   background: var(--mint);
   border-radius: 999px;
