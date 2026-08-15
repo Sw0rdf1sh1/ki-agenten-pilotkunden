@@ -119,6 +119,10 @@ for (const file of siteFiles) {
   assert(visibleText.length > 700, `${file} has too little crawlable visible text.`);
   assert(!html.includes(".pages.dev"), `${file} must not canonicalize or link to a preview domain.`);
   assert(!html.includes("AggregateRating") && !html.includes('"@type":"Product"'), `${file} must not contain unsupported rich-result markup.`);
+  assert(
+    !/\b(fuer|ueber|moeglich|koennen|muessen|waehrend|haette|wuerde|loesung|datenqualitaet|unvollstaendig)\b/i.test(visibleText),
+    `${file} contains visible ASCII transliteration where German umlauts should be used.`,
+  );
 
   for (const match of html.matchAll(/<img\s+([^>]+)>/g)) {
     const attrs = match[1];
@@ -200,6 +204,15 @@ assert(!llmsFull.includes("SECRET") && !llmsFull.includes("RESEND_API_KEY"), "ll
 assert(existsSync("404.html"), "404.html must exist.");
 assert(existsSync("assets/social/ki-packt-an-social.png"), "Social preview PNG must exist.");
 assert(existsSync("assets/social/ki-packt-an-logo-512.png"), "Square logo PNG must exist.");
+const sharp = (await import("sharp")).default;
+const socialImage = await sharp("assets/social/ki-packt-an-social.png").metadata();
+const logoImage = await sharp("assets/social/ki-packt-an-logo-512.png").metadata();
+const socialSvg = readFileSync("assets/social/ki-packt-an-social.svg", "utf8");
+assert(socialImage.width === 1200 && socialImage.height === 630, "Social preview PNG must be 1200x630.");
+assert(logoImage.width === 512 && logoImage.height === 512, "Square logo PNG must be 512x512.");
+assert(socialSvg.includes("für Unternehmen") && !socialSvg.includes("fuer"), "Social SVG must use proper German umlauts.");
+assert(socialSvg.includes("M86 352V160") && socialSvg.includes("M362 352V160"), "Social SVG must use the real logo mark, not a simplified text badge.");
+assert(readFileSync("scripts/build-site.mjs", "utf8").includes("renderSocialAssets"), "Build must render social PNG assets from SVG sources.");
 
 assert(redirects.includes("/ki-assistenten-unternehmen/ / 301"), "The removed KI assistants subpage must redirect to the homepage.");
 
