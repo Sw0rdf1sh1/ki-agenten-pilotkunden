@@ -183,6 +183,7 @@ assert(script.includes("fetch(form.action"), "Lead form must submit through fetc
 assert(script.includes("turnstile?.reset"), "Lead form must reset Turnstile after submissions.");
 assert(contactFunction.includes("https://api.resend.com/emails"), "Contact function must use the Resend email API.");
 assert(contactFunction.includes("TURNSTILE_SECRET_KEY"), "Contact function must validate Turnstile tokens server-side.");
+assert(contactFunction.includes("Kopie Ihrer Anfrage bei KI packt an"), "Contact function must send a requester copy.");
 
 assert(llms.includes("# KI packt an") && llms.includes("OAI-SearchBot"), "llms.txt must describe the site and ChatGPT Search crawler distinction.");
 assert(llmsFull.includes("KI-Agenten und Prompt Injection"), "llms-full.txt must include public knowledge content.");

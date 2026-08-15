@@ -18,6 +18,10 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function displayValue(value) {
+  return clean(value) || "Nicht angegeben";
+}
+
 async function verifyTurnstile(token, request, env) {
   if (!env.TURNSTILE_SECRET_KEY) {
     return true;
@@ -40,7 +44,7 @@ async function verifyTurnstile(token, request, env) {
   return Boolean(result.success);
 }
 
-function buildEmailText(data) {
+function buildLeadEmailText(data) {
   return [
     "Neue KI-packt-an Anfrage",
     "",
@@ -57,7 +61,7 @@ function buildEmailText(data) {
   ].join("\n");
 }
 
-function buildEmailHtml(data) {
+function buildLeadEmailHtml(data) {
   const rows = [
     ["Unternehmen", data.company],
     ["Ansprechpartner", data.name],
@@ -84,6 +88,66 @@ function buildEmailHtml(data) {
 </html>`;
 }
 
+function buildRequesterCopyText(data) {
+  return [
+    `Hallo ${data.name},`,
+    "",
+    "vielen Dank für Ihre Anfrage. Ich prüfe Ihre Angaben zeitnah und melde mich schnellstmöglich mit einer ersten Einschätzung bei Ihnen.",
+    "",
+    "Ihre übermittelten Angaben:",
+    "",
+    `Unternehmen: ${displayValue(data.company)}`,
+    `Ansprechpartner: ${displayValue(data.name)}`,
+    `E-Mail: ${displayValue(data.email)}`,
+    `Gewünschter Startzeitraum: ${displayValue(data.timeline)}`,
+    `Beteiligte Systeme: ${displayValue(data.systems)}`,
+    "",
+    "Welche wiederkehrende Arbeit soll der Assistent übernehmen?",
+    data.message,
+    "",
+    "Viele Grüße",
+    "Fabian Georgi",
+    "KI packt an",
+    "https://ki-packt-an.de/",
+    "hello@georgi.digital",
+  ].join("\n");
+}
+
+function buildRequesterCopyHtml(data) {
+  const rows = [
+    ["Unternehmen", data.company],
+    ["Ansprechpartner", data.name],
+    ["E-Mail", data.email],
+    ["Gewünschter Startzeitraum", data.timeline],
+    ["Beteiligte Systeme", data.systems],
+  ];
+
+  const detailRows = rows
+    .map(([label, value]) => {
+      return `<p><strong>${label}:</strong><br>${escapeHtml(displayValue(value))}</p>`;
+    })
+    .join("");
+
+  return `<!doctype html>
+<html lang="de">
+  <body style="font-family:Arial,sans-serif;line-height:1.55;color:#18202f">
+    <p>Hallo ${escapeHtml(data.name)},</p>
+    <p>vielen Dank für Ihre Anfrage. Ich prüfe Ihre Angaben zeitnah und melde mich schnellstmöglich mit einer ersten Einschätzung bei Ihnen.</p>
+    <h1 style="font-size:20px">Ihre übermittelten Angaben</h1>
+    ${detailRows}
+    <p><strong>Welche wiederkehrende Arbeit soll der Assistent übernehmen?</strong></p>
+    <p>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p>
+    <p style="margin-top:28px">
+      Viele Grüße<br>
+      Fabian Georgi<br>
+      KI packt an<br>
+      <a href="https://ki-packt-an.de/" style="color:#335c67">ki-packt-an.de</a><br>
+      <a href="mailto:hello@georgi.digital" style="color:#335c67">hello@georgi.digital</a>
+    </p>
+  </body>
+</html>`;
+}
+
 function escapeHtml(value) {
   return clean(value)
     .replace(/&/g, "&amp;")
@@ -91,6 +155,17 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+async function sendEmail(env, email) {
+  return fetch(RESEND_ENDPOINT, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${env.RESEND_API_KEY}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(email),
+  });
 }
 
 export async function onRequestPost({ request, env }) {
@@ -128,27 +203,32 @@ export async function onRequestPost({ request, env }) {
     return jsonResponse({ message: "Das Formular ist noch nicht vollständig konfiguriert." }, 500);
   }
 
-  const response = await fetch(RESEND_ENDPOINT, {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${env.RESEND_API_KEY}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
+  const contactEmail = env.CONTACT_TO_EMAIL || DEFAULT_TO_EMAIL;
+
+  const [leadResponse, copyResponse] = await Promise.all([
+    sendEmail(env, {
       from: env.CONTACT_FROM_EMAIL,
-      to: [env.CONTACT_TO_EMAIL || DEFAULT_TO_EMAIL],
+      to: [contactEmail],
       reply_to: data.email,
       subject: `KI packt an Anfrage: ${data.company}`,
-      text: buildEmailText(data),
-      html: buildEmailHtml(data),
+      text: buildLeadEmailText(data),
+      html: buildLeadEmailHtml(data),
+    }),
+    sendEmail(env, {
+      from: env.CONTACT_FROM_EMAIL,
+      to: [data.email],
+      reply_to: contactEmail,
+      subject: "Kopie Ihrer Anfrage bei KI packt an",
+      text: buildRequesterCopyText(data),
+      html: buildRequesterCopyHtml(data),
     }),
   });
 
-  if (!response.ok) {
+  if (!leadResponse.ok || !copyResponse.ok) {
     return jsonResponse({ message: "Die Anfrage konnte gerade nicht versendet werden." }, 502);
   }
 
-  return jsonResponse({ message: "Danke, die Anfrage wurde versendet. Ich melde mich zeitnah." });
+  return jsonResponse({ message: "Danke, die Anfrage wurde versendet. Sie erhalten eine Kopie per E-Mail." });
 }
 
 export function onRequest() {
