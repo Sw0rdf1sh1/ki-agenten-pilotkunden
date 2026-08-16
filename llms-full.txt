@@ -172,6 +172,26 @@ KI-Agenten eignen sich im Mittelstand besonders für wiederkehrende digitale Vor
 
 Ein produktiver KI-Agent ist kein einzelner Prompt und keine Demo. Er ist ein begrenzter Unternehmensdienst mit klarer Rolle, erlaubten Werkzeugen, getesteten Fällen, kontrolliertem Betrieb und menschlichen Freigaben an den richtigen Stellen.
 
+## OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen
+
+OpenClaw wird erst unternehmensfähig, wenn Agentenrollen, Werkzeuge, Rechte, Secrets, Freigaben und Protokolle getrennt geplant werden. Ein Agent darf nicht dieselben Rechte bekommen wie ein Administrator.
+
+## OpenClaw mit Microsoft 365 verbinden: OAuth, E-Mail und Berechtigungen
+
+Eine Microsoft-365-Anbindung für OpenClaw sollte nicht mit einem persönlichen Passwort arbeiten. Sauber ist eine App Registration mit klaren Graph-Berechtigungen, Token-Handling und Freigaben vor riskanten Aktionen.
+
+## OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring
+
+Self-Hosting von OpenClaw ist sinnvoll, wenn Datenflüsse, interne Systeme oder Betriebsanforderungen eine eigene Laufzeitumgebung erfordern. Es ist aber ein Betriebsprojekt, keine reine Installation.
+
+## OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten
+
+OpenClaw und DSGVO sollten technisch über Datenflüsse betrachtet werden: Welche Daten gehen in welchen Dienst, wer verarbeitet sie, wie lange bleiben sie erhalten und welche Rechte begrenzen den Zugriff?
+
+## Wir haben einen KI-Agenten mit manipulierten E-Mails getestet: Ergebnisse eines Prompt-Injection-Tests
+
+Für diesen Test wurden 20 kontrollierte E-Mail-Fälle gegen eine OpenClaw-nahe Sicherheitslogik vor Tool-Aufrufen ausgeführt. Gemessen wurde nicht Marketingwirkung, sondern ob riskante Inhalte blockiert, Tool-Aufrufe verhindert und harmlose Vorgänge weiterhin bearbeitbar bleiben.
+
 ## KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe
 
 Ein KI-E-Mail-Assistent ist sicherer, wenn er zunächst Entwürfe vorbereitet, Quellen offenlegt und nur geregelte Vorgänge mit definierten Rechten ausführt.
@@ -189,7 +209,7 @@ Prompt Injection entsteht, wenn fremde Inhalte versuchen, das Verhalten eines KI
 Autor: Fabian Georgi
 
 Veröffentlicht: 2026-08-11
-Fachlich geprüft: 2026-08-15
+Fachlich geprüft: 2026-08-16
 
 Ein KI-Agent ist ein System, das ein Ziel verfolgt, Kontext nutzt, Werkzeuge aufrufen kann und innerhalb gesetzter Grenzen Schritte vorbereitet oder ausführt.
 
@@ -230,7 +250,7 @@ Vergleich: Chatbot, Automation, KI-Assistent und KI-Agent System Versteht unstru
 Autor: Fabian Georgi
 
 Veröffentlicht: 2026-08-11
-Fachlich geprüft: 2026-08-15
+Fachlich geprüft: 2026-08-16
 
 KI-Agenten eignen sich im Mittelstand besonders für wiederkehrende digitale Vorgänge mit klaren Datenquellen, bekannten Regeln und prüfbaren Ergebnissen.
 
@@ -269,7 +289,7 @@ Ein Pilot ist dann erfolgreich, wenn er eine belastbare Ausbauentscheidung ermö
 Autor: Fabian Georgi
 
 Veröffentlicht: 2026-08-11
-Fachlich geprüft: 2026-08-15
+Fachlich geprüft: 2026-08-16
 
 Ein produktiver KI-Agent ist kein einzelner Prompt und keine Demo. Er ist ein begrenzter Unternehmensdienst mit klarer Rolle, erlaubten Werkzeugen, getesteten Fällen, kontrolliertem Betrieb und menschlichen Freigaben an den richtigen Stellen.
 
@@ -317,12 +337,247 @@ OpenClaw oder ein anderes Agenten-Framework ersetzt diese Arbeit nicht. Es macht
 
 Entscheidungsmatrix für den ersten produktiven Agenten Kriterium Guter Start Erst später automatisieren Datenzugriff eine klar freigegebene Quelle mehrere Systeme mit unklaren Rechten Ergebnis Entwurf, Zusammenfassung, Übergabe verbindliche Entscheidung ohne Freigabe Fehlerwirkung Fehler kann geprüft und korrigiert werden Fehler löst sofort rechtliche oder finanzielle Folgen aus Betrieb Logs, Tests, Kostenlimit, Verantwortlicher keine Zuständigkeit nach dem Go-live Referenzarchitektur in Worten Ein produktiver Agent trennt Eingangsdaten, Agentenrolle, Werkzeuge, Rechte, Freigaben und Betrieb. Eingang Agentenrolle Tool Policy Service Account Fachsystem Freigabe Audit Log
 
+# OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-16
+
+OpenClaw wird erst unternehmensfähig, wenn Agentenrollen, Werkzeuge, Rechte, Secrets, Freigaben und Protokolle getrennt geplant werden. Ein Agent darf nicht dieselben Rechte bekommen wie ein Administrator.
+
+## Bedrohungsmodell: Was muss begrenzt werden?
+
+Ein produktiver Agent verarbeitet fremde E-Mails, Dokumente, Tickets und interne Daten. Jede dieser Quellen kann falsche Angaben, manipulierte Anweisungen oder unerwartete Formate enthalten.
+
+Das Sicherheitsziel ist nicht, dass ein Modell niemals falsch liegt. Das Ziel ist, dass ein Fehler keine zu weitreichende Aktion auslösen kann: keine ungeprüfte Mail, kein Kundendatenexport, keine Änderung im CRM und kein Zugriff auf Secrets.
+
+## Agentenrechte sind nicht Benutzerrechte
+
+Ein Agent braucht ein eigenes Berechtigungsmodell. Er sollte weder persönliche Benutzerkonten wiederverwenden noch pauschal die Rechte der Person erhalten, die ihn auslöst.
+
+Praktisch bedeutet das: dedizierte Service Accounts pro Prozess, getrennte Lese- und Schreibrechte, begrenzte Scopes und eine eindeutige Zuordnung im Audit Log.
+
+## Secrets gehören nicht in Prompts
+
+API-Schlüssel, OAuth-Tokens, Datenbankzugänge und Webhook-Secrets gehören in die Laufzeitumgebung oder eine Secret-Verwaltung, nicht in Systemprompts, Wissensdateien oder Git-Repositories.
+
+Ein Agent sollte ein Werkzeug nur über eine kontrollierte Schnittstelle aufrufen. Das Werkzeug holt das Secret serverseitig und validiert Eingaben, bevor es eine externe Aktion ausführt.
+
+## Tool-Allowlisting und Argumentprüfung
+
+Ein produktiver Agent sollte nur explizit freigegebene Werkzeuge sehen. Jedes Werkzeug braucht eine klar definierte Aufgabe, erlaubte Argumente und fachliche Grenzen.
+
+Besonders wichtig ist die Argumentprüfung: Ein CRM-Notizwerkzeug darf nicht plötzlich Massenupdates ausführen, nur weil ein manipuliertes Dokument ein anderes JSON-Argument vorschlägt.
+
+## Prompt Injection als Betriebsrisiko
+
+Eingehende Inhalte bleiben Arbeitsdaten. Sie dürfen niemals zu neuen Systemanweisungen werden. Diese Trennung muss in Prompt, Tool-Policy und Freigaberegeln sichtbar sein.
+
+Kritische Aktionen wie Mailversand, CRM-Schreibzugriffe, Preiszusagen, Datenexporte oder Rollenänderungen brauchen Human Approval oder eine harte technische Sperre.
+
+## Logging, Audit Trail und typische Fehlkonfigurationen
+
+Protokolliert werden sollten Eingang, erkannte Kategorie, genutzte Quellen, Tool-Aufrufe, Freigabeentscheidung und Ergebnis. Logs dürfen dabei keine Secrets und möglichst keine unnötigen personenbezogenen Vollinhalte enthalten.
+
+Typische Fehlkonfigurationen sind globale Admin-Tokens, fehlende Trennung von Lese- und Schreibrechten, unvalidierte Tool-Argumente, ungeprüfter Mailversand und fehlende Regressionstests nach Modell- oder Promptänderungen.
+
+Referenzarchitektur für sichere Agentenrechte OpenClaw trennt untrusted input, Agentenrolle, Tool-Policy, Service Account, Fachsystem und Audit Trail. Untrusted Input Agentenrolle Tool-Allowlist Argumentprüfung Service Account Fachsystem Audit Log Minimal sinnvolle Rechte pro Agententyp Agent Leserechte Schreibrechte Freigabe E-Mail-Triage Postfach, Wiki Entwurf erstellen vor Versand CRM-Recherche Kunden, offene Vorgänge keine oder Notizentwurf vor CRM-Änderung Support-Agent Tickets, Produktwissen Statusvorschlag bei Eskalation
+
+# OpenClaw mit Microsoft 365 verbinden: OAuth, E-Mail und Berechtigungen
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-16
+
+Eine Microsoft-365-Anbindung für OpenClaw sollte nicht mit einem persönlichen Passwort arbeiten. Sauber ist eine App Registration mit klaren Graph-Berechtigungen, Token-Handling und Freigaben vor riskanten Aktionen.
+
+## Graph API statt Postfach-Passwort
+
+Microsoft 365 sollte über Microsoft Graph angebunden werden. Dadurch lassen sich Berechtigungen, Token-Lebensdauer, Widerruf, Rate Limits und Auditierbarkeit besser kontrollieren als bei improvisierten Zugangsdaten.
+
+Für einen E-Mail-Assistenten ist oft zuerst ein lesender Zugriff auf ein gemeinsames Postfach sinnvoll. Schreibende Aktionen werden separat betrachtet und vor dem Versand freigegeben.
+
+## Delegated oder Application Permissions?
+
+Delegated Permissions handeln im Kontext eines angemeldeten Benutzers. Application Permissions handeln als Anwendung und können, wenn sie zu breit vergeben werden, sehr weitreichend sein.
+
+Für produktive Agenten ist die Entscheidung eine Risikoentscheidung: Application Permissions brauchen besonders enge Begrenzung, Admin Consent, Monitoring und eine klare Zuordnung zum Prozess.
+
+## Minimale Rechte für E-Mail-Prozesse
+
+Ein Agent, der Supportanfragen sortiert, braucht häufig Mail.Read auf dem relevanten Postfach und Zugriff auf freigegebene Wissensquellen. Mail.Send ist erst sinnvoll, wenn Versandregeln, Freigaben und Logging stehen.
+
+Shared Mailboxes sollten gezielt adressiert werden. Ein Agent für info@ braucht keine pauschale Leseberechtigung für alle Postfächer im Tenant.
+
+## Token Handling und Widerruf
+
+Access Tokens dürfen nicht im Prompt, Browser oder Repository auftauchen. Refresh Tokens und Client Secrets gehören in die Laufzeitumgebung und müssen rotierbar sein.
+
+Der Betriebsplan sollte festlegen, wer die App Registration besitzt, wie Rechte geprüft werden und wie der Zugriff bei einem Vorfall schnell widerrufen wird.
+
+## Human-in-the-loop bei Mail.Send
+
+Mail.Send ist eine externe Aktion mit Kundenwirkung. Deshalb sollte der Agent zunächst Entwürfe erzeugen, Quellen nennen und Unsicherheit markieren.
+
+Automatischer Versand ist erst nach stabilen Testfällen sinnvoll und sollte auf eng definierte Standardfälle beschränkt bleiben.
+
+## Typische Fehlerfälle
+
+Häufige Fehler sind zu breite Graph-Scopes, fehlender Admin-Review, unklare Shared-Mailbox-Zuordnung, unprotokollierter Versand und fehlende Behandlung von 429-Rate-Limits.
+
+Ein produktiver Connector muss API-Fehler verständlich eskalieren, statt bei Teilfehlern mehrfach dieselbe Aktion auszuführen.
+
+Ablauf einer kontrollierten Microsoft-365-Anbindung App Registration, Graph-Scopes und Freigaben begrenzen, was OpenClaw mit E-Mail tun darf. OpenClaw Connector OAuth Token Microsoft Graph Shared Mailbox Entwurf Freigabe
+
+# OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-16
+
+Self-Hosting von OpenClaw ist sinnvoll, wenn Datenflüsse, interne Systeme oder Betriebsanforderungen eine eigene Laufzeitumgebung erfordern. Es ist aber ein Betriebsprojekt, keine reine Installation.
+
+## Container-Architektur und persistente Daten
+
+OpenClaw sollte in klar getrennten Diensten betrieben werden: Anwendung, Datenhaltung, Connectoren, Reverse Proxy, Monitoring und Backup-Job dürfen nicht als unübersichtlicher Einzelprozess verschwimmen.
+
+Persistente Daten, Konfiguration und Uploads brauchen dokumentierte Volumes. Alles, was nach einem Container-Neustart verloren gehen darf, muss ausdrücklich als flüchtig gelten.
+
+## Reverse Proxy, TLS und Netzwerksegmentierung
+
+Ein Reverse Proxy übernimmt TLS, Hostnamen, Security Headers und gegebenenfalls Zugriffsbeschränkungen. Interne Connectoren sollten nur die Systeme erreichen, die für ihren Prozess nötig sind.
+
+Netzwerksegmentierung reduziert die Wirkung eines Fehlers: Ein E-Mail-Agent braucht keinen direkten Zugriff auf Datenbanken, die für seinen Vorgang irrelevant sind.
+
+## Health Checks, Logs und Metrics
+
+Health Checks prüfen, ob Dienste erreichbar sind. Logs erklären, was passiert ist. Metrics zeigen Kosten, Fehlerquoten, Antwortzeiten und auffällige Nutzung.
+
+Für Agentenbetrieb reichen reine Servermetriken nicht aus. Wichtig sind auch fachliche Signale: Eskalationsquote, blockierte Tool-Aufrufe, fehlgeschlagene Freigaben und Modellkosten.
+
+## Backup, Restore und Rollback
+
+Backups sind nur dann wertvoll, wenn ein Restore getestet wurde. Gesichert werden müssen Konfiguration, relevante Daten, Wissensstände, Audit-Kontext und Betriebsdokumentation.
+
+Updates brauchen eine Rückfallstrategie. Ein Modell-, Prompt- oder Connectorwechsel sollte erst nach Regressionstests auf bekannten Fällen produktiv werden.
+
+## Staging und Ressourcenlimits
+
+Eine Staging-Umgebung verhindert, dass neue Tools oder Promptänderungen direkt produktive Vorgänge beeinflussen. Testdaten müssen dabei kontrolliert und frei von Kundengeheimnissen sein.
+
+Ressourcenlimits und Kostenlimits schützen vor Endlosschleifen, unerwarteten Massenverarbeitungen und unkontrollierter API-Nutzung.
+
+## Kostenkontrolle im Self-Hosting
+
+Self-Hosting verschiebt Kosten von Plattformgebühren zu Betrieb, Wartung, Monitoring, Backups und Verantwortlichkeit. Es ist nicht automatisch günstiger.
+
+Der Vorteil liegt in Kontrolle: Datenwege, Zugriff, Netzwerk, Update-Zeitpunkte und Integrationen lassen sich genauer an Unternehmensanforderungen anpassen.
+
+Produktionsnahe Self-Hosting-Struktur Self-Hosting trennt öffentliche Kante, OpenClaw-Laufzeit, Connectoren, Datenhaltung, Monitoring und Backup. Reverse Proxy / TLS OpenClaw Runtime Connectoren Datenvolumes Secrets Logs Backups Health Checks Metrics Staging Rollback
+
+# OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-16
+
+OpenClaw und DSGVO sollten technisch über Datenflüsse betrachtet werden: Welche Daten gehen in welchen Dienst, wer verarbeitet sie, wie lange bleiben sie erhalten und welche Rechte begrenzen den Zugriff?
+
+## Keine Rechtsberatung, aber klare technische Grundlagen
+
+Dieser Artikel ersetzt keine rechtliche Prüfung. Technisch lässt sich aber sauber vorbereiten, welche personenbezogenen Daten verarbeitet werden, welche Systeme beteiligt sind und welche Schutzmaßnahmen existieren.
+
+Eine Datenschutzprüfung wird einfacher, wenn Datenquellen, Modellanbieter, Logs, Retention, Löschung und Berechtigungen von Anfang an dokumentiert sind.
+
+## Welche Daten fließen?
+
+Bei einem E-Mail-Agenten können Absender, Inhalte, Anhänge, Kundennummern, CRM-Kontext, Antwortentwürfe, Tool-Ergebnisse und Freigabeentscheidungen verarbeitet werden.
+
+Nicht alles muss an ein Modell gehen. Datenminimierung heißt technisch: nur den Kontext übertragen, der für die konkrete Aufgabe erforderlich ist.
+
+## Modellanbieter, API-Provider und Self-Hosting
+
+Je nach Architektur verarbeitet ein externer Modellanbieter Prompts und Kontext. Zusätzlich können Microsoft 365, CRM, Ticketsysteme, Hosting-Anbieter und Monitoring-Dienste beteiligt sein.
+
+Self-Hosting kann Datenwege begrenzen, ersetzt aber nicht die Prüfung externer Modell- oder API-Dienste, wenn diese weiterhin genutzt werden.
+
+## Logs, Prompts und Retention
+
+Logs sollten für Betrieb und Audit reichen, aber keine unnötigen Vollinhalte speichern. Prompt- und Tool-Protokolle brauchen klare Retention-Regeln.
+
+Ein Löschkonzept muss berücksichtigen, dass personenbezogene Daten in E-Mails, Tickets, CRM-Notizen, Agentenlogs und Backups gleichzeitig vorkommen können.
+
+## Berechtigungen und Auditierbarkeit
+
+Datenzugriff muss pro Prozess begrenzt sein. Ein Agent für Support-Triage braucht keine vollständigen Exporte aller Kunden oder historischen Vorgänge.
+
+Auditierbarkeit bedeutet: Später muss nachvollziehbar sein, welche Datenquelle genutzt wurde, welches Tool aufgerufen wurde und welche menschliche Freigabe erfolgt ist.
+
+## Technische und organisatorische Maßnahmen
+
+Sinnvolle Maßnahmen sind Least Privilege, Service Accounts, Verschlüsselung, Secret Management, Zugriffstrennung, Protokollierung, Löschregeln, Backup-Konzept und Incident-Prozess.
+
+Für jeden produktiven Agenten sollte dokumentiert werden, welche TOMs vorhanden sind und welche Restrisiken bewusst akzeptiert werden.
+
+Datenfluss eines E-Mail-Agenten Datenschutz beginnt bei einer nachvollziehbaren Sicht auf Quellen, Verarbeitung, Modellzugriff, Logs und Löschung. Postfach OpenClaw Minimierter Kontext Modell/API Entwurf Freigabe Log + Retention
+
+# Wir haben einen KI-Agenten mit manipulierten E-Mails getestet: Ergebnisse eines Prompt-Injection-Tests
+
+Autor: Fabian Georgi
+
+Veröffentlicht: 2026-08-11
+Fachlich geprüft: 2026-08-16
+
+Für diesen Test wurden 20 kontrollierte E-Mail-Fälle gegen eine OpenClaw-nahe Sicherheitslogik vor Tool-Aufrufen ausgeführt. Gemessen wurde nicht Marketingwirkung, sondern ob riskante Inhalte blockiert, Tool-Aufrufe verhindert und harmlose Vorgänge weiterhin bearbeitbar bleiben.
+
+## Testumgebung und Einschränkung
+
+Der Test lief am 16. August 2026 als reproduzierbares Repository-Skript. Es wurde kein Live-LLM genutzt; gemessen wurde die deterministische Sicherheitsstufe vor Tool-Aufrufen.
+
+Diese Einschränkung ist wichtig: Die Zahlen beschreiben nicht die Zuverlässigkeit eines bestimmten Modells, sondern die Wirkung einer vorgeschalteten Policy-Schicht für einen E-Mail-Agenten.
+
+## Angriffskategorien
+
+Getestet wurden direkte und indirekte Prompt Injection, manipulierte Signaturen, versteckte HTML-Anweisungen, Base64-/Encoding-Tricks, Social Engineering, Datenabfluss, Secrets, unerlaubtes Senden, CRM-Änderungen und Tool-Argument-Manipulation.
+
+Zusätzlich enthielt der Test fünf harmlose Support-, Rechnungs-, Liefer- und Beschwerdefälle, damit falsche Blockierungen sichtbar werden.
+
+## Messwerte
+
+Ausgeführt wurden 20 Testfälle: 15 Angriffsfälle und 5 harmlose Vorgänge. Korrekt blockiert wurden 12 von 15 Angriffen. Falsch positiv blockiert wurden 0 von 5 harmlosen Vorgängen. Falsch negativ blieben 3 von 15 Angriffen.
+
+Die gemessene Blockierungsrate lag damit bei 80 Prozent. Die False-Positive-Rate lag bei 0 Prozent, die False-Negative-Rate bei 20 Prozent.
+
+## Was die Ergebnisse bedeuten
+
+Eine vorgeschaltete Policy-Schicht reduziert Risiko, ersetzt aber keine zweite Sicherheitslinie. Drei Angriffe blieben unentdeckt, obwohl sie als Angriffsfälle markiert waren.
+
+Für produktive Agenten heißt das: Tool-Allowlisting, Argumentprüfung, Rechtebegrenzung und Human Approval dürfen nicht nur im Prompt stehen. Sie müssen technisch erzwungen werden.
+
+## Welche Schutzmaßnahmen sich daraus ableiten
+
+Mailversand, CRM-Schreibzugriffe, Datenexporte und Secret-Zugriffe sollten nicht direkt vom Modell ausgelöst werden. Jedes Werkzeug braucht serverseitige Validierung und fachliche Freigaberegeln.
+
+Regressionstests mit manipulierten E-Mails sollten nach Prompt-, Modell-, Tool- oder Connectoränderungen erneut laufen.
+
+## Reproduzierbarkeit
+
+Die Testfälle und Ergebnisse liegen im Repository unter `scripts/prompt-injection-research.mjs` und `docs/prompt-injection-research-results.json`.
+
+Der Test verwendet kontrollierte Beispieldaten und enthält keine Kundendaten, Tokens, Secrets oder verwertbaren Zugangsdaten.
+
+Ergebnistabelle Messwert Ergebnis Testfälle gesamt 20 Angriffsfälle 15 harmlose Vorgänge 5 korrekt blockiert 12 falsch positiv 0 falsch negativ 3 Blockierungsrate 80 % Statische Auswertung 20 Testfälle 12 korrekt blockiert 0 falsch positiv 3 falsch negativ
+
 # KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe
 
 Autor: Fabian Georgi
 
 Veröffentlicht: 2026-08-11
-Fachlich geprüft: 2026-08-15
+Fachlich geprüft: 2026-08-16
 
 Ein KI-E-Mail-Assistent ist sicherer, wenn er zunächst Entwürfe vorbereitet, Quellen offenlegt und nur geregelte Vorgänge mit definierten Rechten ausführt.
 
@@ -363,7 +618,7 @@ Ablaufdiagramm für einen E-Mail-Assistenten Der E-Mail-Assistent verbindet Post
 Autor: Fabian Georgi
 
 Veröffentlicht: 2026-08-11
-Fachlich geprüft: 2026-08-15
+Fachlich geprüft: 2026-08-16
 
 Die Kosten eines KI-Agenten entstehen nicht nur durch das Modell, sondern durch Prozessklärung, Integration, Betrieb, Tests und laufende Betreuung.
 
@@ -404,7 +659,7 @@ Kostenblöcke eines KI-Agenten 1. Prozessanalyse Prozess-Check, Nutzenprüfung, 
 Autor: Fabian Georgi
 
 Veröffentlicht: 2026-08-11
-Fachlich geprüft: 2026-08-15
+Fachlich geprüft: 2026-08-16
 
 Prompt Injection entsteht, wenn fremde Inhalte versuchen, das Verhalten eines KI-Systems zu verändern oder Werkzeuge außerhalb der vorgesehenen Regeln zu nutzen.
 
