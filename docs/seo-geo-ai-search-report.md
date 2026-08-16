@@ -219,3 +219,15 @@ Mobile browser checks:
 - Cloudflare Pages preview deployment documentation: `https://developers.cloudflare.com/pages/configuration/preview-deployments/`
 - Cloudflare Pages headers documentation: `https://developers.cloudflare.com/pages/configuration/headers/`
 - OWASP GenAI Security Project, LLM01 Prompt Injection: `https://genai.owasp.org/llmrisk/llm01-prompt-injection/`
+
+## 2026-08-15 Technical SEO/GEO Hardening Pass
+
+- Added `/wissen/produktive-ki-agenten-openclaw-mittelstand/` as a cornerstone article for productive KI agents with OpenClaw in the German Mittelstand.
+- The new article defines when a KI agent is production-ready, explains OpenClaw as an operating environment, covers internal-only customer systems, and names mandatory safety boundaries.
+- `/openclaw-fuer-unternehmen/` now explicitly covers the case where CRM, ERP, databases, file servers or shop backends are only reachable inside the customer network.
+- `robots.txt` now explicitly allows both `OAI-SearchBot` for ChatGPT Search and `ChatGPT-User` for user-triggered ChatGPT retrieval, while keeping `GPTBot` disallowed.
+- Structured data now adds `knowsAbout` on the organization and person nodes and `about`/`keywords` on page and article nodes.
+- Article `dateModified` was moved to `2026-08-15` and is checked in `npm run check`.
+- `llms.txt` and `llms-full.txt` include the new cornerstone article and explicitly describe the OAI-SearchBot/ChatGPT-User/GPTBot distinction.
+- `scripts/audit-seo.mjs` now validates crawler access for Googlebot, OAI-SearchBot and ChatGPT-User, JSON-LD type coverage, and current article review dates.
+- Search Console cannot be queried from this repository alone. Validation remains: sitemap and URL inspection should be performed in Google Search Console after deployment.

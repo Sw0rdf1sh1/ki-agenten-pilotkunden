@@ -7,14 +7,15 @@ KI packt an ist ein Angebot für Unternehmen, die wiederkehrende digitale Arbeit
 ## Leistungen
 
 - [Ein KI-Assistent für Ihr gemeinsames E-Mail-Postfach.](https://ki-packt-an.de/email-assistent/): Ein KI-E-Mail-Assistent sortiert Team-Postfächer, ergänzt Kundenkontext, bereitet Antworten vor und hält kritische Entscheidungen beim Menschen.
-- [OpenClaw produktiv im Unternehmen betreiben.](https://ki-packt-an.de/openclaw-fuer-unternehmen/): OpenClaw für Unternehmen: Einrichtung, Hosting, Betrieb und Integration von Agenten mit Rollen, Monitoring und klaren Sicherheitsgrenzen.
+- [OpenClaw produktiv im Unternehmen betreiben.](https://ki-packt-an.de/openclaw-fuer-unternehmen/): OpenClaw für Unternehmen: Einrichtung, Betrieb und Integration von Agenten mit Rollen, Monitoring und klaren Sicherheitsgrenzen.
 - [KI-Assistenten kontrolliert mit CRM und ERP verbinden.](https://ki-packt-an.de/ki-assistent-crm-erp/): KI-Assistenten mit CRM und ERP verbinden: APIs, Service Accounts, Read-only-Zugriff, Freigaben, Logging und Datenminimierung sauber planen.
-- [KI-Assistenten nach dem Go-live betreiben.](https://ki-packt-an.de/ki-assistent-betrieb-betreuung/): Managed Betrieb für KI-Assistenten: Hosting, Monitoring, Updates, Kostenkontrolle, Backups, Secrets, Modellwechsel und Fehlerbehandlung.
+- [KI-Assistenten nach dem Go-live betreiben.](https://ki-packt-an.de/ki-assistent-betrieb-betreuung/): Managed Betrieb für KI-Assistenten: Monitoring, Updates, Kostenkontrolle, Backups, Secrets, Modellwechsel und Fehlerbehandlung.
 
 ## Praxiswissen
 
 - [Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung](https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/)
 - [KI-Agenten im Mittelstand: sinnvolle Prozesse, Grenzen und Einstieg](https://ki-packt-an.de/wissen/ki-agenten-im-mittelstand/)
+- [Produktive KI-Agenten mit OpenClaw im Mittelstand: Betrieb, Sicherheit und Grenzen](https://ki-packt-an.de/wissen/produktive-ki-agenten-openclaw-mittelstand/)
 - [KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe](https://ki-packt-an.de/wissen/ki-email-assistent-sicher-einsetzen/)
 - [Was kostet ein KI-Agent für Unternehmen?](https://ki-packt-an.de/wissen/ki-agent-kosten/)
 - [KI-Agenten und Prompt Injection: Warum E-Mails und Dokumente nicht vertrauenswürdig sind](https://ki-packt-an.de/wissen/ki-agent-sicherheit-prompt-injection/)
@@ -28,5 +29,6 @@ KI packt an ist ein Angebot für Unternehmen, die wiederkehrende digitale Arbeit
 
 - KI packt an verkauft keine Standard-Chatbot-Lösung.
 - Automatisierungsgrad und Schreibrechte werden pro Prozess festgelegt.
-- Externe Modell-, API-, Hosting- und Lizenzkosten werden transparent ausgewiesen.
+- Externe Modell-, API-, Betriebs- und Lizenzkosten werden transparent ausgewiesen.
 - Für ChatGPT Search ist OAI-SearchBot relevant; GPTBot betrifft Modelltraining und ist dafür nicht erforderlich.
+- User-ausgelöste ChatGPT-Abrufe sind über ChatGPT-User erlaubt.
