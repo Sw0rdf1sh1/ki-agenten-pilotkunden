@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenClaw und DSGVO: Datenflüsse und Unternehmensdaten</title>
+    <meta name="description" content="Technische DSGVO-Perspektive auf OpenClaw: Datenflüsse, Modellanbieter, Self-Hosting, Logs, Prompts, Auftragsverarbeitung, Datenminimierung und Löschkonzept.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#18202f">
+    <link rel="canonical" href="https://ki-packt-an.de/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/">
+    <link rel="icon" href="/assets/icons/ki-packt-an-logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/social/ki-packt-an-logo-512.png">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <meta property="og:site_name" content="KI packt an">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="OpenClaw und DSGVO: Datenflüsse und Unternehmensdaten">
+    <meta property="og:description" content="Technische DSGVO-Perspektive auf OpenClaw: Datenflüsse, Modellanbieter, Self-Hosting, Logs, Prompts, Auftragsverarbeitung, Datenminimierung und Löschkonzept.">
+    <meta property="og:url" content="https://ki-packt-an.de/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/">
+    <meta property="og:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenClaw und DSGVO: Datenflüsse und Unternehmensdaten">
+    <meta name="twitter:description" content="Technische DSGVO-Perspektive auf OpenClaw: Datenflüsse, Modellanbieter, Self-Hosting, Logs, Prompts, Auftragsverarbeitung, Datenminimierung und Löschkonzept.">
+    <meta name="twitter:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ki-packt-an.de/#website","name":"KI packt an","url":"https://ki-packt-an.de","inLanguage":"de-DE","publisher":{"@id":"https://ki-packt-an.de/#organization"}},{"@type":"ProfessionalService","@id":"https://ki-packt-an.de/#organization","name":"KI packt an","url":"https://ki-packt-an.de","logo":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-logo-512.png","width":512,"height":512},"image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","description":"KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.","areaServed":"DE","founder":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"email":"hello@georgi.digital","knowsAbout":["produktive KI-Agenten","OpenClaw im Mittelstand","KI-Assistenten für Unternehmen","E-Mail-Assistenten","CRM- und ERP-Integration","Prompt Injection","Human-in-the-loop","Betrieb von KI-Systemen","LLM-Kostenkontrolle","technische Prozessautomatisierung"]},{"@type":"Person","@id":"https://ki-packt-an.de/fabian-georgi/#person","name":"Fabian Georgi","url":"https://ki-packt-an.de/fabian-georgi/","image":"https://ki-packt-an.de/assets/people/fabian-georgi.webp","jobTitle":"Senior Software Developer · Software-, Integrations- und Prozessentwicklung","worksFor":{"@id":"https://ki-packt-an.de/#organization"},"sameAs":["https://georgi.digital/"],"knowsAbout":["produktive KI-Agenten","OpenClaw im Mittelstand","KI-Assistenten für Unternehmen","E-Mail-Assistenten","CRM- und ERP-Integration","Prompt Injection","Human-in-the-loop","Betrieb von KI-Systemen","LLM-Kostenkontrolle","technische Prozessautomatisierung"]},{"@type":"WebPage","@id":"https://ki-packt-an.de/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/#webpage","url":"https://ki-packt-an.de/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/","name":"OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten","headline":"OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten","description":"Technische DSGVO-Perspektive auf OpenClaw: Datenflüsse, Modellanbieter, Self-Hosting, Logs, Prompts, Auftragsverarbeitung, Datenminimierung und Löschkonzept.","isPartOf":{"@id":"https://ki-packt-an.de/#website"},"inLanguage":"de-DE","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","primaryImageOfPage":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","width":1200,"height":630},"about":[{"@type":"Thing","name":"produktive KI-Agenten"},{"@type":"Thing","name":"OpenClaw im Mittelstand"},{"@type":"Thing","name":"KI-Assistenten für Unternehmen"},{"@type":"Thing","name":"E-Mail-Assistenten"},{"@type":"Thing","name":"CRM- und ERP-Integration"},{"@type":"Thing","name":"Prompt Injection"},{"@type":"Thing","name":"Human-in-the-loop"},{"@type":"Thing","name":"Betrieb von KI-Systemen"},{"@type":"Thing","name":"LLM-Kostenkontrolle"},{"@type":"Thing","name":"technische Prozessautomatisierung"}],"keywords":"produktive KI-Agenten, OpenClaw im Mittelstand, KI-Assistenten für Unternehmen, E-Mail-Assistenten, CRM- und ERP-Integration, Prompt Injection, Human-in-the-loop, Betrieb von KI-Systemen, LLM-Kostenkontrolle, technische Prozessautomatisierung","mainEntity":{"@type":"Article","@id":"https://ki-packt-an.de/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/#article","headline":"OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten","description":"Technische DSGVO-Perspektive auf OpenClaw: Datenflüsse, Modellanbieter, Self-Hosting, Logs, Prompts, Auftragsverarbeitung, Datenminimierung und Löschkonzept.","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","author":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"publisher":{"@id":"https://ki-packt-an.de/#organization"},"datePublished":"2026-08-11","dateModified":"2026-08-16","about":[{"@type":"Thing","name":"produktive KI-Agenten"},{"@type":"Thing","name":"OpenClaw im Mittelstand"},{"@type":"Thing","name":"KI-Assistenten für Unternehmen"},{"@type":"Thing","name":"E-Mail-Assistenten"},{"@type":"Thing","name":"CRM- und ERP-Integration"},{"@type":"Thing","name":"Prompt Injection"},{"@type":"Thing","name":"Human-in-the-loop"},{"@type":"Thing","name":"Betrieb von KI-Systemen"},{"@type":"Thing","name":"LLM-Kostenkontrolle"},{"@type":"Thing","name":"technische Prozessautomatisierung"}],"keywords":"produktive KI-Agenten, OpenClaw im Mittelstand, KI-Assistenten für Unternehmen, E-Mail-Assistenten, CRM- und ERP-Integration, Prompt Injection, Human-in-the-loop, Betrieb von KI-Systemen, LLM-Kostenkontrolle, technische Prozessautomatisierung","mainEntityOfPage":{"@id":"https://ki-packt-an.de/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/#webpage"}},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://ki-packt-an.de/"},{"@type":"ListItem","position":2,"name":"Praxiswissen","item":"https://ki-packt-an.de/wissen/"},{"@type":"ListItem","position":3,"name":"OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten"}]}}]}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Direkt zum Inhalt</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="KI packt an Startseite">
+        <span class="brand-mark" aria-hidden="true">KI</span>
+        <span>KI packt an</span>
+      </a>
+      <nav class="desktop-nav" id="site-navigation" aria-label="Hauptnavigation">
+        <div class="desktop-nav-group">
+          <button class="desktop-nav-trigger" type="button" aria-expanded="false">Leistungen</button>
+          <div class="desktop-nav-dropdown">
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+        </div>
+        <a href="/#ablauf">Ablauf</a>
+        <a href="/#preise">Preise</a>
+        <a href="/fabian-georgi/">Über mich</a>
+        <a class="nav-cta" href="/#anfrage">Einsatz prüfen</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Navigation öffnen">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Menü</span>
+      </button>
+      <div class="mobile-backdrop" data-menu-close hidden></div>
+      <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" tabindex="-1">
+        <div class="mobile-drawer-head">
+          <span class="mobile-drawer-brand">KI packt an</span>
+          <button class="drawer-close" type="button" data-menu-close aria-label="Navigation schließen">×</button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile Hauptnavigation">
+          <button class="mobile-accordion" type="button" aria-expanded="false" aria-controls="mobile-services">Leistungen</button>
+          <div class="mobile-subnav" id="mobile-services" hidden>
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+          <a href="/#ablauf">Ablauf</a>
+          <a href="/#preise">Preise</a>
+          <a href="/fabian-georgi/">Über mich</a>
+        </nav>
+        <div class="mobile-drawer-action">
+          <a class="button primary" href="/#anfrage">Einsatz prüfen</a>
+          <span>Unverbindlich · persönliche Einschätzung</span>
+        </div>
+        <div class="mobile-legal">
+          <a href="https://georgi.digital/impressum/">Impressum</a>
+          <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        </div>
+      </aside>
+    </header>
+    <main id="main" class="page-shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Startseite</a></li><li><a href="/wissen/">Praxiswissen</a></li><li><span aria-current="page">OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten</span></li>
+      </ol>
+    </nav>
+      <article class="content-page article-page">
+        <p class="eyebrow">Praxiswissen</p>
+        <h1>OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten</h1>
+        <p class="answer-block">OpenClaw und DSGVO sollten technisch über Datenflüsse betrachtet werden: Welche Daten gehen in welchen Dienst, wer verarbeitet sie, wie lange bleiben sie erhalten und welche Rechte begrenzen den Zugriff?</p>
+        <div class="byline">
+          <img src="/assets/people/fabian-georgi-450.webp" alt="Fabian Georgi" width="450" height="450" loading="lazy" decoding="async">
+          <p><strong>Autor: Fabian Georgi</strong><span>Senior Software Developer · Software-, Integrations- und Prozessentwicklung</span><span>Veröffentlicht: 11. August 2026 · Fachlich geprüft: 16. August 2026</span></p>
+        </div>
+        <section class="content-section">
+        <h2>Keine Rechtsberatung, aber klare technische Grundlagen</h2>
+        <p>Dieser Artikel ersetzt keine rechtliche Prüfung. Technisch lässt sich aber sauber vorbereiten, welche personenbezogenen Daten verarbeitet werden, welche Systeme beteiligt sind und welche Schutzmaßnahmen existieren.</p>
+        <p>Eine Datenschutzprüfung wird einfacher, wenn Datenquellen, Modellanbieter, Logs, Retention, Löschung und Berechtigungen von Anfang an dokumentiert sind.</p>
+      </section>
+<section class="content-section">
+        <h2>Welche Daten fließen?</h2>
+        <p>Bei einem E-Mail-Agenten können Absender, Inhalte, Anhänge, Kundennummern, CRM-Kontext, Antwortentwürfe, Tool-Ergebnisse und Freigabeentscheidungen verarbeitet werden.</p>
+        <p>Nicht alles muss an ein Modell gehen. Datenminimierung heißt technisch: nur den Kontext übertragen, der für die konkrete Aufgabe erforderlich ist.</p>
+      </section>
+<section class="content-section">
+        <h2>Modellanbieter, API-Provider und Self-Hosting</h2>
+        <p>Je nach Architektur verarbeitet ein externer Modellanbieter Prompts und Kontext. Zusätzlich können Microsoft 365, CRM, Ticketsysteme, Hosting-Anbieter und Monitoring-Dienste beteiligt sein.</p>
+        <p>Self-Hosting kann Datenwege begrenzen, ersetzt aber nicht die Prüfung externer Modell- oder API-Dienste, wenn diese weiterhin genutzt werden.</p>
+      </section>
+<section class="content-section">
+        <h2>Logs, Prompts und Retention</h2>
+        <p>Logs sollten für Betrieb und Audit reichen, aber keine unnötigen Vollinhalte speichern. Prompt- und Tool-Protokolle brauchen klare Retention-Regeln.</p>
+        <p>Ein Löschkonzept muss berücksichtigen, dass personenbezogene Daten in E-Mails, Tickets, CRM-Notizen, Agentenlogs und Backups gleichzeitig vorkommen können.</p>
+      </section>
+<section class="content-section">
+        <h2>Berechtigungen und Auditierbarkeit</h2>
+        <p>Datenzugriff muss pro Prozess begrenzt sein. Ein Agent für Support-Triage braucht keine vollständigen Exporte aller Kunden oder historischen Vorgänge.</p>
+        <p>Auditierbarkeit bedeutet: Später muss nachvollziehbar sein, welche Datenquelle genutzt wurde, welches Tool aufgerufen wurde und welche menschliche Freigabe erfolgt ist.</p>
+      </section>
+<section class="content-section">
+        <h2>Technische und organisatorische Maßnahmen</h2>
+        <p>Sinnvolle Maßnahmen sind Least Privilege, Service Accounts, Verschlüsselung, Secret Management, Zugriffstrennung, Protokollierung, Löschregeln, Backup-Konzept und Incident-Prozess.</p>
+        <p>Für jeden produktiven Agenten sollte dokumentiert werden, welche TOMs vorhanden sind und welche Restrisiken bewusst akzeptiert werden.</p>
+      </section>
+<section class="content-section">
+        <h2>Datenfluss eines E-Mail-Agenten</h2>
+        <figure class="diagram" aria-labelledby="gdpr-flow-title">
+          <figcaption id="gdpr-flow-title">Datenschutz beginnt bei einer nachvollziehbaren Sicht auf Quellen, Verarbeitung, Modellzugriff, Logs und Löschung.</figcaption>
+          <div class="flow-diagram">
+            <span>Postfach</span>
+            <span>OpenClaw</span>
+            <span>Minimierter Kontext</span>
+            <span>Modell/API</span>
+            <span>Entwurf</span>
+            <span>Freigabe</span>
+            <span>Log + Retention</span>
+          </div>
+        </figure>
+      </section>
+        <section class="content-section"><h2>Quellen</h2><ul class="link-list"><li><a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj">DSGVO, Artikel 5: Grundsätze</a></li><li><a href="https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/IT-Grundschutz-Kompendium/it-grundschutz-kompendium_node.html">BSI IT-Grundschutz-Kompendium</a></li><li><a href="https://openai.com/policies/row-privacy-policy/">OpenAI Privacy and data controls</a></li></ul></section>
+        <section class="content-section">
+        <h2>Passende nächste Seiten</h2>
+        <ul class="link-list">
+          <li><a href="/ki-assistent-crm-erp/">Datenzugriffe in CRM und ERP begrenzen</a></li>
+          <li><a href="/wissen/openclaw-sicher-betreiben/">Berechtigungen technisch absichern</a></li>
+          <li><a href="/wissen/openclaw-microsoft-365-oauth-email/">Microsoft-365-Anbindung kontrollieren</a></li>
+        </ul>
+      </section>
+        <section class="content-cta">
+          <h2>Vom Praxiswissen zum ersten Prozess</h2>
+          <p>KI packt an prüft konkrete Unternehmensprozesse und setzt nur begrenzte, nachvollziehbare Assistenten produktiv um.</p>
+          <a class="button primary" href="/#anfrage">Prozess prüfen lassen</a>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <span>KI packt an · Fabian Georgi</span>
+      <nav aria-label="Footer-Navigation">
+        <a href="/email-assistent/">Leistungen</a>
+        <a href="/wissen/">Praxiswissen</a>
+        <a href="/fabian-georgi/">Fabian Georgi</a>
+        <a href="https://georgi.digital/impressum/">Impressum</a>
+        <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        <a href="mailto:hello@georgi.digital">hello@georgi.digital</a>
+      </nav>
+    </footer>
+    <script src="/assets/script.js" defer></script>
+  </body>
+</html>

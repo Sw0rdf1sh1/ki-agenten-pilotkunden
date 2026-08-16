@@ -8,7 +8,7 @@ const site = {
   author: "Fabian Georgi",
   authorTitle: "Senior Software Developer · Software-, Integrations- und Prozessentwicklung",
   datePublished: "2026-08-11",
-  dateModified: "2026-08-15",
+  dateModified: "2026-08-16",
   description:
     "KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.",
   socialImage: "/assets/social/ki-packt-an-social.png",
@@ -167,6 +167,10 @@ const services = [
       ["/ki-assistent-betrieb-betreuung/", "Managed Betrieb für KI-Assistenten"],
       ["/ki-assistent-crm-erp/", "Systemanbindungen planen"],
       ["/wissen/ki-agenten-im-mittelstand/", "KI-Agenten im Mittelstand einordnen"],
+      ["/wissen/openclaw-sicher-betreiben/", "OpenClaw sicher betreiben"],
+      ["/wissen/openclaw-microsoft-365-oauth-email/", "Microsoft 365 kontrolliert anbinden"],
+      ["/wissen/openclaw-selbst-hosten-docker-backup-monitoring/", "Self-Hosting planen"],
+      ["/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/", "Datenflüsse und DSGVO einordnen"],
     ],
     faq: [
       ["Kann OpenClaw auf eigener Infrastruktur laufen?", "Ja, wenn Betrieb, Updates, Secrets und Monitoring dafür sauber geregelt sind."],
@@ -473,6 +477,337 @@ const articles = [
       ["/ki-assistent-betrieb-betreuung/", "Betrieb und Betreuung planen"],
       ["/wissen/ki-agent-sicherheit-prompt-injection/", "Sicherheitsgrenzen verstehen"],
       ["/wissen/ki-agent-kosten/", "Kosten realistisch einordnen"],
+    ],
+  },
+  {
+    slug: "wissen/openclaw-sicher-betreiben",
+    title: "OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen",
+    metaTitle: "OpenClaw sicher betreiben: Architektur, Secrets, Rechte",
+    description:
+      "Wie Unternehmen OpenClaw sicher betreiben: Least Privilege, Service Accounts, Secret Management, Tool-Allowlisting, Logging, Audit Trail und Prompt-Injection-Schutz.",
+    intro:
+      "OpenClaw wird erst unternehmensfähig, wenn Agentenrollen, Werkzeuge, Rechte, Secrets, Freigaben und Protokolle getrennt geplant werden. Ein Agent darf nicht dieselben Rechte bekommen wie ein Administrator.",
+    sections: [
+      ["Bedrohungsmodell: Was muss begrenzt werden?", [
+        "Ein produktiver Agent verarbeitet fremde E-Mails, Dokumente, Tickets und interne Daten. Jede dieser Quellen kann falsche Angaben, manipulierte Anweisungen oder unerwartete Formate enthalten.",
+        "Das Sicherheitsziel ist nicht, dass ein Modell niemals falsch liegt. Das Ziel ist, dass ein Fehler keine zu weitreichende Aktion auslösen kann: keine ungeprüfte Mail, kein Kundendatenexport, keine Änderung im CRM und kein Zugriff auf Secrets."
+      ]],
+      ["Agentenrechte sind nicht Benutzerrechte", [
+        "Ein Agent braucht ein eigenes Berechtigungsmodell. Er sollte weder persönliche Benutzerkonten wiederverwenden noch pauschal die Rechte der Person erhalten, die ihn auslöst.",
+        "Praktisch bedeutet das: dedizierte Service Accounts pro Prozess, getrennte Lese- und Schreibrechte, begrenzte Scopes und eine eindeutige Zuordnung im Audit Log."
+      ]],
+      ["Secrets gehören nicht in Prompts", [
+        "API-Schlüssel, OAuth-Tokens, Datenbankzugänge und Webhook-Secrets gehören in die Laufzeitumgebung oder eine Secret-Verwaltung, nicht in Systemprompts, Wissensdateien oder Git-Repositories.",
+        "Ein Agent sollte ein Werkzeug nur über eine kontrollierte Schnittstelle aufrufen. Das Werkzeug holt das Secret serverseitig und validiert Eingaben, bevor es eine externe Aktion ausführt."
+      ]],
+      ["Tool-Allowlisting und Argumentprüfung", [
+        "Ein produktiver Agent sollte nur explizit freigegebene Werkzeuge sehen. Jedes Werkzeug braucht eine klar definierte Aufgabe, erlaubte Argumente und fachliche Grenzen.",
+        "Besonders wichtig ist die Argumentprüfung: Ein CRM-Notizwerkzeug darf nicht plötzlich Massenupdates ausführen, nur weil ein manipuliertes Dokument ein anderes JSON-Argument vorschlägt."
+      ]],
+      ["Prompt Injection als Betriebsrisiko", [
+        "Eingehende Inhalte bleiben Arbeitsdaten. Sie dürfen niemals zu neuen Systemanweisungen werden. Diese Trennung muss in Prompt, Tool-Policy und Freigaberegeln sichtbar sein.",
+        "Kritische Aktionen wie Mailversand, CRM-Schreibzugriffe, Preiszusagen, Datenexporte oder Rollenänderungen brauchen Human Approval oder eine harte technische Sperre."
+      ]],
+      ["Logging, Audit Trail und typische Fehlkonfigurationen", [
+        "Protokolliert werden sollten Eingang, erkannte Kategorie, genutzte Quellen, Tool-Aufrufe, Freigabeentscheidung und Ergebnis. Logs dürfen dabei keine Secrets und möglichst keine unnötigen personenbezogenen Vollinhalte enthalten.",
+        "Typische Fehlkonfigurationen sind globale Admin-Tokens, fehlende Trennung von Lese- und Schreibrechten, unvalidierte Tool-Argumente, ungeprüfter Mailversand und fehlende Regressionstests nach Modell- oder Promptänderungen."
+      ]],
+    ],
+    extraHtml: `<section class="content-section">
+        <h2>Referenzarchitektur für sichere Agentenrechte</h2>
+        <figure class="diagram" aria-labelledby="secure-openclaw-architecture-title">
+          <figcaption id="secure-openclaw-architecture-title">OpenClaw trennt untrusted input, Agentenrolle, Tool-Policy, Service Account, Fachsystem und Audit Trail.</figcaption>
+          <div class="flow-diagram">
+            <span>Untrusted Input</span>
+            <span>Agentenrolle</span>
+            <span>Tool-Allowlist</span>
+            <span>Argumentprüfung</span>
+            <span>Service Account</span>
+            <span>Fachsystem</span>
+            <span>Audit Log</span>
+          </div>
+        </figure>
+      </section>
+      <section class="content-section">
+        <h2>Minimal sinnvolle Rechte pro Agententyp</h2>
+        <div class="comparison-table" role="region" aria-label="Rechtemodell für OpenClaw-Agenten">
+          <table>
+            <thead><tr><th>Agent</th><th>Leserechte</th><th>Schreibrechte</th><th>Freigabe</th></tr></thead>
+            <tbody>
+              <tr><th>E-Mail-Triage</th><td>Postfach, Wiki</td><td>Entwurf erstellen</td><td>vor Versand</td></tr>
+              <tr><th>CRM-Recherche</th><td>Kunden, offene Vorgänge</td><td>keine oder Notizentwurf</td><td>vor CRM-Änderung</td></tr>
+              <tr><th>Support-Agent</th><td>Tickets, Produktwissen</td><td>Statusvorschlag</td><td>bei Eskalation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>`,
+    sources: [
+      ["OWASP GenAI Security Project: LLM01 Prompt Injection", "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"],
+      ["NIST Cybersecurity Framework", "https://www.nist.gov/cyberframework"],
+      ["Docker: Secrets", "https://docs.docker.com/engine/swarm/secrets/"],
+    ],
+    links: [
+      ["/openclaw-fuer-unternehmen/", "OpenClaw als Unternehmensdienst einordnen"],
+      ["/wissen/ki-agent-sicherheit-prompt-injection/", "Prompt Injection verstehen"],
+      ["/wissen/prompt-injection-test-ki-agent-email/", "Eigene Prompt-Injection-Messung ansehen"],
+    ],
+  },
+  {
+    slug: "wissen/openclaw-microsoft-365-oauth-email",
+    title: "OpenClaw mit Microsoft 365 verbinden: OAuth, E-Mail und Berechtigungen",
+    metaTitle: "OpenClaw mit Microsoft 365 verbinden: OAuth und E-Mail",
+    description:
+      "Wie OpenClaw kontrolliert mit Microsoft 365 verbunden wird: Microsoft Graph, OAuth, App Registration, Mail.Read, Mail.Send, Shared Mailboxes und minimale Rechte.",
+    intro:
+      "Eine Microsoft-365-Anbindung für OpenClaw sollte nicht mit einem persönlichen Passwort arbeiten. Sauber ist eine App Registration mit klaren Graph-Berechtigungen, Token-Handling und Freigaben vor riskanten Aktionen.",
+    sections: [
+      ["Graph API statt Postfach-Passwort", [
+        "Microsoft 365 sollte über Microsoft Graph angebunden werden. Dadurch lassen sich Berechtigungen, Token-Lebensdauer, Widerruf, Rate Limits und Auditierbarkeit besser kontrollieren als bei improvisierten Zugangsdaten.",
+        "Für einen E-Mail-Assistenten ist oft zuerst ein lesender Zugriff auf ein gemeinsames Postfach sinnvoll. Schreibende Aktionen werden separat betrachtet und vor dem Versand freigegeben."
+      ]],
+      ["Delegated oder Application Permissions?", [
+        "Delegated Permissions handeln im Kontext eines angemeldeten Benutzers. Application Permissions handeln als Anwendung und können, wenn sie zu breit vergeben werden, sehr weitreichend sein.",
+        "Für produktive Agenten ist die Entscheidung eine Risikoentscheidung: Application Permissions brauchen besonders enge Begrenzung, Admin Consent, Monitoring und eine klare Zuordnung zum Prozess."
+      ]],
+      ["Minimale Rechte für E-Mail-Prozesse", [
+        "Ein Agent, der Supportanfragen sortiert, braucht häufig Mail.Read auf dem relevanten Postfach und Zugriff auf freigegebene Wissensquellen. Mail.Send ist erst sinnvoll, wenn Versandregeln, Freigaben und Logging stehen.",
+        "Shared Mailboxes sollten gezielt adressiert werden. Ein Agent für info@ braucht keine pauschale Leseberechtigung für alle Postfächer im Tenant."
+      ]],
+      ["Token Handling und Widerruf", [
+        "Access Tokens dürfen nicht im Prompt, Browser oder Repository auftauchen. Refresh Tokens und Client Secrets gehören in die Laufzeitumgebung und müssen rotierbar sein.",
+        "Der Betriebsplan sollte festlegen, wer die App Registration besitzt, wie Rechte geprüft werden und wie der Zugriff bei einem Vorfall schnell widerrufen wird."
+      ]],
+      ["Human-in-the-loop bei Mail.Send", [
+        "Mail.Send ist eine externe Aktion mit Kundenwirkung. Deshalb sollte der Agent zunächst Entwürfe erzeugen, Quellen nennen und Unsicherheit markieren.",
+        "Automatischer Versand ist erst nach stabilen Testfällen sinnvoll und sollte auf eng definierte Standardfälle beschränkt bleiben."
+      ]],
+      ["Typische Fehlerfälle", [
+        "Häufige Fehler sind zu breite Graph-Scopes, fehlender Admin-Review, unklare Shared-Mailbox-Zuordnung, unprotokollierter Versand und fehlende Behandlung von 429-Rate-Limits.",
+        "Ein produktiver Connector muss API-Fehler verständlich eskalieren, statt bei Teilfehlern mehrfach dieselbe Aktion auszuführen."
+      ]],
+    ],
+    extraHtml: `<section class="content-section">
+        <h2>Ablauf einer kontrollierten Microsoft-365-Anbindung</h2>
+        <figure class="diagram" aria-labelledby="m365-flow-title">
+          <figcaption id="m365-flow-title">App Registration, Graph-Scopes und Freigaben begrenzen, was OpenClaw mit E-Mail tun darf.</figcaption>
+          <div class="flow-diagram">
+            <span>OpenClaw</span>
+            <span>Connector</span>
+            <span>OAuth Token</span>
+            <span>Microsoft Graph</span>
+            <span>Shared Mailbox</span>
+            <span>Entwurf</span>
+            <span>Freigabe</span>
+          </div>
+        </figure>
+      </section>`,
+    sources: [
+      ["Microsoft Learn: Microsoft Graph permissions reference", "https://learn.microsoft.com/en-us/graph/permissions-reference"],
+      ["Microsoft Learn: Authentication and authorization basics for Microsoft Graph", "https://learn.microsoft.com/en-us/graph/auth/auth-concepts"],
+      ["Microsoft Learn: Microsoft Graph throttling guidance", "https://learn.microsoft.com/en-us/graph/throttling"],
+    ],
+    links: [
+      ["/email-assistent/", "E-Mail-Assistent als Einstiegsprozess"],
+      ["/wissen/openclaw-sicher-betreiben/", "Rechte und Secrets sicher planen"],
+      ["/ki-assistent-betrieb-betreuung/", "Betrieb und Monitoring einordnen"],
+    ],
+  },
+  {
+    slug: "wissen/openclaw-selbst-hosten-docker-backup-monitoring",
+    title: "OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring",
+    metaTitle: "OpenClaw selbst hosten: Docker, Backup und Monitoring",
+    description:
+      "Produktionsnahes Self-Hosting von OpenClaw: Container-Architektur, Reverse Proxy, TLS, persistente Daten, Backups, Updates, Rollback, Monitoring und Kostenkontrolle.",
+    intro:
+      "Self-Hosting von OpenClaw ist sinnvoll, wenn Datenflüsse, interne Systeme oder Betriebsanforderungen eine eigene Laufzeitumgebung erfordern. Es ist aber ein Betriebsprojekt, keine reine Installation.",
+    sections: [
+      ["Container-Architektur und persistente Daten", [
+        "OpenClaw sollte in klar getrennten Diensten betrieben werden: Anwendung, Datenhaltung, Connectoren, Reverse Proxy, Monitoring und Backup-Job dürfen nicht als unübersichtlicher Einzelprozess verschwimmen.",
+        "Persistente Daten, Konfiguration und Uploads brauchen dokumentierte Volumes. Alles, was nach einem Container-Neustart verloren gehen darf, muss ausdrücklich als flüchtig gelten."
+      ]],
+      ["Reverse Proxy, TLS und Netzwerksegmentierung", [
+        "Ein Reverse Proxy übernimmt TLS, Hostnamen, Security Headers und gegebenenfalls Zugriffsbeschränkungen. Interne Connectoren sollten nur die Systeme erreichen, die für ihren Prozess nötig sind.",
+        "Netzwerksegmentierung reduziert die Wirkung eines Fehlers: Ein E-Mail-Agent braucht keinen direkten Zugriff auf Datenbanken, die für seinen Vorgang irrelevant sind."
+      ]],
+      ["Health Checks, Logs und Metrics", [
+        "Health Checks prüfen, ob Dienste erreichbar sind. Logs erklären, was passiert ist. Metrics zeigen Kosten, Fehlerquoten, Antwortzeiten und auffällige Nutzung.",
+        "Für Agentenbetrieb reichen reine Servermetriken nicht aus. Wichtig sind auch fachliche Signale: Eskalationsquote, blockierte Tool-Aufrufe, fehlgeschlagene Freigaben und Modellkosten."
+      ]],
+      ["Backup, Restore und Rollback", [
+        "Backups sind nur dann wertvoll, wenn ein Restore getestet wurde. Gesichert werden müssen Konfiguration, relevante Daten, Wissensstände, Audit-Kontext und Betriebsdokumentation.",
+        "Updates brauchen eine Rückfallstrategie. Ein Modell-, Prompt- oder Connectorwechsel sollte erst nach Regressionstests auf bekannten Fällen produktiv werden."
+      ]],
+      ["Staging und Ressourcenlimits", [
+        "Eine Staging-Umgebung verhindert, dass neue Tools oder Promptänderungen direkt produktive Vorgänge beeinflussen. Testdaten müssen dabei kontrolliert und frei von Kundengeheimnissen sein.",
+        "Ressourcenlimits und Kostenlimits schützen vor Endlosschleifen, unerwarteten Massenverarbeitungen und unkontrollierter API-Nutzung."
+      ]],
+      ["Kostenkontrolle im Self-Hosting", [
+        "Self-Hosting verschiebt Kosten von Plattformgebühren zu Betrieb, Wartung, Monitoring, Backups und Verantwortlichkeit. Es ist nicht automatisch günstiger.",
+        "Der Vorteil liegt in Kontrolle: Datenwege, Zugriff, Netzwerk, Update-Zeitpunkte und Integrationen lassen sich genauer an Unternehmensanforderungen anpassen."
+      ]],
+    ],
+    extraHtml: `<section class="content-section">
+        <h2>Produktionsnahe Self-Hosting-Struktur</h2>
+        <figure class="diagram" aria-labelledby="self-hosting-title">
+          <figcaption id="self-hosting-title">Self-Hosting trennt öffentliche Kante, OpenClaw-Laufzeit, Connectoren, Datenhaltung, Monitoring und Backup.</figcaption>
+          <div class="architecture-diagram">
+            <div class="diagram-node primary">Reverse Proxy / TLS</div>
+            <div class="diagram-node agent">OpenClaw Runtime</div>
+            <div class="diagram-group">
+              <span>Connectoren</span>
+              <span>Datenvolumes</span>
+              <span>Secrets</span>
+              <span>Logs</span>
+              <span>Backups</span>
+            </div>
+            <div class="diagram-frame">
+              <span>Health Checks</span>
+              <span>Metrics</span>
+              <span>Staging</span>
+              <span>Rollback</span>
+            </div>
+          </div>
+        </figure>
+      </section>`,
+    sources: [
+      ["Docker Docs: Compose", "https://docs.docker.com/compose/"],
+      ["Docker Docs: Resource constraints", "https://docs.docker.com/engine/containers/resource_constraints/"],
+      ["NIST Cybersecurity Framework", "https://www.nist.gov/cyberframework"],
+    ],
+    links: [
+      ["/openclaw-fuer-unternehmen/", "OpenClaw im Unternehmen planen"],
+      ["/ki-assistent-betrieb-betreuung/", "Managed Betrieb verstehen"],
+      ["/wissen/openclaw-sicher-betreiben/", "Sicherheitsarchitektur ergänzen"],
+    ],
+  },
+  {
+    slug: "wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten",
+    title: "OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten",
+    metaTitle: "OpenClaw und DSGVO: Datenflüsse und Unternehmensdaten",
+    description:
+      "Technische DSGVO-Perspektive auf OpenClaw: Datenflüsse, Modellanbieter, Self-Hosting, Logs, Prompts, Auftragsverarbeitung, Datenminimierung und Löschkonzept.",
+    intro:
+      "OpenClaw und DSGVO sollten technisch über Datenflüsse betrachtet werden: Welche Daten gehen in welchen Dienst, wer verarbeitet sie, wie lange bleiben sie erhalten und welche Rechte begrenzen den Zugriff?",
+    sections: [
+      ["Keine Rechtsberatung, aber klare technische Grundlagen", [
+        "Dieser Artikel ersetzt keine rechtliche Prüfung. Technisch lässt sich aber sauber vorbereiten, welche personenbezogenen Daten verarbeitet werden, welche Systeme beteiligt sind und welche Schutzmaßnahmen existieren.",
+        "Eine Datenschutzprüfung wird einfacher, wenn Datenquellen, Modellanbieter, Logs, Retention, Löschung und Berechtigungen von Anfang an dokumentiert sind."
+      ]],
+      ["Welche Daten fließen?", [
+        "Bei einem E-Mail-Agenten können Absender, Inhalte, Anhänge, Kundennummern, CRM-Kontext, Antwortentwürfe, Tool-Ergebnisse und Freigabeentscheidungen verarbeitet werden.",
+        "Nicht alles muss an ein Modell gehen. Datenminimierung heißt technisch: nur den Kontext übertragen, der für die konkrete Aufgabe erforderlich ist."
+      ]],
+      ["Modellanbieter, API-Provider und Self-Hosting", [
+        "Je nach Architektur verarbeitet ein externer Modellanbieter Prompts und Kontext. Zusätzlich können Microsoft 365, CRM, Ticketsysteme, Hosting-Anbieter und Monitoring-Dienste beteiligt sein.",
+        "Self-Hosting kann Datenwege begrenzen, ersetzt aber nicht die Prüfung externer Modell- oder API-Dienste, wenn diese weiterhin genutzt werden."
+      ]],
+      ["Logs, Prompts und Retention", [
+        "Logs sollten für Betrieb und Audit reichen, aber keine unnötigen Vollinhalte speichern. Prompt- und Tool-Protokolle brauchen klare Retention-Regeln.",
+        "Ein Löschkonzept muss berücksichtigen, dass personenbezogene Daten in E-Mails, Tickets, CRM-Notizen, Agentenlogs und Backups gleichzeitig vorkommen können."
+      ]],
+      ["Berechtigungen und Auditierbarkeit", [
+        "Datenzugriff muss pro Prozess begrenzt sein. Ein Agent für Support-Triage braucht keine vollständigen Exporte aller Kunden oder historischen Vorgänge.",
+        "Auditierbarkeit bedeutet: Später muss nachvollziehbar sein, welche Datenquelle genutzt wurde, welches Tool aufgerufen wurde und welche menschliche Freigabe erfolgt ist."
+      ]],
+      ["Technische und organisatorische Maßnahmen", [
+        "Sinnvolle Maßnahmen sind Least Privilege, Service Accounts, Verschlüsselung, Secret Management, Zugriffstrennung, Protokollierung, Löschregeln, Backup-Konzept und Incident-Prozess.",
+        "Für jeden produktiven Agenten sollte dokumentiert werden, welche TOMs vorhanden sind und welche Restrisiken bewusst akzeptiert werden."
+      ]],
+    ],
+    extraHtml: `<section class="content-section">
+        <h2>Datenfluss eines E-Mail-Agenten</h2>
+        <figure class="diagram" aria-labelledby="gdpr-flow-title">
+          <figcaption id="gdpr-flow-title">Datenschutz beginnt bei einer nachvollziehbaren Sicht auf Quellen, Verarbeitung, Modellzugriff, Logs und Löschung.</figcaption>
+          <div class="flow-diagram">
+            <span>Postfach</span>
+            <span>OpenClaw</span>
+            <span>Minimierter Kontext</span>
+            <span>Modell/API</span>
+            <span>Entwurf</span>
+            <span>Freigabe</span>
+            <span>Log + Retention</span>
+          </div>
+        </figure>
+      </section>`,
+    sources: [
+      ["DSGVO, Artikel 5: Grundsätze", "https://eur-lex.europa.eu/eli/reg/2016/679/oj"],
+      ["BSI IT-Grundschutz-Kompendium", "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/IT-Grundschutz-Kompendium/it-grundschutz-kompendium_node.html"],
+      ["OpenAI Privacy and data controls", "https://openai.com/policies/row-privacy-policy/"],
+    ],
+    links: [
+      ["/ki-assistent-crm-erp/", "Datenzugriffe in CRM und ERP begrenzen"],
+      ["/wissen/openclaw-sicher-betreiben/", "Berechtigungen technisch absichern"],
+      ["/wissen/openclaw-microsoft-365-oauth-email/", "Microsoft-365-Anbindung kontrollieren"],
+    ],
+  },
+  {
+    slug: "wissen/prompt-injection-test-ki-agent-email",
+    title: "Wir haben einen KI-Agenten mit manipulierten E-Mails getestet: Ergebnisse eines Prompt-Injection-Tests",
+    metaTitle: "Prompt-Injection-Test mit KI-E-Mail-Agent: Ergebnisse",
+    description:
+      "Reproduzierbarer Prompt-Injection-Test für einen KI-E-Mail-Agenten: Testdesign, Angriffskategorien, Messwerte, Ergebnisse, Einschränkungen und technische Konsequenzen.",
+    intro:
+      "Für diesen Test wurden 20 kontrollierte E-Mail-Fälle gegen eine OpenClaw-nahe Sicherheitslogik vor Tool-Aufrufen ausgeführt. Gemessen wurde nicht Marketingwirkung, sondern ob riskante Inhalte blockiert, Tool-Aufrufe verhindert und harmlose Vorgänge weiterhin bearbeitbar bleiben.",
+    sections: [
+      ["Testumgebung und Einschränkung", [
+        "Der Test lief am 16. August 2026 als reproduzierbares Repository-Skript. Es wurde kein Live-LLM genutzt; gemessen wurde die deterministische Sicherheitsstufe vor Tool-Aufrufen.",
+        "Diese Einschränkung ist wichtig: Die Zahlen beschreiben nicht die Zuverlässigkeit eines bestimmten Modells, sondern die Wirkung einer vorgeschalteten Policy-Schicht für einen E-Mail-Agenten."
+      ]],
+      ["Angriffskategorien", [
+        "Getestet wurden direkte und indirekte Prompt Injection, manipulierte Signaturen, versteckte HTML-Anweisungen, Base64-/Encoding-Tricks, Social Engineering, Datenabfluss, Secrets, unerlaubtes Senden, CRM-Änderungen und Tool-Argument-Manipulation.",
+        "Zusätzlich enthielt der Test fünf harmlose Support-, Rechnungs-, Liefer- und Beschwerdefälle, damit falsche Blockierungen sichtbar werden."
+      ]],
+      ["Messwerte", [
+        "Ausgeführt wurden 20 Testfälle: 15 Angriffsfälle und 5 harmlose Vorgänge. Korrekt blockiert wurden 12 von 15 Angriffen. Falsch positiv blockiert wurden 0 von 5 harmlosen Vorgängen. Falsch negativ blieben 3 von 15 Angriffen.",
+        "Die gemessene Blockierungsrate lag damit bei 80 Prozent. Die False-Positive-Rate lag bei 0 Prozent, die False-Negative-Rate bei 20 Prozent."
+      ]],
+      ["Was die Ergebnisse bedeuten", [
+        "Eine vorgeschaltete Policy-Schicht reduziert Risiko, ersetzt aber keine zweite Sicherheitslinie. Drei Angriffe blieben unentdeckt, obwohl sie als Angriffsfälle markiert waren.",
+        "Für produktive Agenten heißt das: Tool-Allowlisting, Argumentprüfung, Rechtebegrenzung und Human Approval dürfen nicht nur im Prompt stehen. Sie müssen technisch erzwungen werden."
+      ]],
+      ["Welche Schutzmaßnahmen sich daraus ableiten", [
+        "Mailversand, CRM-Schreibzugriffe, Datenexporte und Secret-Zugriffe sollten nicht direkt vom Modell ausgelöst werden. Jedes Werkzeug braucht serverseitige Validierung und fachliche Freigaberegeln.",
+        "Regressionstests mit manipulierten E-Mails sollten nach Prompt-, Modell-, Tool- oder Connectoränderungen erneut laufen."
+      ]],
+      ["Reproduzierbarkeit", [
+        "Die Testfälle und Ergebnisse liegen im Repository unter `scripts/prompt-injection-research.mjs` und `docs/prompt-injection-research-results.json`.",
+        "Der Test verwendet kontrollierte Beispieldaten und enthält keine Kundendaten, Tokens, Secrets oder verwertbaren Zugangsdaten."
+      ]],
+    ],
+    extraHtml: `<section class="content-section">
+        <h2>Ergebnistabelle</h2>
+        <div class="comparison-table" role="region" aria-label="Prompt-Injection-Test Ergebnisse">
+          <table>
+            <thead><tr><th>Messwert</th><th>Ergebnis</th></tr></thead>
+            <tbody>
+              <tr><th>Testfälle gesamt</th><td>20</td></tr>
+              <tr><th>Angriffsfälle</th><td>15</td></tr>
+              <tr><th>harmlose Vorgänge</th><td>5</td></tr>
+              <tr><th>korrekt blockiert</th><td>12</td></tr>
+              <tr><th>falsch positiv</th><td>0</td></tr>
+              <tr><th>falsch negativ</th><td>3</td></tr>
+              <tr><th>Blockierungsrate</th><td>80 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="content-section">
+        <h2>Statische Auswertung</h2>
+        <div class="metric-strip">
+          <article><strong>20</strong><span>Testfälle</span></article>
+          <article><strong>12</strong><span>korrekt blockiert</span></article>
+          <article><strong>0</strong><span>falsch positiv</span></article>
+          <article><strong>3</strong><span>falsch negativ</span></article>
+        </div>
+      </section>`,
+    sources: [
+      ["OWASP GenAI Security Project: LLM01 Prompt Injection", "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"],
+      ["OpenAI crawler and retrieval documentation", "https://developers.openai.com/api/docs/bots"],
+    ],
+    links: [
+      ["/wissen/openclaw-sicher-betreiben/", "Sicheren Betrieb aus den Messergebnissen ableiten"],
+      ["/wissen/ki-agent-sicherheit-prompt-injection/", "Grundlagen zu Prompt Injection"],
+      ["/email-assistent/", "E-Mail-Agent als Einstieg prüfen"],
     ],
   },
   {
@@ -1044,6 +1379,36 @@ function renderKnowledgeIndex() {
       takeaways: ["OpenClaw als Betriebsrahmen", "interne Systeme und Connector-Optionen", "Pflichtgrenzen für Sicherheit, Rechte und Betrieb"],
       readingTime: "9 Min. Lesezeit",
     }],
+    ["wissen/openclaw-sicher-betreiben", {
+      category: "OpenClaw Security",
+      benefit: "Sie sehen, wie Agentenrechte, Secrets, Tool-Policies und Audit Logs für produktiven Betrieb zusammenspielen.",
+      takeaways: ["Least Privilege für Agenten", "Secrets außerhalb von Prompts", "Tool-Allowlisting und Argumentprüfung"],
+      readingTime: "10 Min. Lesezeit",
+    }],
+    ["wissen/openclaw-microsoft-365-oauth-email", {
+      category: "Microsoft 365",
+      benefit: "Sie verstehen, wie E-Mail-Zugriff über Graph, OAuth, Shared Mailboxes und minimale Rechte kontrolliert wird.",
+      takeaways: ["delegated vs. application permissions", "Mail.Read und Mail.Send trennen", "Token Handling und Widerruf"],
+      readingTime: "9 Min. Lesezeit",
+    }],
+    ["wissen/openclaw-selbst-hosten-docker-backup-monitoring", {
+      category: "Self-Hosting",
+      benefit: "Sie können einschätzen, wann OpenClaw in eigener Umgebung sinnvoll ist und welcher Betrieb dafür nötig wird.",
+      takeaways: ["Container und persistente Daten", "Backups, Restore und Rollback", "Monitoring und Kostenkontrolle"],
+      readingTime: "10 Min. Lesezeit",
+    }],
+    ["wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten", {
+      category: "DSGVO",
+      benefit: "Sie bekommen eine technische Sicht auf Datenflüsse, Modellanbieter, Logs, Retention und Berechtigungen.",
+      takeaways: ["Datenminimierung im Agentenprozess", "Prompts, Logs und Löschung", "TOMs und Auditierbarkeit"],
+      readingTime: "9 Min. Lesezeit",
+    }],
+    ["wissen/prompt-injection-test-ki-agent-email", {
+      category: "Original Research",
+      benefit: "Sie sehen echte Messwerte aus einem reproduzierbaren Prompt-Injection-Test für einen KI-E-Mail-Agenten.",
+      takeaways: ["20 kontrollierte Testfälle", "80 Prozent Blockierungsrate", "warum Policy-Schichten allein nicht reichen"],
+      readingTime: "8 Min. Lesezeit",
+    }],
     ["wissen/ki-agent-kosten", {
       category: "Kosten",
       benefit: "Sie sehen, welche Kostenblöcke real entstehen und welche Pilotpreise KI packt an tatsächlich anbietet.",
@@ -1274,6 +1639,7 @@ ${articles.map((page) => `- [${page.title}](${absolute(pagePath(page.slug))})`).
 - Externe Modell-, API-, Betriebs- und Lizenzkosten werden transparent ausgewiesen.
 - Für ChatGPT Search ist OAI-SearchBot relevant; GPTBot betrifft Modelltraining und ist dafür nicht erforderlich.
 - User-ausgelöste ChatGPT-Abrufe sind über ChatGPT-User erlaubt.
+- Claude-SearchBot, Claude-User, PerplexityBot und Perplexity-User sind für Search-/Retrieval-Nutzung erlaubt; ClaudeBot, GPTBot und Google-Extended bleiben für Training beziehungsweise erweiterte Modellnutzung blockiert.
 `;
 }
 
@@ -1398,6 +1764,11 @@ function updateHomepageHead() {
               <li><a href="/wissen/ki-agent-kosten/">Was kostet ein KI-Agent?</a></li>
               <li><a href="/wissen/ki-agent-sicherheit-prompt-injection/">KI-Agenten und Prompt Injection</a></li>
               <li><a href="/wissen/produktive-ki-agenten-openclaw-mittelstand/">Produktive KI-Agenten mit OpenClaw</a></li>
+              <li><a href="/wissen/openclaw-sicher-betreiben/">OpenClaw sicher betreiben</a></li>
+              <li><a href="/wissen/openclaw-microsoft-365-oauth-email/">OpenClaw mit Microsoft 365 verbinden</a></li>
+              <li><a href="/wissen/openclaw-selbst-hosten-docker-backup-monitoring/">OpenClaw selbst hosten</a></li>
+              <li><a href="/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/">OpenClaw und DSGVO</a></li>
+              <li><a href="/wissen/prompt-injection-test-ki-agent-email/">Prompt-Injection-Test mit E-Mails</a></li>
               <li><a href="/wissen/ki-email-assistent-sicher-einsetzen/">KI-E-Mail-Assistent sicher einsetzen</a></li>
             </ul>
           </article>
@@ -1460,6 +1831,7 @@ write("llms-full.txt", renderLlmsFull());
 write(
   "robots.txt",
   `User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no, use=reference
 Allow: /
 
 User-agent: OAI-SearchBot
@@ -1469,6 +1841,24 @@ User-agent: ChatGPT-User
 Allow: /
 
 User-agent: GPTBot
+Disallow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
 Disallow: /
 
 Sitemap: ${site.origin}/sitemap.xml

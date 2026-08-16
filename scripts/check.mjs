@@ -12,6 +12,11 @@ const siteFiles = [
   "wissen/was-ist-ein-ki-agent/index.html",
   "wissen/ki-agenten-im-mittelstand/index.html",
   "wissen/produktive-ki-agenten-openclaw-mittelstand/index.html",
+  "wissen/openclaw-sicher-betreiben/index.html",
+  "wissen/openclaw-microsoft-365-oauth-email/index.html",
+  "wissen/openclaw-selbst-hosten-docker-backup-monitoring/index.html",
+  "wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/index.html",
+  "wissen/prompt-injection-test-ki-agent-email/index.html",
   "wissen/ki-email-assistent-sicher-einsetzen/index.html",
   "wissen/ki-agent-kosten/index.html",
   "wissen/ki-agent-sicherheit-prompt-injection/index.html",
@@ -90,6 +95,13 @@ assert(cname === "ki-packt-an.de", "CNAME must point to ki-packt-an.de.");
 assert(robots.includes("User-agent: OAI-SearchBot\nAllow: /"), "robots.txt must explicitly allow OAI-SearchBot.");
 assert(robots.includes("User-agent: ChatGPT-User\nAllow: /"), "robots.txt must explicitly allow user-triggered ChatGPT fetches.");
 assert(robots.includes("User-agent: GPTBot\nDisallow: /"), "robots.txt must keep GPTBot separate from ChatGPT Search.");
+assert(robots.includes("User-agent: Claude-SearchBot\nAllow: /"), "robots.txt must explicitly allow Claude-SearchBot.");
+assert(robots.includes("User-agent: Claude-User\nAllow: /"), "robots.txt must explicitly allow Claude-User.");
+assert(robots.includes("User-agent: ClaudeBot\nDisallow: /"), "robots.txt must keep ClaudeBot blocked for training.");
+assert(robots.includes("User-agent: PerplexityBot\nAllow: /"), "robots.txt must explicitly allow PerplexityBot.");
+assert(robots.includes("User-agent: Perplexity-User\nAllow: /"), "robots.txt must explicitly allow Perplexity-User.");
+assert(robots.includes("User-agent: Google-Extended\nDisallow: /"), "robots.txt must keep Google-Extended blocked unless explicitly approved.");
+assert(robots.includes("Content-Signal: search=yes, ai-input=yes, ai-train=no, use=reference"), "robots.txt must expose content signals for search and AI input while blocking training.");
 assert(robots.includes(`Sitemap: ${origin}/sitemap.xml`), "robots.txt must reference the canonical sitemap.");
 assert(headers.includes("https://*.pages.dev/*") && headers.includes("X-Robots-Tag: noindex, nofollow"), "_headers must protect Cloudflare Pages previews.");
 assert(redirects.includes("https://www.ki-packt-an.de/* https://ki-packt-an.de/:splat 301"), "_redirects must canonicalize www to non-www.");
@@ -144,7 +156,7 @@ for (const file of siteFiles) {
     assert(types.has("Article"), `${file} JSON-LD must include Article.`);
     assert(types.has("BreadcrumbList"), `${file} JSON-LD must include BreadcrumbList.`);
     assert(html.includes('"datePublished":"2026-08-11"'), `${file} Article datePublished must match visible date.`);
-    assert(html.includes('"dateModified":"2026-08-15"'), `${file} Article dateModified must match visible review date.`);
+    assert(html.includes('"dateModified":"2026-08-16"'), `${file} Article dateModified must match visible review date.`);
   }
 
   if (!file.startsWith("wissen/") && file !== "index.html" && file !== "fabian-georgi/index.html") {
@@ -203,6 +215,7 @@ assert(llms.includes("# KI packt an") && llms.includes("OAI-SearchBot"), "llms.t
 assert(llms.includes("ChatGPT-User"), "llms.txt must mention user-triggered ChatGPT fetches.");
 assert(llmsFull.includes("KI-Agenten und Prompt Injection"), "llms-full.txt must include public knowledge content.");
 assert(llmsFull.includes("Produktive KI-Agenten mit OpenClaw im Mittelstand"), "llms-full.txt must include the OpenClaw cornerstone content.");
+assert(llmsFull.includes("Wir haben einen KI-Agenten mit manipulierten E-Mails getestet"), "llms-full.txt must include the original research content.");
 assert(llmsFull.includes("Kostenblöcke eines KI-Agenten"), "llms-full.txt must include generated rich content.");
 assert(!llmsFull.includes("SECRET") && !llmsFull.includes("RESEND_API_KEY"), "llms-full.txt must not include internal secrets.");
 assert(existsSync("404.html"), "404.html must exist.");

@@ -9,6 +9,11 @@ const routes = [
   "/wissen/was-ist-ein-ki-agent/",
   "/wissen/ki-agenten-im-mittelstand/",
   "/wissen/produktive-ki-agenten-openclaw-mittelstand/",
+  "/wissen/openclaw-sicher-betreiben/",
+  "/wissen/openclaw-microsoft-365-oauth-email/",
+  "/wissen/openclaw-selbst-hosten-docker-backup-monitoring/",
+  "/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/",
+  "/wissen/prompt-injection-test-ki-agent-email/",
   "/wissen/ki-email-assistent-sicher-einsetzen/",
   "/wissen/ki-agent-kosten/",
   "/wissen/ki-agent-sicherheit-prompt-injection/",
@@ -18,8 +23,13 @@ const routes = [
 const staticFiles = ["/robots.txt", "/sitemap.xml", "/llms.txt", "/llms-full.txt"];
 const crawlerAgents = [
   ["Googlebot", "Googlebot/2.1 (+http://www.google.com/bot.html)"],
+  ["Bingbot", "bingbot/2.0; +http://www.bing.com/bingbot.htm"],
   ["OAI-SearchBot", "OAI-SearchBot/1.0; +https://openai.com/searchbot"],
   ["ChatGPT-User", "ChatGPT-User/1.0; +https://openai.com/bot"],
+  ["Claude-SearchBot", "Claude-SearchBot/1.0"],
+  ["Claude-User", "Claude-User/1.0"],
+  ["PerplexityBot", "PerplexityBot/1.0"],
+  ["Perplexity-User", "Perplexity-User/1.0"],
 ];
 const redirects = new Map([
   ["/ki-assistenten-unternehmen/", "/"],
@@ -130,7 +140,7 @@ for (const route of routes) {
 
   if (route.startsWith("/wissen/") && route !== "/wissen/") {
     assert(types.has("Article"), `${route} JSON-LD must include Article`);
-    assert(body.includes('"dateModified":"2026-08-15"'), `${route} Article must expose the current review date`);
+    assert(body.includes('"dateModified":"2026-08-16"'), `${route} Article must expose the current review date`);
   }
 }
 
@@ -172,6 +182,13 @@ for (const path of staticFiles) {
     assert(body.includes("User-agent: OAI-SearchBot"), "robots.txt must mention OAI-SearchBot");
     assert(body.includes("User-agent: ChatGPT-User"), "robots.txt must mention ChatGPT-User");
     assert(body.includes("User-agent: GPTBot"), "robots.txt must explicitly handle GPTBot");
+    assert(body.includes("User-agent: Claude-SearchBot"), "robots.txt must mention Claude-SearchBot");
+    assert(body.includes("User-agent: Claude-User"), "robots.txt must mention Claude-User");
+    assert(body.includes("User-agent: ClaudeBot"), "robots.txt must explicitly handle ClaudeBot");
+    assert(body.includes("User-agent: PerplexityBot"), "robots.txt must mention PerplexityBot");
+    assert(body.includes("User-agent: Perplexity-User"), "robots.txt must mention Perplexity-User");
+    assert(body.includes("User-agent: Google-Extended"), "robots.txt must explicitly handle Google-Extended");
+    assert(body.includes("Content-Signal: search=yes, ai-input=yes, ai-train=no, use=reference"), "robots.txt must expose content signals");
     assert(body.includes(`Sitemap: ${productionOrigin}/sitemap.xml`), "robots.txt must reference the production sitemap");
   }
 }

@@ -2149,14 +2149,38 @@ textarea {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.metric-strip {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .cost-grid article,
 .scenario-grid article,
 .ops-grid article,
+.metric-strip article,
 .checklist-inline li {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 1rem;
+}
+
+.metric-strip strong,
+.metric-strip span {
+  display: block;
+}
+
+.metric-strip strong {
+  color: var(--coral);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.metric-strip span {
+  color: var(--muted);
+  font-weight: 850;
+  margin-top: 0.45rem;
 }
 
 .cost-grid h3,
@@ -2242,6 +2266,7 @@ textarea {
   .cost-grid,
   .scenario-grid,
   .ops-grid,
+  .metric-strip,
   .diagram-frame,
   .checklist-inline {
     grid-template-columns: 1fr;

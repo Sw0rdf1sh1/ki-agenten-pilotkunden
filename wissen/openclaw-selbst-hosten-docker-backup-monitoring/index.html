@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenClaw selbst hosten: Docker, Backup und Monitoring</title>
+    <meta name="description" content="Produktionsnahes Self-Hosting von OpenClaw: Container-Architektur, Reverse Proxy, TLS, persistente Daten, Backups, Updates, Rollback, Monitoring und Kostenkontrolle.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#18202f">
+    <link rel="canonical" href="https://ki-packt-an.de/wissen/openclaw-selbst-hosten-docker-backup-monitoring/">
+    <link rel="icon" href="/assets/icons/ki-packt-an-logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/social/ki-packt-an-logo-512.png">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <meta property="og:site_name" content="KI packt an">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="OpenClaw selbst hosten: Docker, Backup und Monitoring">
+    <meta property="og:description" content="Produktionsnahes Self-Hosting von OpenClaw: Container-Architektur, Reverse Proxy, TLS, persistente Daten, Backups, Updates, Rollback, Monitoring und Kostenkontrolle.">
+    <meta property="og:url" content="https://ki-packt-an.de/wissen/openclaw-selbst-hosten-docker-backup-monitoring/">
+    <meta property="og:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenClaw selbst hosten: Docker, Backup und Monitoring">
+    <meta name="twitter:description" content="Produktionsnahes Self-Hosting von OpenClaw: Container-Architektur, Reverse Proxy, TLS, persistente Daten, Backups, Updates, Rollback, Monitoring und Kostenkontrolle.">
+    <meta name="twitter:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ki-packt-an.de/#website","name":"KI packt an","url":"https://ki-packt-an.de","inLanguage":"de-DE","publisher":{"@id":"https://ki-packt-an.de/#organization"}},{"@type":"ProfessionalService","@id":"https://ki-packt-an.de/#organization","name":"KI packt an","url":"https://ki-packt-an.de","logo":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-logo-512.png","width":512,"height":512},"image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","description":"KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.","areaServed":"DE","founder":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"email":"hello@georgi.digital","knowsAbout":["produktive KI-Agenten","OpenClaw im Mittelstand","KI-Assistenten für Unternehmen","E-Mail-Assistenten","CRM- und ERP-Integration","Prompt Injection","Human-in-the-loop","Betrieb von KI-Systemen","LLM-Kostenkontrolle","technische Prozessautomatisierung"]},{"@type":"Person","@id":"https://ki-packt-an.de/fabian-georgi/#person","name":"Fabian Georgi","url":"https://ki-packt-an.de/fabian-georgi/","image":"https://ki-packt-an.de/assets/people/fabian-georgi.webp","jobTitle":"Senior Software Developer · Software-, Integrations- und Prozessentwicklung","worksFor":{"@id":"https://ki-packt-an.de/#organization"},"sameAs":["https://georgi.digital/"],"knowsAbout":["produktive KI-Agenten","OpenClaw im Mittelstand","KI-Assistenten für Unternehmen","E-Mail-Assistenten","CRM- und ERP-Integration","Prompt Injection","Human-in-the-loop","Betrieb von KI-Systemen","LLM-Kostenkontrolle","technische Prozessautomatisierung"]},{"@type":"WebPage","@id":"https://ki-packt-an.de/wissen/openclaw-selbst-hosten-docker-backup-monitoring/#webpage","url":"https://ki-packt-an.de/wissen/openclaw-selbst-hosten-docker-backup-monitoring/","name":"OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring","headline":"OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring","description":"Produktionsnahes Self-Hosting von OpenClaw: Container-Architektur, Reverse Proxy, TLS, persistente Daten, Backups, Updates, Rollback, Monitoring und Kostenkontrolle.","isPartOf":{"@id":"https://ki-packt-an.de/#website"},"inLanguage":"de-DE","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","primaryImageOfPage":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","width":1200,"height":630},"about":[{"@type":"Thing","name":"produktive KI-Agenten"},{"@type":"Thing","name":"OpenClaw im Mittelstand"},{"@type":"Thing","name":"KI-Assistenten für Unternehmen"},{"@type":"Thing","name":"E-Mail-Assistenten"},{"@type":"Thing","name":"CRM- und ERP-Integration"},{"@type":"Thing","name":"Prompt Injection"},{"@type":"Thing","name":"Human-in-the-loop"},{"@type":"Thing","name":"Betrieb von KI-Systemen"},{"@type":"Thing","name":"LLM-Kostenkontrolle"},{"@type":"Thing","name":"technische Prozessautomatisierung"}],"keywords":"produktive KI-Agenten, OpenClaw im Mittelstand, KI-Assistenten für Unternehmen, E-Mail-Assistenten, CRM- und ERP-Integration, Prompt Injection, Human-in-the-loop, Betrieb von KI-Systemen, LLM-Kostenkontrolle, technische Prozessautomatisierung","mainEntity":{"@type":"Article","@id":"https://ki-packt-an.de/wissen/openclaw-selbst-hosten-docker-backup-monitoring/#article","headline":"OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring","description":"Produktionsnahes Self-Hosting von OpenClaw: Container-Architektur, Reverse Proxy, TLS, persistente Daten, Backups, Updates, Rollback, Monitoring und Kostenkontrolle.","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","author":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"publisher":{"@id":"https://ki-packt-an.de/#organization"},"datePublished":"2026-08-11","dateModified":"2026-08-16","about":[{"@type":"Thing","name":"produktive KI-Agenten"},{"@type":"Thing","name":"OpenClaw im Mittelstand"},{"@type":"Thing","name":"KI-Assistenten für Unternehmen"},{"@type":"Thing","name":"E-Mail-Assistenten"},{"@type":"Thing","name":"CRM- und ERP-Integration"},{"@type":"Thing","name":"Prompt Injection"},{"@type":"Thing","name":"Human-in-the-loop"},{"@type":"Thing","name":"Betrieb von KI-Systemen"},{"@type":"Thing","name":"LLM-Kostenkontrolle"},{"@type":"Thing","name":"technische Prozessautomatisierung"}],"keywords":"produktive KI-Agenten, OpenClaw im Mittelstand, KI-Assistenten für Unternehmen, E-Mail-Assistenten, CRM- und ERP-Integration, Prompt Injection, Human-in-the-loop, Betrieb von KI-Systemen, LLM-Kostenkontrolle, technische Prozessautomatisierung","mainEntityOfPage":{"@id":"https://ki-packt-an.de/wissen/openclaw-selbst-hosten-docker-backup-monitoring/#webpage"}},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://ki-packt-an.de/"},{"@type":"ListItem","position":2,"name":"Praxiswissen","item":"https://ki-packt-an.de/wissen/"},{"@type":"ListItem","position":3,"name":"OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring"}]}}]}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Direkt zum Inhalt</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="KI packt an Startseite">
+        <span class="brand-mark" aria-hidden="true">KI</span>
+        <span>KI packt an</span>
+      </a>
+      <nav class="desktop-nav" id="site-navigation" aria-label="Hauptnavigation">
+        <div class="desktop-nav-group">
+          <button class="desktop-nav-trigger" type="button" aria-expanded="false">Leistungen</button>
+          <div class="desktop-nav-dropdown">
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+        </div>
+        <a href="/#ablauf">Ablauf</a>
+        <a href="/#preise">Preise</a>
+        <a href="/fabian-georgi/">Über mich</a>
+        <a class="nav-cta" href="/#anfrage">Einsatz prüfen</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Navigation öffnen">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Menü</span>
+      </button>
+      <div class="mobile-backdrop" data-menu-close hidden></div>
+      <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" tabindex="-1">
+        <div class="mobile-drawer-head">
+          <span class="mobile-drawer-brand">KI packt an</span>
+          <button class="drawer-close" type="button" data-menu-close aria-label="Navigation schließen">×</button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile Hauptnavigation">
+          <button class="mobile-accordion" type="button" aria-expanded="false" aria-controls="mobile-services">Leistungen</button>
+          <div class="mobile-subnav" id="mobile-services" hidden>
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+          <a href="/#ablauf">Ablauf</a>
+          <a href="/#preise">Preise</a>
+          <a href="/fabian-georgi/">Über mich</a>
+        </nav>
+        <div class="mobile-drawer-action">
+          <a class="button primary" href="/#anfrage">Einsatz prüfen</a>
+          <span>Unverbindlich · persönliche Einschätzung</span>
+        </div>
+        <div class="mobile-legal">
+          <a href="https://georgi.digital/impressum/">Impressum</a>
+          <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        </div>
+      </aside>
+    </header>
+    <main id="main" class="page-shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Startseite</a></li><li><a href="/wissen/">Praxiswissen</a></li><li><span aria-current="page">OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring</span></li>
+      </ol>
+    </nav>
+      <article class="content-page article-page">
+        <p class="eyebrow">Praxiswissen</p>
+        <h1>OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring</h1>
+        <p class="answer-block">Self-Hosting von OpenClaw ist sinnvoll, wenn Datenflüsse, interne Systeme oder Betriebsanforderungen eine eigene Laufzeitumgebung erfordern. Es ist aber ein Betriebsprojekt, keine reine Installation.</p>
+        <div class="byline">
+          <img src="/assets/people/fabian-georgi-450.webp" alt="Fabian Georgi" width="450" height="450" loading="lazy" decoding="async">
+          <p><strong>Autor: Fabian Georgi</strong><span>Senior Software Developer · Software-, Integrations- und Prozessentwicklung</span><span>Veröffentlicht: 11. August 2026 · Fachlich geprüft: 16. August 2026</span></p>
+        </div>
+        <section class="content-section">
+        <h2>Container-Architektur und persistente Daten</h2>
+        <p>OpenClaw sollte in klar getrennten Diensten betrieben werden: Anwendung, Datenhaltung, Connectoren, Reverse Proxy, Monitoring und Backup-Job dürfen nicht als unübersichtlicher Einzelprozess verschwimmen.</p>
+        <p>Persistente Daten, Konfiguration und Uploads brauchen dokumentierte Volumes. Alles, was nach einem Container-Neustart verloren gehen darf, muss ausdrücklich als flüchtig gelten.</p>
+      </section>
+<section class="content-section">
+        <h2>Reverse Proxy, TLS und Netzwerksegmentierung</h2>
+        <p>Ein Reverse Proxy übernimmt TLS, Hostnamen, Security Headers und gegebenenfalls Zugriffsbeschränkungen. Interne Connectoren sollten nur die Systeme erreichen, die für ihren Prozess nötig sind.</p>
+        <p>Netzwerksegmentierung reduziert die Wirkung eines Fehlers: Ein E-Mail-Agent braucht keinen direkten Zugriff auf Datenbanken, die für seinen Vorgang irrelevant sind.</p>
+      </section>
+<section class="content-section">
+        <h2>Health Checks, Logs und Metrics</h2>
+        <p>Health Checks prüfen, ob Dienste erreichbar sind. Logs erklären, was passiert ist. Metrics zeigen Kosten, Fehlerquoten, Antwortzeiten und auffällige Nutzung.</p>
+        <p>Für Agentenbetrieb reichen reine Servermetriken nicht aus. Wichtig sind auch fachliche Signale: Eskalationsquote, blockierte Tool-Aufrufe, fehlgeschlagene Freigaben und Modellkosten.</p>
+      </section>
+<section class="content-section">
+        <h2>Backup, Restore und Rollback</h2>
+        <p>Backups sind nur dann wertvoll, wenn ein Restore getestet wurde. Gesichert werden müssen Konfiguration, relevante Daten, Wissensstände, Audit-Kontext und Betriebsdokumentation.</p>
+        <p>Updates brauchen eine Rückfallstrategie. Ein Modell-, Prompt- oder Connectorwechsel sollte erst nach Regressionstests auf bekannten Fällen produktiv werden.</p>
+      </section>
+<section class="content-section">
+        <h2>Staging und Ressourcenlimits</h2>
+        <p>Eine Staging-Umgebung verhindert, dass neue Tools oder Promptänderungen direkt produktive Vorgänge beeinflussen. Testdaten müssen dabei kontrolliert und frei von Kundengeheimnissen sein.</p>
+        <p>Ressourcenlimits und Kostenlimits schützen vor Endlosschleifen, unerwarteten Massenverarbeitungen und unkontrollierter API-Nutzung.</p>
+      </section>
+<section class="content-section">
+        <h2>Kostenkontrolle im Self-Hosting</h2>
+        <p>Self-Hosting verschiebt Kosten von Plattformgebühren zu Betrieb, Wartung, Monitoring, Backups und Verantwortlichkeit. Es ist nicht automatisch günstiger.</p>
+        <p>Der Vorteil liegt in Kontrolle: Datenwege, Zugriff, Netzwerk, Update-Zeitpunkte und Integrationen lassen sich genauer an Unternehmensanforderungen anpassen.</p>
+      </section>
+<section class="content-section">
+        <h2>Produktionsnahe Self-Hosting-Struktur</h2>
+        <figure class="diagram" aria-labelledby="self-hosting-title">
+          <figcaption id="self-hosting-title">Self-Hosting trennt öffentliche Kante, OpenClaw-Laufzeit, Connectoren, Datenhaltung, Monitoring und Backup.</figcaption>
+          <div class="architecture-diagram">
+            <div class="diagram-node primary">Reverse Proxy / TLS</div>
+            <div class="diagram-node agent">OpenClaw Runtime</div>
+            <div class="diagram-group">
+              <span>Connectoren</span>
+              <span>Datenvolumes</span>
+              <span>Secrets</span>
+              <span>Logs</span>
+              <span>Backups</span>
+            </div>
+            <div class="diagram-frame">
+              <span>Health Checks</span>
+              <span>Metrics</span>
+              <span>Staging</span>
+              <span>Rollback</span>
+            </div>
+          </div>
+        </figure>
+      </section>
+        <section class="content-section"><h2>Quellen</h2><ul class="link-list"><li><a href="https://docs.docker.com/compose/">Docker Docs: Compose</a></li><li><a href="https://docs.docker.com/engine/containers/resource_constraints/">Docker Docs: Resource constraints</a></li><li><a href="https://www.nist.gov/cyberframework">NIST Cybersecurity Framework</a></li></ul></section>
+        <section class="content-section">
+        <h2>Passende nächste Seiten</h2>
+        <ul class="link-list">
+          <li><a href="/openclaw-fuer-unternehmen/">OpenClaw im Unternehmen planen</a></li>
+          <li><a href="/ki-assistent-betrieb-betreuung/">Managed Betrieb verstehen</a></li>
+          <li><a href="/wissen/openclaw-sicher-betreiben/">Sicherheitsarchitektur ergänzen</a></li>
+        </ul>
+      </section>
+        <section class="content-cta">
+          <h2>Vom Praxiswissen zum ersten Prozess</h2>
+          <p>KI packt an prüft konkrete Unternehmensprozesse und setzt nur begrenzte, nachvollziehbare Assistenten produktiv um.</p>
+          <a class="button primary" href="/#anfrage">Prozess prüfen lassen</a>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <span>KI packt an · Fabian Georgi</span>
+      <nav aria-label="Footer-Navigation">
+        <a href="/email-assistent/">Leistungen</a>
+        <a href="/wissen/">Praxiswissen</a>
+        <a href="/fabian-georgi/">Fabian Georgi</a>
+        <a href="https://georgi.digital/impressum/">Impressum</a>
+        <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        <a href="mailto:hello@georgi.digital">hello@georgi.digital</a>
+      </nav>
+    </footer>
+    <script src="/assets/script.js" defer></script>
+  </body>
+</html>

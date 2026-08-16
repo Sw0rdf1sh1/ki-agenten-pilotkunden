@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node scripts/build-site.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
+    "research:prompt-injection": "node scripts/prompt-injection-research.mjs",
     "check": "node scripts/check.mjs"
   },
   "dependencies": {

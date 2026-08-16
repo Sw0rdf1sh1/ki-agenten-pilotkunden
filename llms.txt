@@ -16,6 +16,11 @@ KI packt an ist ein Angebot für Unternehmen, die wiederkehrende digitale Arbeit
 - [Was ist ein KI-Agent? Unterschied zu Chatbot und klassischer Automatisierung](https://ki-packt-an.de/wissen/was-ist-ein-ki-agent/)
 - [KI-Agenten im Mittelstand: sinnvolle Prozesse, Grenzen und Einstieg](https://ki-packt-an.de/wissen/ki-agenten-im-mittelstand/)
 - [Produktive KI-Agenten mit OpenClaw im Mittelstand: Betrieb, Sicherheit und Grenzen](https://ki-packt-an.de/wissen/produktive-ki-agenten-openclaw-mittelstand/)
+- [OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen](https://ki-packt-an.de/wissen/openclaw-sicher-betreiben/)
+- [OpenClaw mit Microsoft 365 verbinden: OAuth, E-Mail und Berechtigungen](https://ki-packt-an.de/wissen/openclaw-microsoft-365-oauth-email/)
+- [OpenClaw selbst hosten: Docker, Updates, Backup und Monitoring](https://ki-packt-an.de/wissen/openclaw-selbst-hosten-docker-backup-monitoring/)
+- [OpenClaw und DSGVO: Datenflüsse, Modelle und Unternehmensdaten](https://ki-packt-an.de/wissen/openclaw-dsgvo-datenfluesse-modelle-unternehmensdaten/)
+- [Wir haben einen KI-Agenten mit manipulierten E-Mails getestet: Ergebnisse eines Prompt-Injection-Tests](https://ki-packt-an.de/wissen/prompt-injection-test-ki-agent-email/)
 - [KI-E-Mail-Assistent im Unternehmen: Freigaben, Sicherheit und typische Abläufe](https://ki-packt-an.de/wissen/ki-email-assistent-sicher-einsetzen/)
 - [Was kostet ein KI-Agent für Unternehmen?](https://ki-packt-an.de/wissen/ki-agent-kosten/)
 - [KI-Agenten und Prompt Injection: Warum E-Mails und Dokumente nicht vertrauenswürdig sind](https://ki-packt-an.de/wissen/ki-agent-sicherheit-prompt-injection/)
@@ -32,3 +37,4 @@ KI packt an ist ein Angebot für Unternehmen, die wiederkehrende digitale Arbeit
 - Externe Modell-, API-, Betriebs- und Lizenzkosten werden transparent ausgewiesen.
 - Für ChatGPT Search ist OAI-SearchBot relevant; GPTBot betrifft Modelltraining und ist dafür nicht erforderlich.
 - User-ausgelöste ChatGPT-Abrufe sind über ChatGPT-User erlaubt.
+- Claude-SearchBot, Claude-User, PerplexityBot und Perplexity-User sind für Search-/Retrieval-Nutzung erlaubt; ClaudeBot, GPTBot und Google-Extended bleiben für Training beziehungsweise erweiterte Modellnutzung blockiert.

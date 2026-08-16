@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenClaw sicher betreiben: Architektur, Secrets, Rechte</title>
+    <meta name="description" content="Wie Unternehmen OpenClaw sicher betreiben: Least Privilege, Service Accounts, Secret Management, Tool-Allowlisting, Logging, Audit Trail und Prompt-Injection-Schutz.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#18202f">
+    <link rel="canonical" href="https://ki-packt-an.de/wissen/openclaw-sicher-betreiben/">
+    <link rel="icon" href="/assets/icons/ki-packt-an-logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/social/ki-packt-an-logo-512.png">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <meta property="og:site_name" content="KI packt an">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="OpenClaw sicher betreiben: Architektur, Secrets, Rechte">
+    <meta property="og:description" content="Wie Unternehmen OpenClaw sicher betreiben: Least Privilege, Service Accounts, Secret Management, Tool-Allowlisting, Logging, Audit Trail und Prompt-Injection-Schutz.">
+    <meta property="og:url" content="https://ki-packt-an.de/wissen/openclaw-sicher-betreiben/">
+    <meta property="og:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenClaw sicher betreiben: Architektur, Secrets, Rechte">
+    <meta name="twitter:description" content="Wie Unternehmen OpenClaw sicher betreiben: Least Privilege, Service Accounts, Secret Management, Tool-Allowlisting, Logging, Audit Trail und Prompt-Injection-Schutz.">
+    <meta name="twitter:image" content="https://ki-packt-an.de/assets/social/ki-packt-an-social.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ki-packt-an.de/#website","name":"KI packt an","url":"https://ki-packt-an.de","inLanguage":"de-DE","publisher":{"@id":"https://ki-packt-an.de/#organization"}},{"@type":"ProfessionalService","@id":"https://ki-packt-an.de/#organization","name":"KI packt an","url":"https://ki-packt-an.de","logo":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-logo-512.png","width":512,"height":512},"image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","description":"KI packt an richtet KI-Assistenten für Unternehmen ein, verbindet sie mit bestehenden Systemen und betreut den produktiven Betrieb.","areaServed":"DE","founder":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"email":"hello@georgi.digital","knowsAbout":["produktive KI-Agenten","OpenClaw im Mittelstand","KI-Assistenten für Unternehmen","E-Mail-Assistenten","CRM- und ERP-Integration","Prompt Injection","Human-in-the-loop","Betrieb von KI-Systemen","LLM-Kostenkontrolle","technische Prozessautomatisierung"]},{"@type":"Person","@id":"https://ki-packt-an.de/fabian-georgi/#person","name":"Fabian Georgi","url":"https://ki-packt-an.de/fabian-georgi/","image":"https://ki-packt-an.de/assets/people/fabian-georgi.webp","jobTitle":"Senior Software Developer · Software-, Integrations- und Prozessentwicklung","worksFor":{"@id":"https://ki-packt-an.de/#organization"},"sameAs":["https://georgi.digital/"],"knowsAbout":["produktive KI-Agenten","OpenClaw im Mittelstand","KI-Assistenten für Unternehmen","E-Mail-Assistenten","CRM- und ERP-Integration","Prompt Injection","Human-in-the-loop","Betrieb von KI-Systemen","LLM-Kostenkontrolle","technische Prozessautomatisierung"]},{"@type":"WebPage","@id":"https://ki-packt-an.de/wissen/openclaw-sicher-betreiben/#webpage","url":"https://ki-packt-an.de/wissen/openclaw-sicher-betreiben/","name":"OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen","headline":"OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen","description":"Wie Unternehmen OpenClaw sicher betreiben: Least Privilege, Service Accounts, Secret Management, Tool-Allowlisting, Logging, Audit Trail und Prompt-Injection-Schutz.","isPartOf":{"@id":"https://ki-packt-an.de/#website"},"inLanguage":"de-DE","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","primaryImageOfPage":{"@type":"ImageObject","url":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","width":1200,"height":630},"about":[{"@type":"Thing","name":"produktive KI-Agenten"},{"@type":"Thing","name":"OpenClaw im Mittelstand"},{"@type":"Thing","name":"KI-Assistenten für Unternehmen"},{"@type":"Thing","name":"E-Mail-Assistenten"},{"@type":"Thing","name":"CRM- und ERP-Integration"},{"@type":"Thing","name":"Prompt Injection"},{"@type":"Thing","name":"Human-in-the-loop"},{"@type":"Thing","name":"Betrieb von KI-Systemen"},{"@type":"Thing","name":"LLM-Kostenkontrolle"},{"@type":"Thing","name":"technische Prozessautomatisierung"}],"keywords":"produktive KI-Agenten, OpenClaw im Mittelstand, KI-Assistenten für Unternehmen, E-Mail-Assistenten, CRM- und ERP-Integration, Prompt Injection, Human-in-the-loop, Betrieb von KI-Systemen, LLM-Kostenkontrolle, technische Prozessautomatisierung","mainEntity":{"@type":"Article","@id":"https://ki-packt-an.de/wissen/openclaw-sicher-betreiben/#article","headline":"OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen","description":"Wie Unternehmen OpenClaw sicher betreiben: Least Privilege, Service Accounts, Secret Management, Tool-Allowlisting, Logging, Audit Trail und Prompt-Injection-Schutz.","image":"https://ki-packt-an.de/assets/social/ki-packt-an-social.png","author":{"@id":"https://ki-packt-an.de/fabian-georgi/#person"},"publisher":{"@id":"https://ki-packt-an.de/#organization"},"datePublished":"2026-08-11","dateModified":"2026-08-16","about":[{"@type":"Thing","name":"produktive KI-Agenten"},{"@type":"Thing","name":"OpenClaw im Mittelstand"},{"@type":"Thing","name":"KI-Assistenten für Unternehmen"},{"@type":"Thing","name":"E-Mail-Assistenten"},{"@type":"Thing","name":"CRM- und ERP-Integration"},{"@type":"Thing","name":"Prompt Injection"},{"@type":"Thing","name":"Human-in-the-loop"},{"@type":"Thing","name":"Betrieb von KI-Systemen"},{"@type":"Thing","name":"LLM-Kostenkontrolle"},{"@type":"Thing","name":"technische Prozessautomatisierung"}],"keywords":"produktive KI-Agenten, OpenClaw im Mittelstand, KI-Assistenten für Unternehmen, E-Mail-Assistenten, CRM- und ERP-Integration, Prompt Injection, Human-in-the-loop, Betrieb von KI-Systemen, LLM-Kostenkontrolle, technische Prozessautomatisierung","mainEntityOfPage":{"@id":"https://ki-packt-an.de/wissen/openclaw-sicher-betreiben/#webpage"}},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://ki-packt-an.de/"},{"@type":"ListItem","position":2,"name":"Praxiswissen","item":"https://ki-packt-an.de/wissen/"},{"@type":"ListItem","position":3,"name":"OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen"}]}}]}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Direkt zum Inhalt</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="KI packt an Startseite">
+        <span class="brand-mark" aria-hidden="true">KI</span>
+        <span>KI packt an</span>
+      </a>
+      <nav class="desktop-nav" id="site-navigation" aria-label="Hauptnavigation">
+        <div class="desktop-nav-group">
+          <button class="desktop-nav-trigger" type="button" aria-expanded="false">Leistungen</button>
+          <div class="desktop-nav-dropdown">
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+        </div>
+        <a href="/#ablauf">Ablauf</a>
+        <a href="/#preise">Preise</a>
+        <a href="/fabian-georgi/">Über mich</a>
+        <a class="nav-cta" href="/#anfrage">Einsatz prüfen</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Navigation öffnen">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Menü</span>
+      </button>
+      <div class="mobile-backdrop" data-menu-close hidden></div>
+      <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" tabindex="-1">
+        <div class="mobile-drawer-head">
+          <span class="mobile-drawer-brand">KI packt an</span>
+          <button class="drawer-close" type="button" data-menu-close aria-label="Navigation schließen">×</button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile Hauptnavigation">
+          <button class="mobile-accordion" type="button" aria-expanded="false" aria-controls="mobile-services">Leistungen</button>
+          <div class="mobile-subnav" id="mobile-services" hidden>
+            <a href="/email-assistent/">E-Mail-Assistent</a>
+            <a href="/openclaw-fuer-unternehmen/">OpenClaw</a>
+            <a href="/ki-assistent-crm-erp/">CRM & ERP</a>
+            <a href="/ki-assistent-betrieb-betreuung/">Betrieb & Betreuung</a>
+          </div>
+          <a href="/#ablauf">Ablauf</a>
+          <a href="/#preise">Preise</a>
+          <a href="/fabian-georgi/">Über mich</a>
+        </nav>
+        <div class="mobile-drawer-action">
+          <a class="button primary" href="/#anfrage">Einsatz prüfen</a>
+          <span>Unverbindlich · persönliche Einschätzung</span>
+        </div>
+        <div class="mobile-legal">
+          <a href="https://georgi.digital/impressum/">Impressum</a>
+          <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        </div>
+      </aside>
+    </header>
+    <main id="main" class="page-shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Startseite</a></li><li><a href="/wissen/">Praxiswissen</a></li><li><span aria-current="page">OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen</span></li>
+      </ol>
+    </nav>
+      <article class="content-page article-page">
+        <p class="eyebrow">Praxiswissen</p>
+        <h1>OpenClaw sicher im Unternehmen betreiben: Architektur, Secrets und Berechtigungen</h1>
+        <p class="answer-block">OpenClaw wird erst unternehmensfähig, wenn Agentenrollen, Werkzeuge, Rechte, Secrets, Freigaben und Protokolle getrennt geplant werden. Ein Agent darf nicht dieselben Rechte bekommen wie ein Administrator.</p>
+        <div class="byline">
+          <img src="/assets/people/fabian-georgi-450.webp" alt="Fabian Georgi" width="450" height="450" loading="lazy" decoding="async">
+          <p><strong>Autor: Fabian Georgi</strong><span>Senior Software Developer · Software-, Integrations- und Prozessentwicklung</span><span>Veröffentlicht: 11. August 2026 · Fachlich geprüft: 16. August 2026</span></p>
+        </div>
+        <section class="content-section">
+        <h2>Bedrohungsmodell: Was muss begrenzt werden?</h2>
+        <p>Ein produktiver Agent verarbeitet fremde E-Mails, Dokumente, Tickets und interne Daten. Jede dieser Quellen kann falsche Angaben, manipulierte Anweisungen oder unerwartete Formate enthalten.</p>
+        <p>Das Sicherheitsziel ist nicht, dass ein Modell niemals falsch liegt. Das Ziel ist, dass ein Fehler keine zu weitreichende Aktion auslösen kann: keine ungeprüfte Mail, kein Kundendatenexport, keine Änderung im CRM und kein Zugriff auf Secrets.</p>
+      </section>
+<section class="content-section">
+        <h2>Agentenrechte sind nicht Benutzerrechte</h2>
+        <p>Ein Agent braucht ein eigenes Berechtigungsmodell. Er sollte weder persönliche Benutzerkonten wiederverwenden noch pauschal die Rechte der Person erhalten, die ihn auslöst.</p>
+        <p>Praktisch bedeutet das: dedizierte Service Accounts pro Prozess, getrennte Lese- und Schreibrechte, begrenzte Scopes und eine eindeutige Zuordnung im Audit Log.</p>
+      </section>
+<section class="content-section">
+        <h2>Secrets gehören nicht in Prompts</h2>
+        <p>API-Schlüssel, OAuth-Tokens, Datenbankzugänge und Webhook-Secrets gehören in die Laufzeitumgebung oder eine Secret-Verwaltung, nicht in Systemprompts, Wissensdateien oder Git-Repositories.</p>
+        <p>Ein Agent sollte ein Werkzeug nur über eine kontrollierte Schnittstelle aufrufen. Das Werkzeug holt das Secret serverseitig und validiert Eingaben, bevor es eine externe Aktion ausführt.</p>
+      </section>
+<section class="content-section">
+        <h2>Tool-Allowlisting und Argumentprüfung</h2>
+        <p>Ein produktiver Agent sollte nur explizit freigegebene Werkzeuge sehen. Jedes Werkzeug braucht eine klar definierte Aufgabe, erlaubte Argumente und fachliche Grenzen.</p>
+        <p>Besonders wichtig ist die Argumentprüfung: Ein CRM-Notizwerkzeug darf nicht plötzlich Massenupdates ausführen, nur weil ein manipuliertes Dokument ein anderes JSON-Argument vorschlägt.</p>
+      </section>
+<section class="content-section">
+        <h2>Prompt Injection als Betriebsrisiko</h2>
+        <p>Eingehende Inhalte bleiben Arbeitsdaten. Sie dürfen niemals zu neuen Systemanweisungen werden. Diese Trennung muss in Prompt, Tool-Policy und Freigaberegeln sichtbar sein.</p>
+        <p>Kritische Aktionen wie Mailversand, CRM-Schreibzugriffe, Preiszusagen, Datenexporte oder Rollenänderungen brauchen Human Approval oder eine harte technische Sperre.</p>
+      </section>
+<section class="content-section">
+        <h2>Logging, Audit Trail und typische Fehlkonfigurationen</h2>
+        <p>Protokolliert werden sollten Eingang, erkannte Kategorie, genutzte Quellen, Tool-Aufrufe, Freigabeentscheidung und Ergebnis. Logs dürfen dabei keine Secrets und möglichst keine unnötigen personenbezogenen Vollinhalte enthalten.</p>
+        <p>Typische Fehlkonfigurationen sind globale Admin-Tokens, fehlende Trennung von Lese- und Schreibrechten, unvalidierte Tool-Argumente, ungeprüfter Mailversand und fehlende Regressionstests nach Modell- oder Promptänderungen.</p>
+      </section>
+<section class="content-section">
+        <h2>Referenzarchitektur für sichere Agentenrechte</h2>
+        <figure class="diagram" aria-labelledby="secure-openclaw-architecture-title">
+          <figcaption id="secure-openclaw-architecture-title">OpenClaw trennt untrusted input, Agentenrolle, Tool-Policy, Service Account, Fachsystem und Audit Trail.</figcaption>
+          <div class="flow-diagram">
+            <span>Untrusted Input</span>
+            <span>Agentenrolle</span>
+            <span>Tool-Allowlist</span>
+            <span>Argumentprüfung</span>
+            <span>Service Account</span>
+            <span>Fachsystem</span>
+            <span>Audit Log</span>
+          </div>
+        </figure>
+      </section>
+      <section class="content-section">
+        <h2>Minimal sinnvolle Rechte pro Agententyp</h2>
+        <div class="comparison-table" role="region" aria-label="Rechtemodell für OpenClaw-Agenten">
+          <table>
+            <thead><tr><th>Agent</th><th>Leserechte</th><th>Schreibrechte</th><th>Freigabe</th></tr></thead>
+            <tbody>
+              <tr><th>E-Mail-Triage</th><td>Postfach, Wiki</td><td>Entwurf erstellen</td><td>vor Versand</td></tr>
+              <tr><th>CRM-Recherche</th><td>Kunden, offene Vorgänge</td><td>keine oder Notizentwurf</td><td>vor CRM-Änderung</td></tr>
+              <tr><th>Support-Agent</th><td>Tickets, Produktwissen</td><td>Statusvorschlag</td><td>bei Eskalation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+        <section class="content-section"><h2>Quellen</h2><ul class="link-list"><li><a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">OWASP GenAI Security Project: LLM01 Prompt Injection</a></li><li><a href="https://www.nist.gov/cyberframework">NIST Cybersecurity Framework</a></li><li><a href="https://docs.docker.com/engine/swarm/secrets/">Docker: Secrets</a></li></ul></section>
+        <section class="content-section">
+        <h2>Passende nächste Seiten</h2>
+        <ul class="link-list">
+          <li><a href="/openclaw-fuer-unternehmen/">OpenClaw als Unternehmensdienst einordnen</a></li>
+          <li><a href="/wissen/ki-agent-sicherheit-prompt-injection/">Prompt Injection verstehen</a></li>
+          <li><a href="/wissen/prompt-injection-test-ki-agent-email/">Eigene Prompt-Injection-Messung ansehen</a></li>
+        </ul>
+      </section>
+        <section class="content-cta">
+          <h2>Vom Praxiswissen zum ersten Prozess</h2>
+          <p>KI packt an prüft konkrete Unternehmensprozesse und setzt nur begrenzte, nachvollziehbare Assistenten produktiv um.</p>
+          <a class="button primary" href="/#anfrage">Prozess prüfen lassen</a>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <span>KI packt an · Fabian Georgi</span>
+      <nav aria-label="Footer-Navigation">
+        <a href="/email-assistent/">Leistungen</a>
+        <a href="/wissen/">Praxiswissen</a>
+        <a href="/fabian-georgi/">Fabian Georgi</a>
+        <a href="https://georgi.digital/impressum/">Impressum</a>
+        <a href="https://georgi.digital/datenschutz/">Datenschutz</a>
+        <a href="mailto:hello@georgi.digital">hello@georgi.digital</a>
+      </nav>
+    </footer>
+    <script src="/assets/script.js" defer></script>
+  </body>
+</html>
